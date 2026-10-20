@@ -91,7 +91,7 @@ def save_compact(records, runs, output_dir, per_page=10):
         canvas.save(output_dir/f'compact_{start//per_page+1:03d}.png')
 
 
-def run_batch(manifest, output_dir, config, ablations=()):
+def run_batch(manifest, output_dir, config, ablations=(), *, composer=compose):
     records = load_manifest(manifest)
     output_dir = Path(output_dir)
     if output_dir.exists() and any(output_dir.iterdir()):
@@ -102,7 +102,7 @@ def run_batch(manifest, output_dir, config, ablations=()):
         source, profile = read_rgb(row['source'])
         generated, _ = read_rgb(row['generated'])
         object_mask = read_mask(row['mask'])
-        result = compose(source, generated, object_mask, config)
+        result = composer(source, generated, object_mask, config)
         result['metadata'].update(id=row['id'], ablations=list(ablations),
                                   input_sha256={key: sha256(row[key]) for key in ('source', 'generated', 'mask')})
         write_result(result, output_dir/row['id']/'output.png', icc_profile=profile,

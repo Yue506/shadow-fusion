@@ -28,13 +28,15 @@ class ResearchConfig:
                     feather=self.feather if self.feather in ('none','single','multilevel','paper') else 'none')
         if self.association not in ('none','connected'):
             raise ValueError('Unknown association strategy')
-        if not np.isfinite(self.link_radius) or not 0 <= self.link_radius <= 1:
+        if type(self.link_radius) not in (int,float) or not np.isfinite(self.link_radius) or not 0 <= self.link_radius <= 1:
             raise ValueError('link_radius must be a finite fraction in [0,1]')
         if self.calibration not in ('linear','srgb_affine','srgb_plane'):
             raise ValueError('Unknown calibration strategy')
         if self.confidence not in ('none','positive'):
             raise ValueError('Unknown confidence strategy')
-        if not np.isfinite(self.gate_low+self.gate_high) or not 0<=self.gate_low<self.gate_high<=255:
+        if self.gamma and not self.extra:
+            raise ValueError('Gamma requires extra-region detection')
+        if any(type(v) not in (int,float) for v in (self.gate_low,self.gate_high)) or not np.isfinite(self.gate_low+self.gate_high) or not 0<=self.gate_low<self.gate_high<=255:
             raise ValueError('Confidence thresholds must satisfy 0 <= low < high <= 255')
 
 
@@ -137,7 +139,7 @@ def render(source, corrected, support, feather, mask=None, confidence=None):
 
 
 def compose_research(source, generated, mask, settings=None):
-    config=ResearchConfig(**(settings or {}))
+    config=settings if isinstance(settings,ResearchConfig) else ResearchConfig(**(settings or {}))
     if (not isinstance(source,np.ndarray) or not isinstance(generated,np.ndarray)
             or source.dtype!=np.uint8 or generated.dtype!=np.uint8
             or source.ndim!=3 or source.shape[-1]!=3 or generated.shape!=source.shape):
@@ -153,6 +155,8 @@ def compose_research(source, generated, mask, settings=None):
                    extra=config.extra,gamma=config.gamma,
                    feather=config.feather if config.feather in ('none','single','multilevel','paper') else 'none'))
     result['metadata']['research_config']=asdict(config)
+    result['metadata']['base_config']=result['metadata']['config']
+    result['metadata']['config']={'mode':'shadow','engine':'research',**asdict(config)}
     if custom_color:result['metadata']['calibration']=calibration
     if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper') and config.confidence=='none':
         result['metadata']['elapsed_cpu_seconds']=time.perf_counter()-started

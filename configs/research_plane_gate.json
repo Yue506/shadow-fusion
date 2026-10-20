@@ -1,0 +1,12 @@
+{
+  "color": true,
+  "extra": true,
+  "gamma": false,
+  "feather": "single",
+  "calibration": "srgb_plane",
+  "association": "none",
+  "link_radius": 0.025,
+  "confidence": "positive",
+  "gate_low": 2,
+  "gate_high": 5
+}

@@ -78,6 +78,25 @@ python scripts/compact_runs.py --manifest examples/manifest.jsonl \
 
 每个运行目录包含逐图输出、有效配置、全精度图、逐图／宏平均指标和每页最多十图的 compact。检测指标包括 precision、recall、F1、IoU；另外统计真实标注背景改动率、范围外最大差值及影子参考 RGB 误差。**范围外像素不变不能替代真实背景保护指标。** 比较多轮策略时必须固定清单、候选、分割与评价口径。
 
+## 探索分支的可选策略
+
+100 图探索记录见 [本轮记录](docs/CAMPAIGN_20261021.md)。`--research-config` 接入稳健 sRGB／平面校色、物体邻接、正向亮度置信度和羽化消融；只适用于 `shadow` 模式，与 `--config` 互斥。下列配置是探索候选，尚未通过锁定最终测试，不是成熟默认方案。
+
+```bash
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/research.png --mode shadow --research-config configs/research_plane_gate.json \
+  --artifacts-dir outputs/research_maps
+
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/no_confidence.png --research-config configs/research_plane_gate.json \
+  --ablate confidence
+
+shadow-fusion batch --manifest examples/manifest.jsonl --output-dir outputs/research_batch \
+  --research-config configs/research_plane_gate.json --ablate color,gamma
+```
+
+探索参数顺序为类默认值 → 策略 JSON → 显式模块参数 → 消融。`color/extra/gamma/feather` 保留独立开关，另可 `--ablate association,confidence`。探索羽化可选 `adaptive/inward/inward_multilevel`；域内羽化会漏掉狭窄投影，目前仅用于消融。开启置信度时，支持域内的 alpha 可低于 1，物体 mask 内仍完整使用校色候选。结果 JSON 的 `research_config` 可直接提取为下一次运行的策略配置；`config` 记录引擎和有效开关。
+
 ## 已有实验与限制
 
 冻结的 10 图实验包括 5 张可控夹具与 5 张真实照片，测试了原 mask、原 TraceFusion、校色有限羽化、校色多级羽化，以及后两者的 gamma 开关。

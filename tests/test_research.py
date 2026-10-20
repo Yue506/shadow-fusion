@@ -1,11 +1,33 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
+from PIL import Image
 import numpy as np
 from scipy import ndimage as ndi
 from shadow_fusion import compose, make_config
 from shadow_fusion.research import compose_research,calibrate_srgb
+from shadow_fusion.cli import main
 
 
 class ResearchTests(unittest.TestCase):
+    def test_cli_research_flags_and_ablations_are_effective(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp);source=np.full((64,64,3),90,dtype='uint8');g=source.copy()
+            g[20:35,20:35]=140;mask=np.zeros((64,64),'uint8');mask[20:35,20:35]=255
+            for name,a in [('s.png',source),('g.png',g),('m.png',mask)]:Image.fromarray(a).save(p/name)
+            (p/'research.json').write_text(json.dumps({'calibration':'srgb_plane','confidence':'positive','association':'connected'}))
+            args=['compose','--source',str(p/'s.png'),'--generated',str(p/'g.png'),'--mask',str(p/'m.png'),
+                  '--output',str(p/'out.png'),'--research-config',str(p/'research.json'),'--mode','shadow',
+                  '--gamma','on','--ablate','color,extra,confidence,feather']
+            self.assertEqual(main(args),0)
+            meta=json.loads((p/'out.json').read_text());config=meta['config']
+            self.assertEqual(config['engine'],'research');self.assertFalse(config['color'])
+            self.assertFalse(config['extra']);self.assertFalse(config['gamma'])
+            self.assertEqual(config['confidence'],'none');self.assertEqual(config['feather'],'none')
+            result=np.array(Image.open(p/'out.png'))
+            np.testing.assert_array_equal(result[mask>0],g[mask>0])
+
     def test_positive_gate_blocks_background_copy_but_keeps_shadow(self):
         source=np.full((128,128,3),90,dtype='uint8');g=source.copy()
         g[...,0]+=1;g[70:105,55:85]+=35;g[45:70,50:85]=130
