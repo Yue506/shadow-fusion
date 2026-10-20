@@ -162,6 +162,13 @@ def build(campaign,data,report,selection_file):
         m=json.loads(p.read_text());shutil.copyfile(p,exp/'actual_regression.json')
         for name,v in m['methods'].items():
             s=v['summary'];actual+=f'| {NAMES[name]} | {s["shadow_f1"]:.5f} | {s["shadow_recall"]:.5f} | {percent(s["background_changed_fraction"])} | {s["shadow_reference_rgb_l1_255"]:.5f} |\n'
+    conservative_path=campaign/'actual_conservative_confirm'/'metrics.json'
+    conservative_note=''
+    if conservative_path.exists():
+        c=json.loads(conservative_path.read_text())['methods']['conservative']['summary']
+        actual+=f'| 前期保守单级配置 | {c["shadow_f1"]:.5f} | {c["shadow_recall"]:.5f} | {percent(c["background_changed_fraction"])} | {c["shadow_reference_rgb_l1_255"]:.5f} |\n'
+        conservative_note=f'**代理选型不能直接推广到真实候选。** 同一已知五图中，前期保守的 2.5% 硬连接＋单级配置背景误改为 {percent(c["background_changed_fraction"])}，优于代理选定组合。这只是固定旧案例确认，不据此修改本轮冻结参数，也不称为独立泛化结果。'
+        shutil.copyfile(conservative_path,exp/'actual_conservative_confirm.json')
     cfg=selection['selected_config'];summary=final['all_shadow_proxy']['methods']['selected']['summary']
     boards='\n'.join(f'![{NAMES[m]}代表与失败案例](assets/board_{m}.png)\n\n{NAMES[m]}：'+{'mask':'范围外保护完全，但不识别投影。','tracefusion':'目标覆盖高，候选色偏和其他投影容易被一并回贴。','shadow':'校色和有限羽化缩小改动范围，仍有背景误检。','selected':'置信度抑制无证据拷贝；分离弱影和邻近其他投影仍是失败来源。'}[m] for m in METHODS)
     text=f'''# 100 张影子编辑区域：稳定性与背景保护
@@ -251,6 +258,8 @@ RGB 误差为 0–255 标尺的逐像素、逐通道绝对误差，再按场景�
 | 方法 | F1 | 召回 | 背景误改 | 投影参考 RGB 误差 |
 |---|---:|---:|---:|---:|
 {actual}
+
+{conservative_note}
 
 ## 解释与限制
 
