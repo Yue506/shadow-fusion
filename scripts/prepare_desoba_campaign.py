@@ -39,6 +39,21 @@ def read(z, name, mode):
         return im.convert(mode)
 
 
+def proxy_candidates(source, reference_all, shadow, seed):
+    reference=source.copy();reference[shadow]=reference_all[shadow]
+    local_rng=np.random.default_rng(seed)
+    gain=local_rng.uniform(.965,1.035,3);bias=local_rng.uniform(-7,7,3)
+    yy,xx=np.indices(shadow.shape)
+    plane=(xx/max(1,shadow.shape[1]-1)-.5)*local_rng.uniform(-5,5,3)[:,None,None]
+    plane+=(yy/max(1,shadow.shape[0]-1)-.5)*local_rng.uniform(-5,5,3)[:,None,None]
+    noise=local_rng.normal(0,.35,source.shape)
+    candidates={cohort:np.rint(base*gain+bias+plane.transpose(1,2,0)+noise).clip(0,255).astype('uint8')
+                for cohort,base in [('target_proxy',reference),('all_shadow_proxy',reference_all)]}
+    info={'gain':gain.tolist(),'bias_255':bias.tolist(),'noise_sigma_255':.35,
+          'plane_max_coefficient_255':5,'seed':seed}
+    return reference,candidates,info
+
+
 def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geometric_dedup=False):
     output = Path(output)
     if output.exists():
@@ -189,17 +204,9 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
             assert mask.any() and shadow.any() and not (mask & shadow).any()
             sample = f'd{index+1:03d}'
             root = output / sample; root.mkdir()
-            reference = source.copy(); reference[shadow] = reference_all[shadow]
             # Deterministic nuisance cast, spatial drift and noise, identical for all strategies.
-            local_rng = np.random.default_rng(seed * 10000 + index)
-            gain = local_rng.uniform(.965, 1.035, 3)
-            bias = local_rng.uniform(-7, 7, 3)
-            yy, xx = np.indices(mask.shape)
-            plane = (xx/max(1, mask.shape[1]-1)-.5) * local_rng.uniform(-5, 5, 3)[:, None, None]
-            plane += (yy/max(1, mask.shape[0]-1)-.5) * local_rng.uniform(-5, 5, 3)[:, None, None]
-            noise = local_rng.normal(0, .35, source.shape)
-            for cohort, base in [('target_proxy', reference), ('all_shadow_proxy', reference_all)]:
-                generated = np.rint(base * gain + bias + plane.transpose(1, 2, 0) + noise).clip(0, 255).astype('uint8')
+            reference,candidates,construction=proxy_candidates(source,reference_all,shadow,seed*10000+index)
+            for cohort, generated in candidates.items():
                 Image.fromarray(generated).save(root / f'{cohort}.png')
             for filename, a in [('source.png', source), ('mask.png', mask.astype('uint8')*255),
                                 ('shadow.png', shadow.astype('uint8')*255), ('reference.png', reference),
@@ -210,8 +217,7 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
             row.update(id=sample, source=f'{sample}/source.png',
                        mask=f'{sample}/mask.png', shadow_mask=f'{sample}/shadow.png', reference=f'{sample}/reference.png',
                        candidate_category='author_reference_derived_proxy',
-                       construction={'gain':gain.tolist(), 'bias_255':bias.tolist(), 'noise_sigma_255':.35,
-                                     'plane_max_coefficient_255':5, 'seed':seed*10000+index},
+                       construction=construction,
                        input_sha256={p.name:digest(p) for p in root.glob('*.png')})
             rows.append(row)
         for cohort in ['target_proxy', 'all_shadow_proxy']:

@@ -73,6 +73,10 @@ def run(manifest, plan, output, stability=False, selection=None):
         for index, record in enumerate(records):
             key=(setting['id'],record['id'])
             if key in completed: continue
+            for name in ('source','generated','mask'):
+                expected=record.get('input_sha256',{}).get(Path(record[name]).name)
+                if expected and sha256(record[name])!=expected:
+                    raise ValueError(f'Frozen {name} changed for {record["id"]}')
             source=read_rgb(record['source'])[0]; generated=read_rgb(record['generated'])[0]
             mask=read_mask(record['mask'])
             # Only source, candidate, user mask and settings enter inference.
@@ -89,6 +93,10 @@ def run(manifest, plan, output, stability=False, selection=None):
                     res=infer(source,perturbed,mask,setting)
                     instability.append(iou(prediction,(res['alpha']>.5)&~mask))
             # Ground-truth inputs are first opened after all inference for the sample.
+            for name in ('shadow_mask','reference'):
+                expected=record.get('input_sha256',{}).get(Path(record[name]).name)
+                if expected and sha256(record[name])!=expected:
+                    raise ValueError(f'Frozen evaluation {name} changed for {record["id"]}')
             target=read_mask(record['shadow_mask']); reference=read_rgb(record['reference'])[0]
             metrics=evaluate(source,mask,result,target,reference)
             tp,fp,fn=int((support&target).sum()),int((support&~target).sum()),int((~support&target).sum())
