@@ -130,7 +130,7 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
             matcher = cv2.BFMatcher()
             def image_features(im):
                 kp, desc = sift.detectAndCompute(np.asarray(im.convert('L')), None)
-                return np.float32([p.pt for p in kp]), desc
+                return np.float32([p.pt for p in kp]), desc, im.width*im.height
             legacy_features = []
             if legacy:
                 legacy_features = [image_features(Image.open(p)) for p in Path(legacy).glob('cases/r*/original.png')]
@@ -140,14 +140,23 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
                     features_cache[c['name']] = image_features(im)
                 return features_cache[c['name']]
             def related(a,b):
-                x,dx=a; y,dy=b
+                x,dx,area_x=a; y,dy,area_y=b
                 if dx is None or dy is None or len(dx)<8 or len(dy)<8:return False
                 matches=matcher.knnMatch(dx,dy,k=2)
                 good=[m for m,n in matches if m.distance < .75*n.distance]
+                # Repeated texture can map many query points to one point and yield
+                # a degenerate homography; require distinct points and image coverage.
+                unique={}
+                for m in sorted(good,key=lambda m:m.distance):unique.setdefault(m.trainIdx,m)
+                good=list(unique.values())
                 if len(good)<8:return False
                 _,inliers=cv2.findHomography(np.array([x[m.queryIdx] for m in good]),
                                              np.array([y[m.trainIdx] for m in good]),cv2.RANSAC,4)
-                return inliers is not None and inliers.sum() >= 8 and inliers.mean() >= .35
+                if inliers is None or inliers.sum()<8 or inliers.mean()<.35:return False
+                keep=inliers.ravel().astype(bool)
+                px=np.array([x[m.queryIdx] for m in good])[keep]
+                py=np.array([y[m.trainIdx] for m in good])[keep]
+                return cv2.contourArea(cv2.convexHull(px))>.02*area_x and cv2.contourArea(cv2.convexHull(py))>.02*area_y
         while len(selected) < count:
             if not pool:raise ValueError(f'Only {len(selected)} independent scenes after geometric review')
             index = max(range(len(pool)), key=lambda i: sum(1/(1+coverage[g]) for g in pool[i]['groups']))
@@ -215,7 +224,7 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
                     'split':dict(Counter(r['split'] for r in rows)), 'seed':seed, 'max_side':max_side,
                     'group_counts':dict(coverage), 'group_thresholds':thresholds, 'excluded':dict(excluded),
                     'groups_are_quantitative_proxies':'Softness and cross-material semantics need visual review; not human labels.',
-                    'dedup':'Scene suffix groups, 63-bit DCT pHash <=6, manual source-only related clusters; optional SIFT ratio .75 / homography 4 px / >=8 inliers and >=.35 inlier ratio.',
+                    'dedup':'Scene suffix groups, 63-bit DCT pHash <=6, manual source-only related clusters; optional SIFT ratio .75 / unique training points / homography 4 px / >=8 inliers and >=.35 inlier ratio / convex hull >2% of both images.',
                     'geometric_dedup':geometric_dedup, 'related_rejections':rejected_related,
                     'candidate_limitation':'Reference-derived proxy; target construction uses labels; no removal model or object removal evaluated.'}
         (output/'dataset.json').write_text(json.dumps(metadata,indent=2)+'\n')
