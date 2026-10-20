@@ -1,0 +1,8 @@
+[
+  {"id":"plane_single", "engine":"research", "config":{"calibration":"srgb_plane","feather":"single"}},
+  {"id":"plane_none", "engine":"research", "config":{"calibration":"srgb_plane","feather":"none"}},
+  {"id":"plane_multilevel", "engine":"research", "config":{"calibration":"srgb_plane","feather":"multilevel"}},
+  {"id":"plane_adaptive", "engine":"research", "config":{"calibration":"srgb_plane","feather":"adaptive"}},
+  {"id":"plane_inward", "engine":"research", "config":{"calibration":"srgb_plane","feather":"inward"}},
+  {"id":"plane_inward_multi", "engine":"research", "config":{"calibration":"srgb_plane","feather":"inward_multilevel"}}
+]
