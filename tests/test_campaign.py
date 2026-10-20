@@ -48,6 +48,11 @@ class CampaignTests(unittest.TestCase):
             # Completed samples resume without appending duplicate records.
             run(base/'target_proxy_explore.jsonl',plan,root/'round',stability=True)
             self.assertEqual(len((root/'round/progress.jsonl').read_text().splitlines()),3)
+            actual=json.loads((base/'target_proxy_explore.jsonl').read_text().splitlines()[0])
+            actual['id']='r01_running'
+            (base/'actual.jsonl').write_text(json.dumps(actual)+'\n')
+            actual_result=run(base/'actual.jsonl',plan,root/'actual_round',stability=True)
+            self.assertEqual(actual_result['count'],1)
             with self.assertRaises(FileExistsError): prepare(archive,base,count=5)
 
 

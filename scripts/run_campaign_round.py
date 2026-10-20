@@ -4,6 +4,7 @@ from dataclasses import asdict
 import hashlib
 import json
 import platform
+import re
 import subprocess
 import time
 from pathlib import Path
@@ -85,7 +86,9 @@ def run(manifest, plan, output, stability=False, selection=None):
             support=result['support'] & ~mask
             instability=[]
             if stability:
-                rng=np.random.default_rng(20261021+int(record['id'][1:]))
+                sample_seed=(int(record['id'][1:]) if re.fullmatch(r'd\d+',record['id'])
+                             else int.from_bytes(hashlib.sha256(record['id'].encode()).digest()[:4],'little'))
+                rng=np.random.default_rng(20261021+sample_seed)
                 variants=[generated.astype(float)+2,generated.astype(float)+np.array([2,-2,1]),
                           generated.astype(float)+rng.normal(0,.8,generated.shape)]
                 for perturbed in variants:
@@ -135,7 +138,7 @@ def run(manifest, plan, output, stability=False, selection=None):
     payload={**identity,'code_revision':code_revision,'dirty_diff_sha256':hashlib.sha256(dirty.encode()).hexdigest(),
              'environment':{'python':platform.python_version(),'numpy':np.__version__,'platform':platform.platform()},
              'start_unix':start,'end_unix':time.time(),'wall_seconds':time.time()-start,
-             'perturbations':['all channels +2','RGB +[2,-2,1]','Gaussian sigma .8, seed 20261021 + sample index'] if stability else [],
+             'perturbations':['all channels +2','RGB +[2,-2,1]','Gaussian sigma .8, seed 20261021 + d-index; other ids use SHA256-derived integer'] if stability else [],
              'count':len(records),'methods':methods}
     (output/'metrics.json').write_text(json.dumps(payload,indent=2)+'\n')
     for method,data in methods.items():
