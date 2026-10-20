@@ -39,7 +39,7 @@ def read(z, name, mode):
         return im.convert(mode)
 
 
-def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384):
+def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geometric_dedup=False):
     output = Path(output)
     if output.exists():
         raise FileExistsError(f'Dataset output already exists: {output}')
@@ -116,9 +116,50 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384):
         # Balance overlapping groups without scoring any inference output.
         selected, coverage = [], Counter()
         pool = candidates.copy()
+        rejected_related = []
+        # Conservative manual source-only clusters, spotted before any method evaluation.
+        related_clusters = [set(['web-shadow0210','web-shadow0211','web-shadow0212']),
+                            set(['web-shadow0447','web-shadow0448','web-shadow0449','web-shadow0450']),
+                            set(['lssd763','SBU-test04'])]
+        features_cache = {}
+        if geometric_dedup:
+            import cv2
+            cv2.setNumThreads(1)
+            cv2.setRNGSeed(seed)
+            sift = cv2.SIFT_create(nfeatures=400)
+            matcher = cv2.BFMatcher()
+            def image_features(im):
+                kp, desc = sift.detectAndCompute(np.asarray(im.convert('L')), None)
+                return np.float32([p.pt for p in kp]), desc
+            legacy_features = []
+            if legacy:
+                legacy_features = [image_features(Image.open(p)) for p in Path(legacy).glob('cases/r*/original.png')]
+            def features(c):
+                if c['name'] not in features_cache:
+                    im = read(z,folders['ShadowImage'][c['name']],'RGB').resize(c['size'],Image.Resampling.LANCZOS)
+                    features_cache[c['name']] = image_features(im)
+                return features_cache[c['name']]
+            def related(a,b):
+                x,dx=a; y,dy=b
+                if dx is None or dy is None or len(dx)<8 or len(dy)<8:return False
+                matches=matcher.knnMatch(dx,dy,k=2)
+                good=[m for m,n in matches if m.distance < .75*n.distance]
+                if len(good)<8:return False
+                _,inliers=cv2.findHomography(np.array([x[m.queryIdx] for m in good]),
+                                             np.array([y[m.trainIdx] for m in good]),cv2.RANSAC,4)
+                return inliers is not None and inliers.sum() >= 8 and inliers.mean() >= .35
         while len(selected) < count:
+            if not pool:raise ValueError(f'Only {len(selected)} independent scenes after geometric review')
             index = max(range(len(pool)), key=lambda i: sum(1/(1+coverage[g]) for g in pool[i]['groups']))
-            c = pool.pop(index); selected.append(c); coverage.update(c['groups'])
+            c = pool.pop(index)
+            match = next((s['name'] for s in selected if any(c['scene_id'] in group and s['scene_id'] in group for group in related_clusters)),None)
+            if geometric_dedup and match is None:
+                f=features(c)
+                if any(related(f,lf) for lf in legacy_features):match='legacy_photo'
+                else:match=next((s['name'] for s in selected if related(f,features(s))),None)
+            if match is not None:
+                rejected_related.append({'rejected':c['name'],'related_to':match});continue
+            selected.append(c); coverage.update(c['groups'])
         # Twenty similar-difficulty five-scene blocks: 3 exploration, 1 validation, 1 final.
         selected.sort(key=lambda c: (len(c['groups']), c['features']['shadow_extent'], c['features']['texture']))
         for start in range(0, count, 5):
@@ -174,7 +215,8 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384):
                     'split':dict(Counter(r['split'] for r in rows)), 'seed':seed, 'max_side':max_side,
                     'group_counts':dict(coverage), 'group_thresholds':thresholds, 'excluded':dict(excluded),
                     'groups_are_quantitative_proxies':'Softness and cross-material semantics need visual review; not human labels.',
-                    'dedup':'63-bit DCT pHash distance <=6 excluded, including old five photo cases.',
+                    'dedup':'Scene suffix groups, 63-bit DCT pHash <=6, manual source-only related clusters; optional SIFT ratio .75 / homography 4 px / >=8 inliers and >=.35 inlier ratio.',
+                    'geometric_dedup':geometric_dedup, 'related_rejections':rejected_related,
                     'candidate_limitation':'Reference-derived proxy; target construction uses labels; no removal model or object removal evaluated.'}
         (output/'dataset.json').write_text(json.dumps(metadata,indent=2)+'\n')
         # Source-only overview: no held-out predictions or results are exposed.
@@ -193,5 +235,6 @@ if __name__ == '__main__':
     p=argparse.ArgumentParser()
     p.add_argument('--archive',required=True); p.add_argument('--output',required=True)
     p.add_argument('--legacy-root'); p.add_argument('--seed',type=int,default=42)
+    p.add_argument('--geometric-dedup',action='store_true',help='Requires optional opencv-python-headless')
     args=p.parse_args()
-    print(json.dumps(prepare(args.archive,args.output,args.legacy_root,seed=args.seed),indent=2))
+    print(json.dumps(prepare(args.archive,args.output,args.legacy_root,seed=args.seed,geometric_dedup=args.geometric_dedup),indent=2))
