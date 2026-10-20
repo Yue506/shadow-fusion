@@ -1,0 +1,76 @@
+{
+  "source_url": "https://www.dropbox.com/scl/fi/h9uoif9upyxzf5nf5tz8r/DESOBA_DATASET.zip?rlkey=6qpmtbdjwnexj28vlzdaagtvm&dl=1",
+  "archive_sha256": "6abb5d985c0bcce025ad56af505f0d268662e5e8e91aedbf4152f02af845c755",
+  "native_count_common": 1012,
+  "usable_independent_pool": 970,
+  "selected_count": 100,
+  "split": {
+    "final_test": 20,
+    "explore": 60,
+    "validation": 20
+  },
+  "seed": 42,
+  "max_side": 384,
+  "group_counts": {
+    "dark": 65,
+    "long": 65,
+    "textured": 65,
+    "strong_or_hard": 49,
+    "neighbor_shadow": 66,
+    "multi_object": 94,
+    "weak_or_soft": 50
+  },
+  "group_thresholds": {
+    "shadow_luma": [
+      43.14407148490026,
+      69.15626073764126
+    ],
+    "shadow_extent": [
+      0.12194063647073625,
+      0.2451450354508579
+    ],
+    "texture": [
+      11.179940382813934,
+      19.97970110029598
+    ],
+    "weak_shadow_fraction": [
+      0.01603272999234369,
+      0.04901128391455479
+    ],
+    "nearby_other_shadow_ratio": [
+      0.0,
+      0.0
+    ]
+  },
+  "excluded": {
+    "near_duplicate_or_legacy": 15,
+    "same_scene_name_variant": 24,
+    "no_usable_target_pair": 3
+  },
+  "groups_are_quantitative_proxies": "Softness and cross-material semantics need visual review; not human labels.",
+  "dedup": "Scene suffix groups, 63-bit DCT pHash <=6, manual source-only related clusters; optional SIFT ratio .75 / unique training points / homography 4 px / >=8 inliers and >=.35 inlier ratio / convex hull >2% of both images.",
+  "geometric_dedup": true,
+  "related_rejections": [
+    {
+      "rejected": "web-shadow0448.png",
+      "related_to": "web-shadow0447.png"
+    },
+    {
+      "rejected": "web-shadow0450.png",
+      "related_to": "web-shadow0447.png"
+    },
+    {
+      "rejected": "lssd763.png",
+      "related_to": "SBU-test04.png"
+    },
+    {
+      "rejected": "web-shadow0484.png",
+      "related_to": "web-shadow0483.png"
+    },
+    {
+      "rejected": "web-shadow0449.png",
+      "related_to": "web-shadow0447.png"
+    }
+  ],
+  "candidate_limitation": "Reference-derived proxy; target construction uses labels; no removal model or object removal evaluated."
+}
