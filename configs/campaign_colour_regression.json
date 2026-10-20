@@ -1,0 +1,6 @@
+[
+  {"id":"linear_weak2", "engine":"research", "config":{"calibration":"linear","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","weak_low":2}},
+  {"id":"plane_weak2", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","weak_low":2}},
+  {"id":"local_weak2", "engine":"research", "config":{"calibration":"srgb_local","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","weak_low":2,"local_strength":0.5}},
+  {"id":"material_weak2", "engine":"research", "config":{"calibration":"srgb_material","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","weak_low":2,"local_strength":0.5}}
+]
