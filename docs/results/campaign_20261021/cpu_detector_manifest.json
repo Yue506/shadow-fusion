@@ -1,0 +1,20 @@
+{
+  "repo_commit": "48b10fa505aeb51fbd127fc60a5c660040e823b7",
+  "files": {
+    "model.onnx": {
+      "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_detection_yolox/object_detection_yolox_2022nov.onnx",
+      "sha256": "c5c2d13e59ae883e6af3b45daea64af4833a4951c92d116ec270d9ddbe998063",
+      "bytes": 35858002
+    },
+    "yolox.py": {
+      "url": "https://raw.githubusercontent.com/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_detection_yolox/yolox.py",
+      "sha256": "c99d8f103d93d27d0fb1807c7b91cb32d2d6c4959326cb88c801f17d00468f84",
+      "bytes": 3216
+    },
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_detection_yolox/LICENSE",
+      "sha256": "0ec3668d3274bcf29e8a29e9576d5a2cd96fc78d3c5bec4387355a796e5d9088",
+      "bytes": 11371
+    }
+  }
+}
