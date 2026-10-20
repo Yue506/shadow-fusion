@@ -1,0 +1,614 @@
+{
+  "protocol": "12 fixed seed-42 exploration scenes per condition; one warmup; rotated method order; computation only; excludes image IO and generation",
+  "hardware": "Apple M1 CPU",
+  "python": "3.13.9",
+  "plan_sha256": "7f285e7123f40dca4f34175bd8c5e8e0f542d3fc965869032e60eae5a2889f83",
+  "manifest_sha256": [
+    "4b2bf04108268fe8a51d87b2e0f7f247847aac4e0bf25f66704e123b576e9db4",
+    "b74b5eaf347a65d98f44e0550fd46968652bf934dba3c0a4f7303f38950c9808"
+  ],
+  "methods": {
+    "mask": {
+      "n": 24,
+      "median_ms": 14.550478997989558,
+      "p95_ms": 15.726708091824548,
+      "mean_ms": 14.028124875646123
+    },
+    "tracefusion": {
+      "n": 24,
+      "median_ms": 66.14879149856279,
+      "p95_ms": 77.46531604789196,
+      "mean_ms": 63.333284665835286
+    },
+    "shadow": {
+      "n": 24,
+      "median_ms": 175.1224580075359,
+      "p95_ms": 201.59262048982782,
+      "mean_ms": 166.21244262447968
+    },
+    "selected": {
+      "n": 24,
+      "median_ms": 312.04075000277953,
+      "p95_ms": 366.01728750829346,
+      "mean_ms": 286.36509200077853
+    }
+  },
+  "rows": [
+    {
+      "id": "d037",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.014638207998359576
+    },
+    {
+      "id": "d037",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06646895800076891
+    },
+    {
+      "id": "d037",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.17437341601180378
+    },
+    {
+      "id": "d037",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.31595387500419747
+    },
+    {
+      "id": "d091",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06443741600378416
+    },
+    {
+      "id": "d091",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.18572583299828693
+    },
+    {
+      "id": "d091",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.37042029100121
+    },
+    {
+      "id": "d091",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.01558254100382328
+    },
+    {
+      "id": "d064",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.1527463750098832
+    },
+    {
+      "id": "d064",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.24541150000004563
+    },
+    {
+      "id": "d064",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.01446274999761954
+    },
+    {
+      "id": "d064",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.05853383301291615
+    },
+    {
+      "id": "d053",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.35418125000433065
+    },
+    {
+      "id": "d053",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.017620250000618398
+    },
+    {
+      "id": "d053",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.07103420799830928
+    },
+    {
+      "id": "d053",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.20077258300443646
+    },
+    {
+      "id": "d057",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.014765125000849366
+    },
+    {
+      "id": "d057",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.07083324999257457
+    },
+    {
+      "id": "d057",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.19917158300813753
+    },
+    {
+      "id": "d057",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.3500706250051735
+    },
+    {
+      "id": "d079",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.07806266599800438
+    },
+    {
+      "id": "d079",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.1972433749906486
+    },
+    {
+      "id": "d079",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.3209054170001764
+    },
+    {
+      "id": "d079",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.01443562499480322
+    },
+    {
+      "id": "d009",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.14961483399383724
+    },
+    {
+      "id": "d009",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.26346187500166707
+    },
+    {
+      "id": "d009",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.01485300000058487
+    },
+    {
+      "id": "d009",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06302533399139065
+    },
+    {
+      "id": "d089",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.32326795799599495
+    },
+    {
+      "id": "d089",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.014778541997657157
+    },
+    {
+      "id": "d089",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06873954201000743
+    },
+    {
+      "id": "d089",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.19346195898833685
+    },
+    {
+      "id": "d010",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.013806749993818812
+    },
+    {
+      "id": "d010",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.05979045799176674
+    },
+    {
+      "id": "d010",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.15768812500755303
+    },
+    {
+      "id": "d010",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.2796990420029033
+    },
+    {
+      "id": "d066",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06917912499920931
+    },
+    {
+      "id": "d066",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.19063183300022501
+    },
+    {
+      "id": "d066",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.32629270799225196
+    },
+    {
+      "id": "d066",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.015124416997423396
+    },
+    {
+      "id": "d099",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.15166537500044797
+    },
+    {
+      "id": "d099",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.2565714590018615
+    },
+    {
+      "id": "d099",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.012954166013514623
+    },
+    {
+      "id": "d099",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.05700349999824539
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "method": "selected",
+      "seconds": 0.10543850000249222
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "method": "mask",
+      "seconds": 0.007891166998888366
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "method": "tracefusion",
+      "seconds": 0.030852333002258092
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "method": "shadow",
+      "seconds": 0.058390416990732774
+    },
+    {
+      "id": "d037",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.013784000009763986
+    },
+    {
+      "id": "d037",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06582862499635667
+    },
+    {
+      "id": "d037",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.1671032500016736
+    },
+    {
+      "id": "d037",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.3081276250013616
+    },
+    {
+      "id": "d091",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06984308399842121
+    },
+    {
+      "id": "d091",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.175871500003268
+    },
+    {
+      "id": "d091",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.2757380830007605
+    },
+    {
+      "id": "d091",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.013491582998540252
+    },
+    {
+      "id": "d064",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.1482980410073651
+    },
+    {
+      "id": "d064",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.2535072919999948
+    },
+    {
+      "id": "d064",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.013771292011369951
+    },
+    {
+      "id": "d064",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.05991158299730159
+    },
+    {
+      "id": "d053",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.3319036659959238
+    },
+    {
+      "id": "d053",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.014661458000773564
+    },
+    {
+      "id": "d053",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06975595900439657
+    },
+    {
+      "id": "d053",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.19591454199689906
+    },
+    {
+      "id": "d057",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.015716791996965185
+    },
+    {
+      "id": "d057",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.07970037499035243
+    },
+    {
+      "id": "d057",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.2071236250048969
+    },
+    {
+      "id": "d057",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.36810600000899285
+    },
+    {
+      "id": "d079",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06921345900627784
+    },
+    {
+      "id": "d079",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.19102512499375734
+    },
+    {
+      "id": "d079",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.33176000000094064
+    },
+    {
+      "id": "d079",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.015728457990917377
+    },
+    {
+      "id": "d009",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.15295970800798386
+    },
+    {
+      "id": "d009",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.24407233300735243
+    },
+    {
+      "id": "d009",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.012868082994828
+    },
+    {
+      "id": "d009",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.055581207998329774
+    },
+    {
+      "id": "d089",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.3247551250096876
+    },
+    {
+      "id": "d089",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.015667665997170843
+    },
+    {
+      "id": "d089",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.07408033299725503
+    },
+    {
+      "id": "d089",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.20173733298724983
+    },
+    {
+      "id": "d010",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.013651792003656738
+    },
+    {
+      "id": "d010",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.062386375007918105
+    },
+    {
+      "id": "d010",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.14913966700260062
+    },
+    {
+      "id": "d010",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.2468678749864921
+    },
+    {
+      "id": "d066",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.06897079099144321
+    },
+    {
+      "id": "d066",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.1904315829888219
+    },
+    {
+      "id": "d066",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.33762550000392366
+    },
+    {
+      "id": "d066",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.015096708011697046
+    },
+    {
+      "id": "d099",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.13262216599832755
+    },
+    {
+      "id": "d099",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.2317696249956498
+    },
+    {
+      "id": "d099",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.012664207999478094
+    },
+    {
+      "id": "d099",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.05481833299563732
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "method": "selected",
+      "seconds": 0.10685458399530035
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "method": "mask",
+      "seconds": 0.008660416002385318
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "method": "tracefusion",
+      "seconds": 0.03194808399712201
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "method": "shadow",
+      "seconds": 0.06538637499033939
+    }
+  ]
+}

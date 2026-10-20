@@ -157,9 +157,10 @@ def build(campaign,data,report,selection_file):
             m=json.loads(path.read_text());shutil.copyfile(path,exp/f'ablate_{co}.json')
             for name,v in m['methods'].items():
                 s=v['summary'];ablation+=f'| {label} | {name} | {s["shadow_f1"]:.5f} | {s["shadow_recall"]:.5f} | {percent(s["background_changed_fraction"])} | {s["stability_iou_mean"]:.5f} |\n'
-    actual='';p=campaign/'final_actual_regression'/'metrics.json'
+    actual='';actual_summary=None;p=campaign/'final_actual_regression'/'metrics.json'
     if p.exists():
         m=json.loads(p.read_text());shutil.copyfile(p,exp/'actual_regression.json')
+        actual_summary=m['methods']['selected']['summary']
         for name,v in m['methods'].items():
             s=v['summary'];actual+=f'| {NAMES[name]} | {s["shadow_f1"]:.5f} | {s["shadow_recall"]:.5f} | {percent(s["background_changed_fraction"])} | {s["shadow_reference_rgb_l1_255"]:.5f} |\n'
     conservative_path=campaign/'actual_conservative_confirm'/'metrics.json'
@@ -169,7 +170,29 @@ def build(campaign,data,report,selection_file):
         actual+=f'| 前期保守单级配置 | {c["shadow_f1"]:.5f} | {c["shadow_recall"]:.5f} | {percent(c["background_changed_fraction"])} | {c["shadow_reference_rgb_l1_255"]:.5f} |\n'
         conservative_note=f'**代理选型不能直接推广到真实候选。** 同一已知五图中，前期保守的 2.5% 硬连接＋单级配置背景误改为 {percent(c["background_changed_fraction"])}，优于代理选定组合。这只是固定旧案例确认，不据此修改本轮冻结参数，也不称为独立泛化结果。'
         shutil.copyfile(conservative_path,exp/'actual_conservative_confirm.json')
+    actual_manifest=Path('data/regression_actual5.jsonl')
+    if actual_manifest.exists():
+        actual_runs=[str(campaign/'final_actual_regression'/m) for m in METHODS]
+        if conservative_path.exists():actual_runs.append(str(campaign/'actual_conservative_confirm'/'conservative'))
+        compact(actual_manifest,actual_runs,assets/'actual_regression',per_page=3)
+    attribution=''
+    attribution_path=campaign/'real_error_attribution.json'
+    if attribution_path.exists():
+        a=json.loads(attribution_path.read_text())['summary'];shutil.copyfile(attribution_path,exp/'real_error_attribution.json')
+        attribution='| 配置 | 其他物体误改像素 | 其他投影误改像素 | 标注余项误改像素 |\n|---|---:|---:|---:|\n'
+        for method in ['tracefusion','shadow','selected','conservative']:
+            v=a[method];attribution+=f'| {NAMES.get(method,"保守单级")} | {v["other_object"]["changed_pixels"]} | {v["other_shadow"]["changed_pixels"]} | {v["remaining_background"]["changed_pixels"]} |\n'
+        attribution+='\n这是五图微平均像素总数，不是上表逐图宏平均误改率。代理选定配置的 40,885 个误改像素中，31,779（77.7%）位于其他物体／投影标注之外；只保护非目标物体框无法覆盖这类错误。余项标签不完整，不能断言都是无影纯背景，也不能据此证明具体生成误差原因。标注仅在固定推理完成后用于归因。\n'
+    local_transfer=''
+    lp=campaign/'actual_local_transfer'/'metrics.json'
+    if lp.exists():
+        lm=json.loads(lp.read_text());shutil.copyfile(lp,exp/'actual_local_transfer.json')
+        local_transfer='既有 R7 三个单级配置在同一真实五图上的转移诊断：\n\n| 校色 | F1 | 背景误改 |\n|---|---:|---:|\n'
+        for method,v in lm['methods'].items():
+            s=v['summary'];local_transfer+=f'| {method} | {s["shadow_f1"]:.5f} | {percent(s["background_changed_fraction"])} |\n'
+        local_transfer+='\n局部同色锚点在已知真实案例上有小幅收益，但仍弱于保守单级配置；这不是独立测试，不修改冻结选型，也不排除其对其他生成器有用。\n'
     cfg=selection['selected_config'];summary=final['all_shadow_proxy']['methods']['selected']['summary']
+    actual_lead=(f'已知真实五图上，代理选定组合仍误改 {percent(actual_summary["background_changed_fraction"])} 背景；保守单级约 7.86%。二者都未达零改动。' if actual_summary else '真实候选证据有限。')
     boards='\n'.join(f'![{NAMES[m]}代表与失败案例](assets/board_{m}.png)\n\n{NAMES[m]}：'+{'mask':'范围外保护完全，但不识别投影。','tracefusion':'目标覆盖高，候选色偏和其他投影容易被一并回贴。','shadow':'校色和有限羽化缩小改动范围，仍有背景误检。','selected':'置信度抑制无证据拷贝；分离弱影和邻近其他投影仍是失败来源。'}[m] for m in METHODS)
     text=f'''# 100 张影子编辑区域：稳定性与背景保护
 
@@ -177,7 +200,7 @@ def build(campaign,data,report,selection_file):
 
 - 100 张原生场景已按 seed=42 冻结为 60 探索、20 验证、20 锁定测试；完成 R0–R8 九轮探索及匹配消融。每张有两种冻结代理候选，不是 200 张独立照片。
 - 验证规则选中 `{selection['selected_validation_id']}`。锁定测试的全图去影条件中，F1={summary['shadow_f1']:.5f}，召回={summary['shadow_recall']:.5f}，背景误改={percent(summary['background_changed_fraction'])}。范围外数字像素保护通过，语义背景保护仍会失败。
-- 百图是作者参考构造的代理，只评价回贴机制；物体仍保留于参考中。五张已有真实生成候选另做已知案例回归，不能把代理成绩当成消除模型泛化。
+- 百图是作者参考构造的代理，只评价回贴机制；物体仍保留于参考中。{actual_lead} 不能把代理成绩当成消除模型泛化。
 - 最轻的原 mask 回贴没有额外区域开销，但不能去除投影。对象检测和局部同色拟合未带来足够综合收益，保留为显式探索模块。
 
 ## 数据与推理
@@ -260,6 +283,13 @@ RGB 误差为 0–255 标尺的逐像素、逐通道绝对误差，再按场景�
 {actual}
 
 {conservative_note}
+
+{attribution}
+
+{local_transfer}
+
+![真实候选同帧回归一](assets/actual_regression/compact_001.png)
+![真实候选同帧回归二](assets/actual_regression/compact_002.png)
 
 ## 解释与限制
 

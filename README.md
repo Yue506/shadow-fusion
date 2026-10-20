@@ -80,7 +80,7 @@ python scripts/compact_runs.py --manifest examples/manifest.jsonl \
 
 ## 探索分支的可选策略
 
-100 图探索记录见 [本轮记录](docs/CAMPAIGN_20261021.md)。`--research-config` 接入稳健 sRGB／平面校色、物体邻接、正向亮度置信度和羽化消融；只适用于 `shadow` 模式，与 `--config` 互斥。下列配置是探索候选，尚未通过锁定最终测试，不是成熟默认方案。
+100 图探索记录见 [本轮记录](docs/CAMPAIGN_20261021.md)。`--research-config` 接入稳健 sRGB／平面校色、物体邻接、正向亮度置信度和羽化消融；只适用于 `shadow` 模式，与 `--config` 互斥。本轮已完成百图代理的锁定测试，选定配置见 `configs/selected.json`。全图去影代理测试 F1=0.71797、背景误改 0.6393%；真实已知五图仍误改 13.85%，前期保守单级配置约 7.86%。代理选型不能当作真实模型统一最优方案。
 
 ```bash
 shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
@@ -104,7 +104,7 @@ python -m pip install -e '.[research]'
 python scripts/fetch_cpu_detector.py
 ```
 
-随后在探索 JSON 中指定 `ownership: "euclidean"` 或 `"geodesic"`，可用 `--ablate ownership` 关闭。模型输出只在对应物体附近存在强变亮证据时参与竞争；没有竞争种子时保留原关联策略。CPU 检测耗时与缓存状态记录在 JSON 中，该模块仍在对照测试。
+随后在探索 JSON 中指定 `ownership: "euclidean"` 或 `"geodesic"`，可用 `--ablate ownership` 关闭。模型输出只在对应物体附近存在强变亮证据时参与竞争；没有竞争种子时保留原关联策略。CPU 检测耗时与缓存状态记录在 JSON 中，该模块在本轮未胜过纯残差策略，默认关闭。
 
 ## 已有实验与限制
 

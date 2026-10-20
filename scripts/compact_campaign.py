@@ -51,7 +51,7 @@ def compact(manifest,runs,output,ids=None,per_page=4,selection=None):
             source=read_rgb(r['source'])[0];g=read_rgb(r['generated'])[0];m=read_mask(r['mask']);target=read_mask(r['shadow_mask'])
             row=2*index
             cell(source,r['id']+' 原图',0,row);cell((m*255).astype('uint8'),'原物体 mask',1,row)
-            cell(g,'冻结代理候选',2,row)
+            cell(g,'冻结消除／去影候选',2,row)
             cell(overlay(source,target),'标注投影（青）',0,row+1)
             delta=np.abs(g.astype(float)-source).mean(-1)/40
             heat=np.zeros_like(source);heat[...,0]=(np.clip(delta,0,1)*255).astype('uint8')

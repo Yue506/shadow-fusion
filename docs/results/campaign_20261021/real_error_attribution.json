@@ -1,0 +1,496 @@
+{
+  "scope": "Known five actual candidates only; panel labels used exclusively after frozen inference.",
+  "aggregation": "Micro pixel totals; categories are disjoint and sum to labelled background.",
+  "summary": {
+    "tracefusion": {
+      "other_object": {
+        "label_pixels": 45149,
+        "changed_pixels": 43432,
+        "predicted_fp_pixels": 41179
+      },
+      "other_shadow": {
+        "label_pixels": 11842,
+        "changed_pixels": 6799,
+        "predicted_fp_pixels": 5022
+      },
+      "remaining_background": {
+        "label_pixels": 240758,
+        "changed_pixels": 162004,
+        "predicted_fp_pixels": 136439
+      }
+    },
+    "shadow": {
+      "other_object": {
+        "label_pixels": 45149,
+        "changed_pixels": 34765,
+        "predicted_fp_pixels": 30425
+      },
+      "other_shadow": {
+        "label_pixels": 11842,
+        "changed_pixels": 9910,
+        "predicted_fp_pixels": 8900
+      },
+      "remaining_background": {
+        "label_pixels": 240758,
+        "changed_pixels": 116719,
+        "predicted_fp_pixels": 106161
+      }
+    },
+    "selected": {
+      "other_object": {
+        "label_pixels": 45149,
+        "changed_pixels": 7562,
+        "predicted_fp_pixels": 6513
+      },
+      "other_shadow": {
+        "label_pixels": 11842,
+        "changed_pixels": 1544,
+        "predicted_fp_pixels": 1279
+      },
+      "remaining_background": {
+        "label_pixels": 240758,
+        "changed_pixels": 31779,
+        "predicted_fp_pixels": 27866
+      }
+    },
+    "conservative": {
+      "other_object": {
+        "label_pixels": 45149,
+        "changed_pixels": 4517,
+        "predicted_fp_pixels": 3875
+      },
+      "other_shadow": {
+        "label_pixels": 11842,
+        "changed_pixels": 1472,
+        "predicted_fp_pixels": 1224
+      },
+      "remaining_background": {
+        "label_pixels": 240758,
+        "changed_pixels": 16990,
+        "predicted_fp_pixels": 13670
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "r01_running",
+      "method": "tracefusion",
+      "categories": {
+        "other_object": {
+          "label_pixels": 13034,
+          "changed_pixels": 12993,
+          "predicted_fp_pixels": 11910
+        },
+        "other_shadow": {
+          "label_pixels": 974,
+          "changed_pixels": 815,
+          "predicted_fp_pixels": 407
+        },
+        "remaining_background": {
+          "label_pixels": 45646,
+          "changed_pixels": 44075,
+          "predicted_fp_pixels": 40249
+        }
+      }
+    },
+    {
+      "id": "r01_running",
+      "method": "shadow",
+      "categories": {
+        "other_object": {
+          "label_pixels": 13034,
+          "changed_pixels": 10921,
+          "predicted_fp_pixels": 9188
+        },
+        "other_shadow": {
+          "label_pixels": 974,
+          "changed_pixels": 968,
+          "predicted_fp_pixels": 960
+        },
+        "remaining_background": {
+          "label_pixels": 45646,
+          "changed_pixels": 28322,
+          "predicted_fp_pixels": 25745
+        }
+      }
+    },
+    {
+      "id": "r01_running",
+      "method": "selected",
+      "categories": {
+        "other_object": {
+          "label_pixels": 13034,
+          "changed_pixels": 966,
+          "predicted_fp_pixels": 705
+        },
+        "other_shadow": {
+          "label_pixels": 974,
+          "changed_pixels": 0,
+          "predicted_fp_pixels": 0
+        },
+        "remaining_background": {
+          "label_pixels": 45646,
+          "changed_pixels": 6649,
+          "predicted_fp_pixels": 5342
+        }
+      }
+    },
+    {
+      "id": "r01_running",
+      "method": "conservative",
+      "categories": {
+        "other_object": {
+          "label_pixels": 13034,
+          "changed_pixels": 112,
+          "predicted_fp_pixels": 73
+        },
+        "other_shadow": {
+          "label_pixels": 974,
+          "changed_pixels": 0,
+          "predicted_fp_pixels": 0
+        },
+        "remaining_background": {
+          "label_pixels": 45646,
+          "changed_pixels": 3431,
+          "predicted_fp_pixels": 2610
+        }
+      }
+    },
+    {
+      "id": "r02_penguin",
+      "method": "tracefusion",
+      "categories": {
+        "other_object": {
+          "label_pixels": 6055,
+          "changed_pixels": 6055,
+          "predicted_fp_pixels": 6055
+        },
+        "other_shadow": {
+          "label_pixels": 278,
+          "changed_pixels": 278,
+          "predicted_fp_pixels": 278
+        },
+        "remaining_background": {
+          "label_pixels": 56224,
+          "changed_pixels": 38743,
+          "predicted_fp_pixels": 34909
+        }
+      }
+    },
+    {
+      "id": "r02_penguin",
+      "method": "shadow",
+      "categories": {
+        "other_object": {
+          "label_pixels": 6055,
+          "changed_pixels": 6053,
+          "predicted_fp_pixels": 6052
+        },
+        "other_shadow": {
+          "label_pixels": 278,
+          "changed_pixels": 278,
+          "predicted_fp_pixels": 278
+        },
+        "remaining_background": {
+          "label_pixels": 56224,
+          "changed_pixels": 17904,
+          "predicted_fp_pixels": 16453
+        }
+      }
+    },
+    {
+      "id": "r02_penguin",
+      "method": "selected",
+      "categories": {
+        "other_object": {
+          "label_pixels": 6055,
+          "changed_pixels": 1443,
+          "predicted_fp_pixels": 1268
+        },
+        "other_shadow": {
+          "label_pixels": 278,
+          "changed_pixels": 37,
+          "predicted_fp_pixels": 36
+        },
+        "remaining_background": {
+          "label_pixels": 56224,
+          "changed_pixels": 4446,
+          "predicted_fp_pixels": 4000
+        }
+      }
+    },
+    {
+      "id": "r02_penguin",
+      "method": "conservative",
+      "categories": {
+        "other_object": {
+          "label_pixels": 6055,
+          "changed_pixels": 0,
+          "predicted_fp_pixels": 0
+        },
+        "other_shadow": {
+          "label_pixels": 278,
+          "changed_pixels": 0,
+          "predicted_fp_pixels": 0
+        },
+        "remaining_background": {
+          "label_pixels": 56224,
+          "changed_pixels": 453,
+          "predicted_fp_pixels": 335
+        }
+      }
+    },
+    {
+      "id": "r03_aircraft",
+      "method": "tracefusion",
+      "categories": {
+        "other_object": {
+          "label_pixels": 10465,
+          "changed_pixels": 10459,
+          "predicted_fp_pixels": 10465
+        },
+        "other_shadow": {
+          "label_pixels": 1744,
+          "changed_pixels": 1741,
+          "predicted_fp_pixels": 1744
+        },
+        "remaining_background": {
+          "label_pixels": 43392,
+          "changed_pixels": 33772,
+          "predicted_fp_pixels": 28886
+        }
+      }
+    },
+    {
+      "id": "r03_aircraft",
+      "method": "shadow",
+      "categories": {
+        "other_object": {
+          "label_pixels": 10465,
+          "changed_pixels": 4811,
+          "predicted_fp_pixels": 3793
+        },
+        "other_shadow": {
+          "label_pixels": 1744,
+          "changed_pixels": 1722,
+          "predicted_fp_pixels": 1695
+        },
+        "remaining_background": {
+          "label_pixels": 43392,
+          "changed_pixels": 16400,
+          "predicted_fp_pixels": 15451
+        }
+      }
+    },
+    {
+      "id": "r03_aircraft",
+      "method": "selected",
+      "categories": {
+        "other_object": {
+          "label_pixels": 10465,
+          "changed_pixels": 958,
+          "predicted_fp_pixels": 782
+        },
+        "other_shadow": {
+          "label_pixels": 1744,
+          "changed_pixels": 739,
+          "predicted_fp_pixels": 564
+        },
+        "remaining_background": {
+          "label_pixels": 43392,
+          "changed_pixels": 8147,
+          "predicted_fp_pixels": 7025
+        }
+      }
+    },
+    {
+      "id": "r03_aircraft",
+      "method": "conservative",
+      "categories": {
+        "other_object": {
+          "label_pixels": 10465,
+          "changed_pixels": 676,
+          "predicted_fp_pixels": 564
+        },
+        "other_shadow": {
+          "label_pixels": 1744,
+          "changed_pixels": 705,
+          "predicted_fp_pixels": 551
+        },
+        "remaining_background": {
+          "label_pixels": 43392,
+          "changed_pixels": 5574,
+          "predicted_fp_pixels": 4742
+        }
+      }
+    },
+    {
+      "id": "r04_field",
+      "method": "tracefusion",
+      "categories": {
+        "other_object": {
+          "label_pixels": 3428,
+          "changed_pixels": 3202,
+          "predicted_fp_pixels": 2951
+        },
+        "other_shadow": {
+          "label_pixels": 1356,
+          "changed_pixels": 547,
+          "predicted_fp_pixels": 209
+        },
+        "remaining_background": {
+          "label_pixels": 54488,
+          "changed_pixels": 25043,
+          "predicted_fp_pixels": 18093
+        }
+      }
+    },
+    {
+      "id": "r04_field",
+      "method": "shadow",
+      "categories": {
+        "other_object": {
+          "label_pixels": 3428,
+          "changed_pixels": 2778,
+          "predicted_fp_pixels": 2433
+        },
+        "other_shadow": {
+          "label_pixels": 1356,
+          "changed_pixels": 1284,
+          "predicted_fp_pixels": 1278
+        },
+        "remaining_background": {
+          "label_pixels": 54488,
+          "changed_pixels": 36404,
+          "predicted_fp_pixels": 34041
+        }
+      }
+    },
+    {
+      "id": "r04_field",
+      "method": "selected",
+      "categories": {
+        "other_object": {
+          "label_pixels": 3428,
+          "changed_pixels": 962,
+          "predicted_fp_pixels": 857
+        },
+        "other_shadow": {
+          "label_pixels": 1356,
+          "changed_pixels": 724,
+          "predicted_fp_pixels": 639
+        },
+        "remaining_background": {
+          "label_pixels": 54488,
+          "changed_pixels": 9869,
+          "predicted_fp_pixels": 9266
+        }
+      }
+    },
+    {
+      "id": "r04_field",
+      "method": "conservative",
+      "categories": {
+        "other_object": {
+          "label_pixels": 3428,
+          "changed_pixels": 499,
+          "predicted_fp_pixels": 420
+        },
+        "other_shadow": {
+          "label_pixels": 1356,
+          "changed_pixels": 724,
+          "predicted_fp_pixels": 638
+        },
+        "remaining_background": {
+          "label_pixels": 54488,
+          "changed_pixels": 6132,
+          "predicted_fp_pixels": 4962
+        }
+      }
+    },
+    {
+      "id": "r05_hardware",
+      "method": "tracefusion",
+      "categories": {
+        "other_object": {
+          "label_pixels": 12167,
+          "changed_pixels": 10723,
+          "predicted_fp_pixels": 9798
+        },
+        "other_shadow": {
+          "label_pixels": 7490,
+          "changed_pixels": 3418,
+          "predicted_fp_pixels": 2384
+        },
+        "remaining_background": {
+          "label_pixels": 41008,
+          "changed_pixels": 20371,
+          "predicted_fp_pixels": 14302
+        }
+      }
+    },
+    {
+      "id": "r05_hardware",
+      "method": "shadow",
+      "categories": {
+        "other_object": {
+          "label_pixels": 12167,
+          "changed_pixels": 10202,
+          "predicted_fp_pixels": 8959
+        },
+        "other_shadow": {
+          "label_pixels": 7490,
+          "changed_pixels": 5658,
+          "predicted_fp_pixels": 4689
+        },
+        "remaining_background": {
+          "label_pixels": 41008,
+          "changed_pixels": 17689,
+          "predicted_fp_pixels": 14471
+        }
+      }
+    },
+    {
+      "id": "r05_hardware",
+      "method": "selected",
+      "categories": {
+        "other_object": {
+          "label_pixels": 12167,
+          "changed_pixels": 3233,
+          "predicted_fp_pixels": 2901
+        },
+        "other_shadow": {
+          "label_pixels": 7490,
+          "changed_pixels": 44,
+          "predicted_fp_pixels": 40
+        },
+        "remaining_background": {
+          "label_pixels": 41008,
+          "changed_pixels": 2668,
+          "predicted_fp_pixels": 2233
+        }
+      }
+    },
+    {
+      "id": "r05_hardware",
+      "method": "conservative",
+      "categories": {
+        "other_object": {
+          "label_pixels": 12167,
+          "changed_pixels": 3230,
+          "predicted_fp_pixels": 2818
+        },
+        "other_shadow": {
+          "label_pixels": 7490,
+          "changed_pixels": 43,
+          "predicted_fp_pixels": 35
+        },
+        "remaining_background": {
+          "label_pixels": 41008,
+          "changed_pixels": 1400,
+          "predicted_fp_pixels": 1021
+        }
+      }
+    }
+  ]
+}
