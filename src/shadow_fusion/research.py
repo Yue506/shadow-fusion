@@ -20,13 +20,14 @@ class ResearchConfig:
     confidence: str = 'none'
     gate_low: float = 1.5
     gate_high: float = 4.
+    weak_low: float = 1.
 
     def __post_init__(self):
         if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel'):
             raise ValueError('Unknown feather strategy')
         make_config('shadow',color=self.color,extra=self.extra,gamma=self.gamma,
                     feather=self.feather if self.feather in ('none','single','multilevel','paper') else 'none')
-        if self.association not in ('none','connected'):
+        if self.association not in ('none','connected','weak_connected'):
             raise ValueError('Unknown association strategy')
         if type(self.link_radius) not in (int,float) or not np.isfinite(self.link_radius) or not 0 <= self.link_radius <= 1:
             raise ValueError('link_radius must be a finite fraction in [0,1]')
@@ -38,6 +39,8 @@ class ResearchConfig:
             raise ValueError('Gamma requires extra-region detection')
         if any(type(v) not in (int,float) for v in (self.gate_low,self.gate_high)) or not np.isfinite(self.gate_low+self.gate_high) or not 0<=self.gate_low<self.gate_high<=255:
             raise ValueError('Confidence thresholds must satisfy 0 <= low < high <= 255')
+        if type(self.weak_low) not in (int,float) or not np.isfinite(self.weak_low) or not 0<=self.weak_low<=255:
+            raise ValueError('Weak association threshold must be finite in [0,255]')
 
 
 def calibrate_srgb(source, generated, mask, spatial=False):
@@ -164,18 +167,27 @@ def compose_research(source, generated, mask, settings=None):
     short=min(mask.shape)
     center=tracefusion.dilate(mask,max(1,.008*short))
     support=result['support']
-    if config.association=='connected' and config.extra:
+    if config.association in ('connected','weak_connected') and config.extra:
         extra=support & ~center
         labels,count=ndi.label(extra,np.ones((3,3)))
         distance=ndi.distance_transform_edt(~mask)
         retained=np.zeros_like(mask)
         accepted=[]
+        reachable=None
+        if config.association=='weak_connected':
+            brightness=ndi.gaussian_filter((result['corrected'].astype(float)-source)@core.LUMA,max(.65,short/512))
+            weak=(brightness>config.weak_low)&(distance<.65*short)
+            weak=ndi.binary_closing(weak,structure=tracefusion.disk(max(1,short/512)))
+            seed=tracefusion.dilate(mask,max(2,config.link_radius*short))
+            reachable=ndi.binary_propagation(seed,structure=np.ones((3,3)),mask=weak|seed)
         for k in range(1,count+1):
             region=labels==k
-            if distance[region].min() <= max(2,config.link_radius*short):
+            attached=(region&reachable).any() if reachable is not None else distance[region].min() <= max(2,config.link_radius*short)
+            if attached:
                 retained |= region;accepted.append(k)
         support=center|retained
         result['metadata']['association']={'candidate_components':count,'accepted_components':len(accepted)}
+        if reachable is not None:result['metadata']['association']['weak_reachable_pixels']=int(reachable.sum())
     gate=None
     if config.confidence=='positive':
         brightness=(result['corrected'].astype(float)-source)@core.LUMA

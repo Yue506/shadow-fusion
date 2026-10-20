@@ -1,0 +1,8 @@
+[
+  {"id":"gate_only", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5}},
+  {"id":"gate_connected025", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"association":"connected","link_radius":0.025}},
+  {"id":"gate_connected050", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"association":"connected","link_radius":0.05}},
+  {"id":"gate_connected100", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"association":"connected","link_radius":0.1}},
+  {"id":"gate_weak1", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","link_radius":0.025,"weak_low":1}},
+  {"id":"gate_weak2", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","link_radius":0.025,"weak_low":2}}
+]

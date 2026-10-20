@@ -1,0 +1,15 @@
+{
+  "author_split_counts": {
+    "Training": 83,
+    "Testing": 16,
+    "Remaining": 1
+  },
+  "archive_remaining_selected": [
+    {
+      "id": "d005",
+      "name": "ADE_train_00005062.png",
+      "campaign_split": "explore"
+    }
+  ],
+  "scope": "Custom 100-scene campaign; not the official DESOBA benchmark split. All selected scenes have image, reference, object and shadow annotations."
+}

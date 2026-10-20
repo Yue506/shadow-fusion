@@ -33,8 +33,9 @@ CLI 输入要求：8-bit RGB 图像和同尺寸二值 mask（0/1 或 0/255，L �
 | 字段 | 取值及意义 | 依赖 |
 |---|---|---|
 | `calibration` | `linear` 沿用基线；`srgb_affine` 拟合增益偏置；`srgb_plane` 再加入空间平面 | `color=true` |
-| `association` | `none`；`connected` 保留距物体小于连接半径的残差分量 | `extra=true` |
+| `association` | `none`；`connected` 保留距物体小于连接半径的残差分量；`weak_connected` 允许弱亮度证据路径连接 | `extra=true` |
 | `link_radius` | 距离阈值／图像短边，默认 0.025 | 连通约束 |
+| `weak_low` | 连接路径的平滑亮度残差阈值，默认 1；只决定保留分量，不直接回贴整条路径 | 弱路径连通约束 |
 | `confidence` | `none`；`positive` 将校色后正亮度残差转为 alpha 置信度 | mask 外适用 |
 | `gate_low/high` | sRGB 0–255 亮度残差的零／满置信阈值，默认 1.5／4 | 正向置信度 |
 | `feather` | 原有四种；`adaptive` 根据物体面积收窄外扩；`inward/inward_multilevel` 限制在支持域内 | 所有探索策略 |

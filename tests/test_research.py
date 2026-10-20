@@ -11,6 +11,16 @@ from shadow_fusion.cli import main
 
 
 class ResearchTests(unittest.TestCase):
+    def test_weak_path_connects_separated_shadow_without_adding_unrelated_one(self):
+        source=np.full((128,128,3),80,dtype='uint8');g=source.copy()
+        mask=np.zeros((128,128),bool);mask[30:50,50:70]=True
+        g[50:62,55:67]+=2;g[62:85,55:67]+=40;g[80:105,95:115]+=40
+        hard=compose_research(source,g,mask,{'color':False,'association':'connected'})
+        weak=compose_research(source,g,mask,{'color':False,'association':'weak_connected','weak_low':1})
+        self.assertFalse(hard['support'][75,60]);self.assertTrue(weak['support'][75,60])
+        self.assertFalse(weak['support'][90,105])
+        np.testing.assert_array_equal(weak['output'][~weak['envelope']],source[~weak['envelope']])
+
     def test_cli_research_flags_and_ablations_are_effective(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp);source=np.full((64,64,3),90,dtype='uint8');g=source.copy()
