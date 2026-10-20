@@ -21,6 +21,9 @@ class ResearchConfig:
     gate_low: float = 1.5
     gate_high: float = 4.
     weak_low: float = 1.
+    ownership: str = 'none'
+    ownership_model_dir: str = 'data/models/yolox'
+    ownership_margin: float = .9
 
     def __post_init__(self):
         if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel'):
@@ -41,6 +44,12 @@ class ResearchConfig:
             raise ValueError('Confidence thresholds must satisfy 0 <= low < high <= 255')
         if type(self.weak_low) not in (int,float) or not np.isfinite(self.weak_low) or not 0<=self.weak_low<=255:
             raise ValueError('Weak association threshold must be finite in [0,255]')
+        if self.ownership not in ('none','euclidean','geodesic'):
+            raise ValueError('Unknown ownership strategy')
+        if not isinstance(self.ownership_model_dir,str) or not self.ownership_model_dir:
+            raise ValueError('ownership_model_dir must be a directory path string')
+        if type(self.ownership_margin) not in (int,float) or not np.isfinite(self.ownership_margin) or not 0<self.ownership_margin<=2:
+            raise ValueError('ownership_margin must be finite in (0,2]')
 
 
 def calibrate_srgb(source, generated, mask, spatial=False):
@@ -161,12 +170,13 @@ def compose_research(source, generated, mask, settings=None):
     result['metadata']['base_config']=result['metadata']['config']
     result['metadata']['config']={'mode':'shadow','engine':'research',**asdict(config)}
     if custom_color:result['metadata']['calibration']=calibration
-    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper') and config.confidence=='none':
+    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper') and config.confidence=='none' and (config.ownership=='none' or not config.extra):
         result['metadata']['elapsed_cpu_seconds']=time.perf_counter()-started
         return result
     short=min(mask.shape)
     center=tracefusion.dilate(mask,max(1,.008*short))
     support=result['support']
+    unrestricted_support=support
     if config.association in ('connected','weak_connected') and config.extra:
         extra=support & ~center
         labels,count=ndi.label(extra,np.ones((3,3)))
@@ -188,6 +198,12 @@ def compose_research(source, generated, mask, settings=None):
         support=center|retained
         result['metadata']['association']={'candidate_components':count,'accepted_components':len(accepted)}
         if reachable is not None:result['metadata']['association']['weak_reachable_pixels']=int(reachable.sum())
+    if config.ownership!='none' and config.extra:
+        from .ownership import ownership_support
+        owned,info=ownership_support(source,result['corrected'],mask,unrestricted_support,
+                                    config.ownership_model_dir,config.ownership,config.ownership_margin)
+        if owned is not None:support=owned
+        result['metadata']['ownership']=info
     gate=None
     if config.confidence=='positive':
         brightness=(result['corrected'].astype(float)-source)@core.LUMA

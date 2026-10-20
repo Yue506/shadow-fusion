@@ -13,6 +13,7 @@ dependencies = ["numpy>=1.24,<3", "scipy>=1.10,<2", "Pillow>=10,<13"]
 
 [project.optional-dependencies]
 evaluation = ["scikit-image>=0.21", "matplotlib>=3.7"]
+research = ["opencv-python-headless>=4.10,<6"]
 
 [project.scripts]
 shadow-fusion = "shadow_fusion.cli:main"

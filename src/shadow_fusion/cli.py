@@ -19,10 +19,10 @@ def config_from_args(args):
             if getattr(args,key) is not None:values[key]=getattr(args,key)=='on'
         if args.feather is not None:values['feather']=args.feather
         ablations=tuple(x.strip() for x in args.ablate.split(',') if x.strip())
-        allowed=set(MODULES)|{'association','confidence'}
+        allowed=set(MODULES)|{'association','confidence','ownership'}
         if set(ablations)-allowed:raise ValueError(f'Unknown research ablation: {sorted(set(ablations)-allowed)}')
         for module in ablations:
-            values[module]='none' if module in ('feather','association','confidence') else False
+            values[module]='none' if module in ('feather','association','confidence','ownership') else False
         if not values.get('extra',True):values['gamma']=False
         return ResearchConfig(**values),ablations
     values = json.loads(Path(args.config).read_text()) if args.config else {}
@@ -60,7 +60,7 @@ def parser():
         for key in ('color', 'extra', 'gamma'):
             command.add_argument('--'+key, choices=('on', 'off'))
         command.add_argument('--feather', choices=('none', 'single', 'multilevel', 'paper','adaptive','inward','inward_multilevel'))
-        command.add_argument('--ablate', default='', help='Comma-separated: color,extra,gamma,feather; research also association,confidence. Ablations take precedence.')
+        command.add_argument('--ablate', default='', help='Comma-separated: color,extra,gamma,feather; research also association,confidence,ownership. Ablations take precedence.')
     return p
 
 

@@ -1,0 +1,6 @@
+[
+  {"id":"gate_only", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5}},
+  {"id":"owner_euclidean09", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"ownership":"euclidean","ownership_margin":0.9}},
+  {"id":"owner_geodesic09", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"ownership":"geodesic","ownership_margin":0.9}},
+  {"id":"owner_geodesic11", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5,"ownership":"geodesic","ownership_margin":1.1}}
+]

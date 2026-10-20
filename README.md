@@ -14,7 +14,7 @@ shadow-fusion compose \
   --mode shadow --artifacts-dir outputs/demo_maps
 ```
 
-也可以用 `python -m shadow_fusion`。无需 GPU、模型权重或 API 密钥；工具本身不生成消除候选。示例是**已知背景＋合成投影＋人为注入色偏的机制夹具**，不是消除模型输出。
+也可以用 `python -m shadow_fusion`。冻结模式和纯残差探索策略无需 GPU、模型权重或 API 密钥；工具本身不生成消除候选。示例是**已知背景＋合成投影＋人为注入色偏的机制夹具**，不是消除模型输出。
 
 ![可控机制示例](docs/assets/example.png)
 
@@ -96,6 +96,15 @@ shadow-fusion batch --manifest examples/manifest.jsonl --output-dir outputs/rese
 ```
 
 探索参数顺序为类默认值 → 策略 JSON → 显式模块参数 → 消融。`color/extra/gamma/feather` 保留独立开关，另可 `--ablate association,confidence`。探索羽化可选 `adaptive/inward/inward_multilevel`；域内羽化会漏掉狭窄投影，目前仅用于消融。开启置信度时，支持域内的 alpha 可低于 1，物体 mask 内仍完整使用校色候选。结果 JSON 的 `research_config` 可直接提取为下一次运行的策略配置；`config` 记录引擎和有效开关。
+
+可选 `ownership` 使用原图上的 CPU YOLOX 物体候选，为其他投影设置竞争种子。它不读取数据集其他物体标注，可能漏检非 COCO 物体。需要额外安装与显式下载，推理期间不自动联网；权重和官方包装代码均校验固定哈希，许可证保留在下载目录。
+
+```bash
+python -m pip install -e '.[research]'
+python scripts/fetch_cpu_detector.py
+```
+
+随后在探索 JSON 中指定 `ownership: "euclidean"` 或 `"geodesic"`，可用 `--ablate ownership` 关闭。模型输出只在对应物体附近存在强变亮证据时参与竞争；没有竞争种子时保留原关联策略。CPU 检测耗时与缓存状态记录在 JSON 中，该模块仍在对照测试。
 
 ## 已有实验与限制
 

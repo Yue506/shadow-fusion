@@ -15,5 +15,6 @@ worktrees/
 *.safetensors
 *.pt
 *.pth
+*.onnx
 *.mp4
 campaign_state.json

@@ -8,3 +8,14 @@
 The small committed `examples/` images and `docs/assets/example.png` are deterministic, code-generated gradient fixtures. Their candidate is a known clean image with an injected color bias, not a removal model result.
 
 The project MIT license applies to original project code and the synthetic examples, not to third-party datasets, model weights or source papers.
+# Optional CPU object proposals
+
+The exploration-only ownership module can download OpenCV Zoo YOLOX_s and its
+official Python wrapper, licensed under Apache-2.0. These files are not bundled
+or relicensed as project source. The download keeps the upstream LICENSE and
+verifies fixed SHA-256 checksums. Upstream revision:
+`opencv/opencv_zoo@48b10fa505aeb51fbd127fc60a5c660040e823b7`, directory
+`models/object_detection_yolox/`.
+
+https://github.com/opencv/opencv_zoo/tree/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/object_detection_yolox
+
