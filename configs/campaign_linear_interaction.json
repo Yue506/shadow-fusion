@@ -1,0 +1,4 @@
+[
+  {"id":"linear_gate", "engine":"research", "config":{"calibration":"linear","confidence":"positive","gate_low":2,"gate_high":5}},
+  {"id":"linear_weak2", "engine":"research", "config":{"calibration":"linear","confidence":"positive","gate_low":2,"gate_high":5,"association":"weak_connected","weak_low":2}}
+]

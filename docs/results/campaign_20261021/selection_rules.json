@@ -6,6 +6,8 @@
   ],
   "count_per_cohort": 20,
   "selection_ids": [
+    "linear_gate",
+    "linear_weak2",
     "gate2_5",
     "gate3_8",
     "connected025",
@@ -28,5 +30,6 @@
     "then prefer higher smaller-cohort stability and lower mean wall time"
   ],
   "fallback": "If no candidate passes stability, rank all and explicitly mark guard failure.",
-  "test_policy": "Freeze complete chosen config and four-method plan before first final_test evaluation; no tuning after."
+  "test_policy": "Freeze complete chosen config and four-method plan before first final_test evaluation; no tuning after.",
+  "revision_note": "Added the two linear-RGB/positive-gate interaction controls before any validation evaluation; ranking unchanged."
 }
