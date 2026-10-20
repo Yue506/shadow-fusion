@@ -1,0 +1,7 @@
+[
+  {"id":"shadow", "engine":"baseline", "config":{"mode":"shadow"}},
+  {"id":"srgb_affine", "engine":"research", "config":{"calibration":"srgb_affine"}},
+  {"id":"srgb_plane", "engine":"research", "config":{"calibration":"srgb_plane"}},
+  {"id":"plane_connected025", "engine":"research", "config":{"calibration":"srgb_plane","association":"connected","link_radius":0.025}},
+  {"id":"plane_connected050", "engine":"research", "config":{"calibration":"srgb_plane","association":"connected","link_radius":0.05}}
+]
