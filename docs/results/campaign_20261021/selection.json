@@ -1,0 +1,151 @@
+{
+  "created_utc": "2026-10-20T23:18:28.451397+00:00",
+  "frozen_before_test": true,
+  "selection_code_revision": "a4d902255fb65b12262f751baa06b0f7cdd0f2e8",
+  "selected_validation_id": "weak2_multi",
+  "selected_config": {
+    "color": true,
+    "extra": true,
+    "gamma": false,
+    "feather": "multilevel",
+    "association": "weak_connected",
+    "link_radius": 0.025,
+    "calibration": "srgb_plane",
+    "confidence": "positive",
+    "gate_low": 2,
+    "gate_high": 5,
+    "weak_low": 2,
+    "ownership": "none",
+    "ownership_model_dir": "data/models/yolox",
+    "ownership_margin": 0.9,
+    "local_strength": 0.5
+  },
+  "stability_guard_passed": true,
+  "validation_plan_sha256": "19d40ee6bb50a30e0d61fabb25d7d5a39d60e146c55eefaa99e7c850ba4390a6",
+  "rules_sha256": "47a7683404461d42788bb38f04dbeb8b98d8c56e110f18dc33a39d0915491bf4",
+  "plan_sha256": "7f285e7123f40dca4f34175bd8c5e8e0f542d3fc965869032e60eae5a2889f83",
+  "validation_evidence": {
+    "target_proxy": {
+      "metrics_sha256": "a5c2542437c07e3f124ead6fb7d556b1d68ebd2a5b16a7053cf7e8544199f2a1",
+      "manifest_sha256": "4186860ea29eceecae53844d648f5da0bbf78832af7621073937de07cc9c7aa4"
+    },
+    "all_shadow_proxy": {
+      "metrics_sha256": "746ddb3dc59a9bae77c13385d496506b65203a61bfbd6f65314de222434ae3af",
+      "manifest_sha256": "3d7346e1e9c6ed53b23605999d124b6522debbd29168c27b77ec5fbe88f54a25"
+    }
+  },
+  "candidate_scores": [
+    {
+      "id": "linear_gate",
+      "min_f1": 0.44934544033647394,
+      "min_recall": 0.9559979473475877,
+      "min_stability": 0.8947463658134824,
+      "max_background": 0.040098330189731204,
+      "mean_seconds": 0.23256848857563456
+    },
+    {
+      "id": "linear_weak2",
+      "min_f1": 0.632407673608973,
+      "min_recall": 0.8743002372291073,
+      "min_stability": 0.9223703829039221,
+      "max_background": 0.02271371535973614,
+      "mean_seconds": 0.2519263271486125
+    },
+    {
+      "id": "gate2_5",
+      "min_f1": 0.4729486595750707,
+      "min_recall": 0.9570741450305151,
+      "min_stability": 0.9953645511021701,
+      "max_background": 0.03072870448274888,
+      "mean_seconds": 0.23508999267469335
+    },
+    {
+      "id": "gate3_8",
+      "min_f1": 0.47882958127449593,
+      "min_recall": 0.9526509126716245,
+      "min_stability": 0.9981636146309011,
+      "max_background": 0.029858235302778792,
+      "mean_seconds": 0.23722335214952184
+    },
+    {
+      "id": "connected025",
+      "min_f1": 0.6845091138185077,
+      "min_recall": 0.8249876789311734,
+      "min_stability": 0.9941233762988635,
+      "max_background": 0.009831964559981227,
+      "mean_seconds": 0.2619535697504034
+    },
+    {
+      "id": "connected050",
+      "min_f1": 0.6589578513947725,
+      "min_recall": 0.8753764349120348,
+      "min_stability": 0.9928316320137475,
+      "max_background": 0.010481783833443978,
+      "mean_seconds": 0.26610740519972753
+    },
+    {
+      "id": "weak1",
+      "min_f1": 0.6501523036596073,
+      "min_recall": 0.8253764349120347,
+      "min_stability": 0.9928316320137475,
+      "max_background": 0.010322020972176753,
+      "mean_seconds": 0.2821020134993887
+    },
+    {
+      "id": "weak2",
+      "min_f1": 0.6737321300595054,
+      "min_recall": 0.8253764349120347,
+      "min_stability": 0.9928316320137475,
+      "max_background": 0.009890297570842435,
+      "mean_seconds": 0.29523074167336744
+    },
+    {
+      "id": "weak2_gate3_8",
+      "min_f1": 0.6816531388793424,
+      "min_recall": 0.8212499585365952,
+      "min_stability": 0.9974249063333541,
+      "max_background": 0.009399941704699665,
+      "mean_seconds": 0.29172163030052617
+    },
+    {
+      "id": "weak2_multi",
+      "min_f1": 0.672868609496828,
+      "min_recall": 0.8293014408695344,
+      "min_stability": 0.9916456973784451,
+      "max_background": 0.010118828147824195,
+      "mean_seconds": 0.3719105271236913
+    },
+    {
+      "id": "weak2_gamma",
+      "min_f1": 0.6737059244191184,
+      "min_recall": 0.8253764349120347,
+      "min_stability": 0.9697567011878598,
+      "max_background": 0.009962015654986828,
+      "mean_seconds": 0.3343863854239316
+    },
+    {
+      "id": "local_weak2",
+      "min_f1": 0.6737321300595054,
+      "min_recall": 0.8253764349120347,
+      "min_stability": 0.9928316320137475,
+      "max_background": 0.009890297570842435,
+      "mean_seconds": 0.36878061457537115
+    },
+    {
+      "id": "material_weak2",
+      "min_f1": 0.6737321300595054,
+      "min_recall": 0.8253764349120347,
+      "min_stability": 0.9928316320137475,
+      "max_background": 0.009890297570842435,
+      "mean_seconds": 0.48831789785108415
+    }
+  ],
+  "rule": [
+    "eligible only if each cohort mean perturbation IoU >= .98",
+    "maximize the smaller macro F1 across both cohorts",
+    "within .02 of best smaller F1, maximize the smaller cohort recall",
+    "then minimize the larger cohort background changed fraction",
+    "then prefer higher smaller-cohort stability and lower mean wall time"
+  ],
+  "quality_scope": "Validation selection for reference-derived proxy conditions; semantic background identity is not guaranteed."
+}

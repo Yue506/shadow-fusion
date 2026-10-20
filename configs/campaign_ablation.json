@@ -1,0 +1,149 @@
+[
+  {
+    "id": "full",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "multilevel",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "no_color",
+    "engine": "research",
+    "config": {
+      "color": false,
+      "extra": true,
+      "gamma": false,
+      "feather": "multilevel",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "no_extra",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": false,
+      "gamma": false,
+      "feather": "multilevel",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "no_confidence",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "multilevel",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "none",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "no_association",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "multilevel",
+      "association": "none",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "no_feather",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "none",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "gamma_toggle",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": true,
+      "feather": "multilevel",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  }
+]
