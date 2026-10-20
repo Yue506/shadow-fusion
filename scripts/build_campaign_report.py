@@ -110,13 +110,24 @@ def build(campaign,data,report,selection_file):
         if Path(name).exists():
             font_manager.fontManager.addfont(name);plt.rcParams['font.family']=font_manager.FontProperties(fname=name).get_name();break
     plt.rcParams.update({'svg.fonttype':'none','axes.spines.top':False,'axes.spines.right':False})
-    fig,axes=plt.subplots(1,3,figsize=(14,4.2))
+    latency_path=campaign/'serial_latency.json'
+    latency=json.loads(latency_path.read_text()) if latency_path.exists() else None
+    fig,axes=plt.subplots(1,4 if latency else 3,figsize=(18 if latency else 14,4.2))
     for j,(metric,title,scale) in enumerate([('shadow_f1','目标投影 F1 ↑',1),('background_changed_fraction','真实背景误改（%）↓',100),('stability_iou_mean','小扰动区域 IoU ↑',1)]):
         for i,(co,label) in enumerate([('target_proxy','仅目标代理'),('all_shadow_proxy','全图去影代理')]):
             values=[final[co]['methods'][m]['summary'][metric]*scale for m in METHODS]
             axes[j].bar(np.arange(4)+(i-.5)*.36,values,.34,label=label,color=COLORS,alpha=1 if i==0 else .45,hatch=None if i==0 else '//',edgecolor='#484878')
         axes[j].set_xticks(range(4),['原mask','TraceFusion','冻结shadow','选定配置'],rotation=15);axes[j].set_title(title);axes[j].grid(axis='y',alpha=.15)
-    axes[0].legend(fontsize=9);fig.suptitle('锁定测试：每种代理条件 20 张；柱高为逐场景宏平均',fontsize=14)
+    efficiency=''
+    if latency:
+        axes[3].bar(range(4),[latency['methods'][m]['median_ms'] for m in METHODS],color=COLORS)
+        axes[3].set_xticks(range(4),['原mask','TraceFusion','冻结shadow','选定配置'],rotation=15)
+        axes[3].set_title('串行 CPU 墙钟中位数（ms）↓');axes[3].grid(axis='y',alpha=.15)
+        efficiency='| 方法 | 次数 | 中位毫秒 | P95 毫秒 |\n|---|---:|---:|---:|\n'
+        for m in METHODS:
+            t=latency['methods'][m];efficiency+=f'| {NAMES[m]} | {t["n"]} | {t["median_ms"]:.3f} | {t["p95_ms"]:.3f} |\n'
+        shutil.copyfile(latency_path,exp/'serial_latency.json')
+    axes[0].legend(fontsize=9);fig.suptitle('质量：每条件 20 张锁定测试；耗时：固定 24 次串行计算',fontsize=14)
     fig.tight_layout();fig.savefig(assets/'metrics.png',dpi=180);fig.savefig(assets/'metrics.svg');plt.close(fig)
     headers='| 候选条件 | 方法 | 精确率 | 召回率 | F1 | IoU | 最差 F1 | 背景误改 | 背景零改图数 | 扰动 IoU | 最差扰动 IoU |\n|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n'
     table=headers
@@ -187,6 +198,26 @@ flowchart TD
 
 {table}
 ![锁定测试指标](assets/metrics.png)
+
+串行耗时使用 seed=42 从探索集选取十二场景，每种候选各一次，共 24 次；旋转方法次序，单次预热。只计回贴计算，不计文件读写与消除生成，不能据此宣称相对消除模型的百分比开销。
+
+{efficiency}
+
+## 九轮探索的取舍
+
+| 轮次 | 固定的主要比较 | 结论范围 |
+|---|---|---|
+| R0 | 四组基线／gamma | gamma 几乎不增加召回，却扩大初始背景误改 |
+| R1 | 物体邻接半径 | 排除部分其他投影，也损失分离目标投影 |
+| R2 | 线性、sRGB、空间平面 | 匹配本轮扰动的平面校色改善稳定性与背景残差 |
+| R3 | 单级、多级、自适应、域内羽化 | 单加多级外扩并未获益，域内羽化漏影严重 |
+| R4 | 正向亮度置信门控 | 减少无证据拷贝，目标代理提升最大 |
+| R5 | 门控与强／弱路径 | 对错误去掉其他投影的候选更有保护作用，仍有取舍 |
+| R6 | CPU 物体框竞争 | 错分目标影子，未胜过纯残差方案，默认不采用 |
+| R7 | 局部／同色锚点 | 本轮 F1 几乎不变，计算增加 |
+| R8 | 校色与门控交互 | 线性 RGB 在本轮 sRGB 代理上更容易触发背景假区域 |
+
+单独的多级羽化与带置信约束的多级组合结果不同。最终配置来自验证组合选择，不能把单模块结果直接外推为组合结论。
 
 选定配置相对冻结 shadow 的配对 F1 增量与场景重采样 95% 区间：目标代理 {intervals['target_proxy']['paired_f1_gain']:.5f}，{intervals['target_proxy']['bootstrap95']}；全图代理 {intervals['all_shadow_proxy']['paired_f1_gain']:.5f}，{intervals['all_shadow_proxy']['bootstrap95']}。这是固定二十场景的描述性不确定性，不能替代真实生成候选验证。
 
