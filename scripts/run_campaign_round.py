@@ -42,6 +42,10 @@ def aggregate(rows):
 
 
 def run(manifest, plan, output, stability=False, selection=None):
+    import shadow_fusion
+    code_root=Path(subprocess.check_output(['git','rev-parse','--show-toplevel'],text=True).strip())
+    if Path(shadow_fusion.__file__).resolve()!=(code_root/'src/shadow_fusion/__init__.py').resolve():
+        raise ValueError('Imported shadow_fusion is not this worktree; install this checkout in its own environment')
     records = load_manifest(manifest)
     if any(r.get('split') == 'final_test' for r in records):
         if selection is None or not Path(selection).is_file():
@@ -102,6 +106,13 @@ def run(manifest, plan, output, stability=False, selection=None):
                     raise ValueError(f'Frozen evaluation {name} changed for {record["id"]}')
             target=read_mask(record['shadow_mask']); reference=read_rgb(record['reference'])[0]
             metrics=evaluate(source,mask,result,target,reference)
+            ownership=result['metadata'].get('ownership',{})
+            if ownership:
+                metrics.update(object_detector_seconds=ownership.get('detection_seconds',0.),
+                               object_detector_cache_hit=int(ownership.get('cache_hit',False)),
+                               ownership_applied=int(ownership.get('applied',False)),
+                               ownership_other_boxes=int(ownership.get('other_boxes',0)),
+                               ownership_active_other_boxes=int(ownership.get('active_other_boxes',0)))
             tp,fp,fn=int((support&target).sum()),int((support&~target).sum()),int((~support&target).sum())
             metrics.update(detector_support_iou=tp/(tp+fp+fn) if tp+fp+fn else 1.,
                            detector_support_precision=tp/(tp+fp) if tp+fp else 0.,
@@ -136,7 +147,8 @@ def run(manifest, plan, output, stability=False, selection=None):
                                             **aggregate([r for r in selected if g in r['groups']])} for g in groups},
                                'worst_f1_cases':sorted(selected,key=lambda r:r['shadow_f1'])[:5]}
     payload={**identity,'code_revision':code_revision,'dirty_diff_sha256':hashlib.sha256(dirty.encode()).hexdigest(),
-             'environment':{'python':platform.python_version(),'numpy':np.__version__,'platform':platform.platform()},
+             'environment':{'python':platform.python_version(),'numpy':np.__version__,'platform':platform.platform(),
+                            'import_matches_worktree':True,'module_relative':'src/shadow_fusion/__init__.py'},
              'start_unix':start,'end_unix':time.time(),'wall_seconds':time.time()-start,
              'perturbations':['all channels +2','RGB +[2,-2,1]','Gaussian sigma .8, seed 20261021 + d-index; other ids use SHA256-derived integer'] if stability else [],
              'count':len(records),'methods':methods}
