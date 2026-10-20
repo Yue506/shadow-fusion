@@ -89,6 +89,8 @@ def build(campaign,data,report,selection_file):
         compact(data/f'{co}_all.jsonl',[str(root/m) for m in METHODS],assets/f'all_{co}',per_page=4,selection=selection_file)
         shutil.copyfile(root/'pixel_audit.json',exp/f'pixel_audit_{co}.json')
         shutil.copyfile(campaign/f'final_{co}'/'metrics.json',exp/f'final_{co}.json')
+        shutil.copyfile(campaign/f'final_{co}'/'progress.jsonl',exp/f'final_{co}_progress.jsonl')
+        shutil.copyfile(root/'progress.jsonl',exp/f'all_{co}_progress.jsonl')
     # Eight cases include quality extremes, median cases and instability/background extremes.
     co='all_shadow_proxy';root,records,rows,audit=galleries[co]
     selected=[r for r in final_rows[co] if r['method']=='selected'];ordered=sorted(selected,key=lambda r:r['shadow_f1'])
@@ -112,7 +114,7 @@ def build(campaign,data,report,selection_file):
     for j,(metric,title,scale) in enumerate([('shadow_f1','目标投影 F1 ↑',1),('background_changed_fraction','真实背景误改（%）↓',100),('stability_iou_mean','小扰动区域 IoU ↑',1)]):
         for i,(co,label) in enumerate([('target_proxy','仅目标代理'),('all_shadow_proxy','全图去影代理')]):
             values=[final[co]['methods'][m]['summary'][metric]*scale for m in METHODS]
-            axes[j].bar(np.arange(4)+(i-.5)*.36,values,.34,label=label,color=COLORS if i==0 else None,alpha=1 if i==0 else .45,edgecolor='#484878')
+            axes[j].bar(np.arange(4)+(i-.5)*.36,values,.34,label=label,color=COLORS,alpha=1 if i==0 else .45,hatch=None if i==0 else '//',edgecolor='#484878')
         axes[j].set_xticks(range(4),['原mask','TraceFusion','冻结shadow','选定配置'],rotation=15);axes[j].set_title(title);axes[j].grid(axis='y',alpha=.15)
     axes[0].legend(fontsize=9);fig.suptitle('锁定测试：每种代理条件 20 张；柱高为逐场景宏平均',fontsize=14)
     fig.tight_layout();fig.savefig(assets/'metrics.png',dpi=180);fig.savefig(assets/'metrics.svg');plt.close(fig)
@@ -129,6 +131,11 @@ def build(campaign,data,report,selection_file):
         draws=delta[rng.integers(0,len(delta),(5000,len(delta)))].mean(-1)
         intervals[co]={'paired_f1_gain':float(delta.mean()),'bootstrap95':np.quantile(draws,[.025,.975]).tolist(),'scenes':20,'seed':42}
     (exp/'bootstrap.json').write_text(json.dumps(intervals,indent=2))
+    group_names={'dark':'暗背景代理','long':'长影代理','textured':'纹理背景代理','weak_or_soft':'弱／软影代理','strong_or_hard':'强／硬影代理','neighbor_shadow':'邻近其他投影','multi_object':'多物体'}
+    group_table='| 条件 | 分组 | 图数 | F1 | 召回 | 背景误改 | 扰动 IoU |\n|---|---|---:|---:|---:|---:|---:|\n'
+    for co,label in [('target_proxy','目标代理'),('all_shadow_proxy','全图代理')]:
+        for group,s in final[co]['methods']['selected']['groups'].items():
+            group_table+=f'| {label} | {group_names.get(group,group)} | {s["count"]} | {s["shadow_f1"]:.5f} | {s["shadow_recall"]:.5f} | {percent(s["background_changed_fraction"])} | {s["stability_iou_mean"]:.5f} |\n'
     # Matched ablations on validation only, never used to retune the frozen selection.
     ablation=''
     for co,label in [('target_proxy','目标代理'),('all_shadow_proxy','全图代理')]:
@@ -210,6 +217,10 @@ flowchart TD
 
 ## 解释与限制
 
+选定配置的分组表现如下。分组相互重叠，人数不相加；弱／软、强／硬、材质相关词均指量化代理，而非人工语义标注。
+
+{group_table}
+
 稳健校色与正向置信度是本轮主要收益；直接对整帧残差羽化会把小色偏和其他投影一起回贴。gamma 在初始四组中主要增加背景，缩进羽化则严重损失狭窄投影。弱路径改善部分分离区域，仍不能判对所有投影归属。CPU YOLOX 框竞争错误分走了目标投影；局部同色拟合对本轮已知平面扰动几乎无收益，增加了耗时。
 
 代理候选与其已知扰动有明确构造机制，尤其有利于匹配的校色模型；结果不是百图生成质量。二十张锁定测试较小，组标签是亮度、纹理、距离等量化代理，未提供独立人工材质／软硬影标注。低对比、远端投影、相邻投影合并及生成器真实改错内容仍会失败。数字像素保证只针对无损 PNG 与同尺寸解码 RGB；真实背景完全不改的质量目标没有达成。
@@ -236,6 +247,13 @@ CPU 耗时是本机墙钟，探索轮次可能存在同机并行竞争；如提�
     (report/'report.md').write_text(text)
     shutil.copyfile(selection_file,exp/'selection.json')
     (exp/'artifact_index.json').write_text(json.dumps({'cohorts':list(final),'primary_count':20,'all_scene_count':100,'overview_ids':ids,'methods':METHODS},indent=2))
+    shutil.copyfile(data/'dataset.json',exp/'dataset.json')
+    metadata_path=report/'report_metadata.json'
+    metadata=json.loads(metadata_path.read_text()) if metadata_path.exists() else {}
+    metadata.update(status='stage report',profile='model-benchmark',quality_target_met=False,
+                    new_scenes=100,split={'explore':60,'validation':20,'final_test':20},
+                    exploratory_rounds=9,proxy_conditions=2,selected_validation_id=selection['selected_validation_id'])
+    metadata_path.write_text(json.dumps(metadata,indent=2,ensure_ascii=False)+'\n')
     archive=campaign/'shadow_campaign_compact_report.zip'
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
         for p in report.rglob('*'):
