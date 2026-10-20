@@ -19,7 +19,10 @@ class ResearchConfig:
     calibration: str = 'linear'
 
     def __post_init__(self):
-        make_config('shadow',color=self.color,extra=self.extra,gamma=self.gamma,feather=self.feather)
+        if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel'):
+            raise ValueError('Unknown feather strategy')
+        make_config('shadow',color=self.color,extra=self.extra,gamma=self.gamma,
+                    feather=self.feather if self.feather in ('none','single','multilevel','paper') else 'none')
         if self.association not in ('none','connected'):
             raise ValueError('Unknown association strategy')
         if not np.isfinite(self.link_radius) or not 0 <= self.link_radius <= 1:
@@ -67,12 +70,37 @@ def calibrate_srgb(source, generated, mask, spatial=False):
                       'heldout_scope':'All preselected anchors; includes unknown edits, not labelled background accuracy.'}
 
 
-def render(source, corrected, support, feather):
+def render(source, corrected, support, feather, mask=None):
     short=min(support.shape)
+    if feather in ('inward','inward_multilevel'):
+        if mask is None:raise ValueError('Inward feathering requires the original object mask')
+        distance=ndi.distance_transform_edt(support)
+        def inside_alpha(radius):
+            t=np.clip((distance-.5)/max(1,radius),0,1)
+            a=(t*t*(3-2*t)).astype(np.float32);a[mask]=1
+            return a
+        envelope=support.copy()
+        alpha=inside_alpha(short*(.04 if feather=='inward_multilevel' else .025))
+        if feather=='inward_multilevel':
+            s,g=core.linear(source),core.linear(corrected)
+            s1,g1=(ndi.gaussian_filter(v,(max(1,short*.004),)*2+(0,)) for v in (s,g))
+            s2,g2=(ndi.gaussian_filter(v,(max(2,short*.016),)*2+(0,)) for v in (s,g))
+            out=np.zeros_like(s)
+            for sb,gb,radius in [(s-s1,g-g1,short*.012),(s1-s2,g1-g2,short*.025),(s2,g2,short*.04)]:
+                a=inside_alpha(radius)[...,None];out+=sb+a*(gb-sb)
+            output=core.encode(out)
+        else:output=tracefusion.blend(source,corrected,alpha)
+        output[~envelope]=source[~envelope];output[mask]=corrected[mask]
+        return output,alpha,envelope
     if feather=='none':
         alpha=support.astype(np.float32);envelope=support.copy()
     elif feather=='paper':
         alpha=tracefusion.feather(support);envelope=alpha>0
+    elif feather=='adaptive':
+        if mask is None:raise ValueError('Adaptive feathering requires the original object mask')
+        scale=np.sqrt(mask.sum())
+        envelope=tracefusion.dilate(support,max(1,min(short*.04,.12*scale)))
+        alpha=core.feather(support,max(1,min(short*.025,.08*scale)),envelope)
     else:
         envelope=tracefusion.dilate(support,max(2,short*.04))
         alpha=core.feather(support,short*(.04 if feather=='multilevel' else .025),envelope)
@@ -86,31 +114,41 @@ def render(source, corrected, support, feather):
 
 def compose_research(source, generated, mask, settings=None):
     config=ResearchConfig(**(settings or {}))
+    if (not isinstance(source,np.ndarray) or not isinstance(generated,np.ndarray)
+            or source.dtype!=np.uint8 or generated.dtype!=np.uint8
+            or source.ndim!=3 or source.shape[-1]!=3 or generated.shape!=source.shape):
+        raise ValueError('Source and candidate must be matching uint8 RGB arrays')
+    if not isinstance(mask,np.ndarray) or mask.dtype!=bool or mask.shape!=source.shape[:2] or not mask.any():
+        raise ValueError('Object mask must be a nonempty matching boolean array')
     started=time.perf_counter()
     custom_color=config.color and config.calibration!='linear'
     calibration=None
     if custom_color:
         generated,calibration=calibrate_srgb(source,generated,mask,config.calibration=='srgb_plane')
     result=compose(source,generated,mask,make_config('shadow',color=config.color and not custom_color,
-                   extra=config.extra,gamma=config.gamma,feather=config.feather))
+                   extra=config.extra,gamma=config.gamma,
+                   feather=config.feather if config.feather in ('none','single','multilevel','paper') else 'none'))
     result['metadata']['research_config']=asdict(config)
     if custom_color:result['metadata']['calibration']=calibration
-    if config.association=='none' or not config.extra:
+    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper'):
         result['metadata']['elapsed_cpu_seconds']=time.perf_counter()-started
         return result
     short=min(mask.shape)
     center=tracefusion.dilate(mask,max(1,.008*short))
-    extra=result['support'] & ~center
-    labels,count=ndi.label(extra,np.ones((3,3)))
-    distance=ndi.distance_transform_edt(~mask)
-    retained=np.zeros_like(mask)
-    accepted=[]
-    for k in range(1,count+1):
-        region=labels==k
-        if distance[region].min() <= max(2,config.link_radius*short):
-            retained |= region;accepted.append(k)
-    support=center|retained
-    output,alpha,envelope=render(source,result['corrected'],support,config.feather)
+    support=result['support']
+    if config.association=='connected' and config.extra:
+        extra=support & ~center
+        labels,count=ndi.label(extra,np.ones((3,3)))
+        distance=ndi.distance_transform_edt(~mask)
+        retained=np.zeros_like(mask)
+        accepted=[]
+        for k in range(1,count+1):
+            region=labels==k
+            if distance[region].min() <= max(2,config.link_radius*short):
+                retained |= region;accepted.append(k)
+        support=center|retained
+        result['metadata']['association']={'candidate_components':count,'accepted_components':len(accepted)}
+    output,alpha,envelope=render(source,result['corrected'],support,config.feather,mask)
     outside_count=int((~envelope).sum())
     outside_max=int(np.abs(output[~envelope].astype(np.int16)-source[~envelope].astype(np.int16)).max()) if outside_count else None
     assert outside_max in (0,None)
@@ -118,5 +156,6 @@ def compose_research(source, generated, mask, settings=None):
     result['metadata'].update(elapsed_cpu_seconds=time.perf_counter()-started,
                               edit_envelope_fraction=float(envelope.mean()),protected_pixel_count=outside_count,
                               outside_envelope_max_channel_difference=outside_max,
-                              association={'candidate_components':count,'accepted_components':len(accepted)})
+                              alpha_semantics=('Low-frequency alpha; edits bounded by support' if config.feather=='inward_multilevel'
+                                               else 'Low-frequency alpha' if config.feather=='multilevel' else 'Blend alpha'))
     return result

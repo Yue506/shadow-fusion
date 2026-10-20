@@ -1,10 +1,24 @@
 import unittest
 import numpy as np
+from scipy import ndimage as ndi
 from shadow_fusion import compose, make_config
 from shadow_fusion.research import compose_research,calibrate_srgb
 
 
 class ResearchTests(unittest.TestCase):
+    def test_bounded_feather_preserves_outside_support_and_object_edit(self):
+        source=np.full((128,128,3),80,dtype='uint8');g=source.copy()
+        g[45:100,50:85]=140
+        mask=np.zeros((128,128),bool);mask[45:70,50:85]=True
+        for feather in ['adaptive','inward','inward_multilevel']:
+            result=compose_research(source,g,mask,{'color':False,'feather':feather})
+            np.testing.assert_array_equal(result['output'][mask],g[mask])
+            np.testing.assert_array_equal(result['output'][~result['envelope']],source[~result['envelope']])
+            if feather.startswith('inward'):
+                np.testing.assert_array_equal(result['envelope'],result['support'])
+                boundary=result['support'] & ~ndi.binary_erosion(result['support']) & ~mask
+                self.assertLess(result['alpha'][boundary].max(),.5)
+
     def test_plane_fit_recovers_background_without_erasing_removed_shadow(self):
         rng=np.random.default_rng(42)
         source=rng.integers(40,180,(128,128,3),dtype='uint8')
