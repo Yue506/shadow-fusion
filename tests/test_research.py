@@ -6,6 +6,19 @@ from shadow_fusion.research import compose_research,calibrate_srgb
 
 
 class ResearchTests(unittest.TestCase):
+    def test_positive_gate_blocks_background_copy_but_keeps_shadow(self):
+        source=np.full((128,128,3),90,dtype='uint8');g=source.copy()
+        g[...,0]+=1;g[70:105,55:85]+=35;g[45:70,50:85]=130
+        mask=np.zeros((128,128),bool);mask[45:70,50:85]=True
+        target=np.zeros_like(mask);target[70:105,55:85]=True
+        for feather in ['single','adaptive','multilevel','inward_multilevel']:
+            result=compose_research(source,g,mask,{'color':False,'confidence':'positive','feather':feather})
+            np.testing.assert_array_equal(result['output'][~(mask|target)],source[~(mask|target)])
+            np.testing.assert_array_equal(result['output'][mask],g[mask])
+            self.assertTrue((result['support']<=result['envelope']).all())
+        ordinary=compose_research(source,g,mask,{'color':False,'confidence':'positive'})
+        np.testing.assert_array_equal(ordinary['output'][85,65],g[85,65])
+
     def test_bounded_feather_preserves_outside_support_and_object_edit(self):
         source=np.full((128,128,3),80,dtype='uint8');g=source.copy()
         g[45:100,50:85]=140

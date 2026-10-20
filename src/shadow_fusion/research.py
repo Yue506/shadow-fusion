@@ -17,6 +17,9 @@ class ResearchConfig:
     association: str = 'none'
     link_radius: float = .025
     calibration: str = 'linear'
+    confidence: str = 'none'
+    gate_low: float = 1.5
+    gate_high: float = 4.
 
     def __post_init__(self):
         if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel'):
@@ -29,6 +32,10 @@ class ResearchConfig:
             raise ValueError('link_radius must be a finite fraction in [0,1]')
         if self.calibration not in ('linear','srgb_affine','srgb_plane'):
             raise ValueError('Unknown calibration strategy')
+        if self.confidence not in ('none','positive'):
+            raise ValueError('Unknown confidence strategy')
+        if not np.isfinite(self.gate_low+self.gate_high) or not 0<=self.gate_low<self.gate_high<=255:
+            raise ValueError('Confidence thresholds must satisfy 0 <= low < high <= 255')
 
 
 def calibrate_srgb(source, generated, mask, spatial=False):
@@ -70,16 +77,22 @@ def calibrate_srgb(source, generated, mask, spatial=False):
                       'heldout_scope':'All preselected anchors; includes unknown edits, not labelled background accuracy.'}
 
 
-def render(source, corrected, support, feather, mask=None):
+def render(source, corrected, support, feather, mask=None, confidence=None):
     short=min(support.shape)
+    def confident(alpha):
+        if confidence is not None:
+            alpha=alpha*confidence;alpha[mask]=1
+        return alpha
+    def bound(envelope):
+        return envelope & ((confidence>0)|mask) if confidence is not None else envelope
     if feather in ('inward','inward_multilevel'):
         if mask is None:raise ValueError('Inward feathering requires the original object mask')
         distance=ndi.distance_transform_edt(support)
         def inside_alpha(radius):
             t=np.clip((distance-.5)/max(1,radius),0,1)
             a=(t*t*(3-2*t)).astype(np.float32);a[mask]=1
-            return a
-        envelope=support.copy()
+            return confident(a)
+        envelope=bound(support.copy())
         alpha=inside_alpha(short*(.04 if feather=='inward_multilevel' else .025))
         if feather=='inward_multilevel':
             s,g=core.linear(source),core.linear(corrected)
@@ -104,11 +117,22 @@ def render(source, corrected, support, feather, mask=None):
     else:
         envelope=tracefusion.dilate(support,max(2,short*.04))
         alpha=core.feather(support,short*(.04 if feather=='multilevel' else .025),envelope)
-    if feather=='multilevel':
+    alpha=confident(alpha)
+    envelope=bound(envelope)
+    if feather=='multilevel' and confidence is not None:
+        s,g=core.linear(source),core.linear(corrected)
+        s1,g1=(ndi.gaussian_filter(v,(max(1,short*.004),)*2+(0,)) for v in (s,g))
+        s2,g2=(ndi.gaussian_filter(v,(max(2,short*.016),)*2+(0,)) for v in (s,g))
+        out=np.zeros_like(s)
+        for sb,gb,radius in [(s-s1,g-g1,short*.012),(s1-s2,g1-g2,short*.025),(s2,g2,short*.04)]:
+            a=confident(core.feather(support,radius,envelope))[...,None];out+=sb+a*(gb-sb)
+        output=core.encode(out)
+    elif feather=='multilevel':
         output=core.multilevel(source,corrected,support,envelope)
     else:output=tracefusion.blend(source,corrected,alpha)
     output[~envelope]=source[~envelope]
-    output[support]=corrected[support]
+    if confidence is None:output[support]=corrected[support]
+    else:output[mask]=corrected[mask]
     return output,alpha,envelope
 
 
@@ -130,7 +154,7 @@ def compose_research(source, generated, mask, settings=None):
                    feather=config.feather if config.feather in ('none','single','multilevel','paper') else 'none'))
     result['metadata']['research_config']=asdict(config)
     if custom_color:result['metadata']['calibration']=calibration
-    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper'):
+    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper') and config.confidence=='none':
         result['metadata']['elapsed_cpu_seconds']=time.perf_counter()-started
         return result
     short=min(mask.shape)
@@ -148,7 +172,17 @@ def compose_research(source, generated, mask, settings=None):
                 retained |= region;accepted.append(k)
         support=center|retained
         result['metadata']['association']={'candidate_components':count,'accepted_components':len(accepted)}
-    output,alpha,envelope=render(source,result['corrected'],support,config.feather,mask)
+    gate=None
+    if config.confidence=='positive':
+        brightness=(result['corrected'].astype(float)-source)@core.LUMA
+        t=np.clip((brightness-config.gate_low)/(config.gate_high-config.gate_low),0,1)
+        gate=(t*t*(3-2*t)).astype(np.float32);gate[mask]=1
+        result['metadata']['confidence']={'kind':'positive','low_255':config.gate_low,'high_255':config.gate_high,
+                                          'nonzero_fraction':float((gate>0).mean())}
+    output,alpha,envelope=render(source,result['corrected'],support,config.feather,mask,gate)
+    if gate is not None:
+        support=(support&(gate>=.5))|mask
+        result['metadata']['support_semantics']='Geometric support restricted by confidence >= .5; blend alpha may be lower.'
     outside_count=int((~envelope).sum())
     outside_max=int(np.abs(output[~envelope].astype(np.int16)-source[~envelope].astype(np.int16)).max()) if outside_count else None
     assert outside_max in (0,None)

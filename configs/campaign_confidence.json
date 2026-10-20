@@ -1,0 +1,6 @@
+[
+  {"id":"plane_single", "engine":"research", "config":{"calibration":"srgb_plane"}},
+  {"id":"gate1_3", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":1,"gate_high":3}},
+  {"id":"gate2_5", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":2,"gate_high":5}},
+  {"id":"gate3_8", "engine":"research", "config":{"calibration":"srgb_plane","confidence":"positive","gate_low":3,"gate_high":8}}
+]
