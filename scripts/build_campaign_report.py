@@ -131,12 +131,14 @@ def build(campaign,data,report,selection_file):
     fig.tight_layout();fig.savefig(assets/'metrics.png',dpi=180);fig.savefig(assets/'metrics.svg');plt.close(fig)
     headers='| 候选条件 | 方法 | 精确率 | 召回率 | F1 | IoU | 最差 F1 | 背景误改 | 背景零改图数 | 扰动 IoU | 最差扰动 IoU |\n|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n'
     table=headers
+    colour_table='| 条件 | 方法 | 投影 RGB 误差 | 背景 RGB 误差 | 背景最大通道差 | 最差背景误改 |\n|---|---|---:|---:|---:|---:|\n'
     rng=np.random.default_rng(42);intervals={}
     for co,label in [('target_proxy','仅目标代理'),('all_shadow_proxy','全图去影代理')]:
         for m in METHODS:
             s=final[co]['methods'][m]['summary'];rs=[r for r in final_rows[co] if r['method']==m]
             zeros=sum(r['background_changed_fraction']==0 for r in rs)
             table+=f'| {label} | {NAMES[m]} | {s["shadow_precision"]:.5f} | {s["shadow_recall"]:.5f} | {s["shadow_f1"]:.5f} | {s["shadow_iou"]:.5f} | {min(r["shadow_f1"] for r in rs):.5f} | {percent(s["background_changed_fraction"])} | {zeros}/20 | {s["stability_iou_mean"]:.5f} | {min(r["stability_iou_min"] for r in rs):.5f} |\n'
+            colour_table+=f'| {label} | {NAMES[m]} | {s["shadow_reference_rgb_l1_255"]:.5f} | {s["background_rgb_l1_255"]:.5f} | {max(r["background_max_channel_difference"] for r in rs)} | {percent(max(r["background_changed_fraction"] for r in rs))} |\n'
         base={r['id']:r for r in final_rows[co] if r['method']=='shadow'}
         delta=np.array([r['shadow_f1']-base[r['id']]['shadow_f1'] for r in final_rows[co] if r['method']=='selected'])
         draws=delta[rng.integers(0,len(delta),(5000,len(delta)))].mean(-1)
@@ -197,6 +199,10 @@ flowchart TD
 区域预测为 mask 外低频 alpha>0.5。精确率=TP/(TP+FP)，召回=TP/(TP+FN)，F1、IoU按每场景计算后宏平均。非编辑背景为物体和目标投影之外的全部像素，含其他物体及其投影；任一 RGB 通道变化至少 1 即计为误改。范围外相等只检验预测域外，不代表语义判断正确。稳定性为候选统一 +2、RGB+[2,-2,1]、固定 sigma=0.8 噪声三种扰动与原区域的 IoU；不是视频时间一致性。
 
 {table}
+
+RGB 误差为 0–255 标尺的逐像素、逐通道绝对误差，再按场景宏平均；投影以作者去影参考为目标，背景以原图为目标。最大通道差取全部测试场景的实际最大值，避免平均数掩盖局部严重误删。
+
+{colour_table}
 ![锁定测试指标](assets/metrics.png)
 
 串行耗时使用 seed=42 从探索集选取十二场景，每种候选各一次，共 24 次；旋转方法次序，单次预热。只计回贴计算，不计文件读写与消除生成，不能据此宣称相对消除模型的百分比开销。
