@@ -1,0 +1,32 @@
+{
+  "stage": "validation_only_before_locked_test",
+  "cohorts": [
+    "target_proxy",
+    "all_shadow_proxy"
+  ],
+  "count_per_cohort": 20,
+  "selection_ids": [
+    "gate2_5",
+    "gate3_8",
+    "connected025",
+    "connected050",
+    "weak1",
+    "weak2",
+    "weak2_gate3_8",
+    "weak2_multi",
+    "weak2_gamma",
+    "local_weak2",
+    "material_weak2"
+  ],
+  "stability_guard": 0.98,
+  "f1_band": 0.02,
+  "ranking": [
+    "eligible only if each cohort mean perturbation IoU >= .98",
+    "maximize the smaller macro F1 across both cohorts",
+    "within .02 of best smaller F1, maximize the smaller cohort recall",
+    "then minimize the larger cohort background changed fraction",
+    "then prefer higher smaller-cohort stability and lower mean wall time"
+  ],
+  "fallback": "If no candidate passes stability, rank all and explicitly mark guard failure.",
+  "test_policy": "Freeze complete chosen config and four-method plan before first final_test evaluation; no tuning after."
+}
