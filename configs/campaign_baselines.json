@@ -1,0 +1,6 @@
+[
+  {"id":"mask", "engine":"baseline", "config":{"mode":"mask"}},
+  {"id":"tracefusion", "engine":"baseline", "config":{"mode":"tracefusion"}},
+  {"id":"shadow", "engine":"baseline", "config":{"mode":"shadow"}},
+  {"id":"shadow_gamma", "engine":"baseline", "config":{"mode":"shadow","gamma":true}}
+]
