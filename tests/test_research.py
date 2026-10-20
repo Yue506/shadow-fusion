@@ -6,11 +6,27 @@ from PIL import Image
 import numpy as np
 from scipy import ndimage as ndi
 from shadow_fusion import compose, make_config
-from shadow_fusion.research import compose_research,calibrate_srgb
+from shadow_fusion.research import compose_research,calibrate_srgb,local_anchor_correction
 from shadow_fusion.cli import main
 
 
 class ResearchTests(unittest.TestCase):
+    def test_local_anchor_fit_reduces_nonplanar_bias_without_learning_shadow(self):
+        yy,xx=np.indices((128,128));source=np.zeros((128,128,3),dtype='uint8')
+        source[:]=[100,120,140]
+        bias=3*np.cos(xx/127*2*np.pi)*np.cos(yy/127*2*np.pi)
+        g=np.rint(source.astype(float)+bias[...,None]).astype('uint8')
+        mask=np.zeros((128,128),bool);mask[50:70,50:70]=True
+        shadow=np.zeros_like(mask);shadow[70:95,55:75]=True;g[shadow]+=30
+        for material in [False,True]:
+            corrected,info=local_anchor_correction(source,g,mask,material,strength=.5)
+            bg=~(mask|shadow)
+            self.assertEqual(info['status'],'fit')
+            self.assertLess(np.abs(corrected.astype(float)-source)[bg].mean(),np.abs(g.astype(float)-source)[bg].mean())
+            self.assertGreater((corrected.astype(float)-source)[shadow].mean(),25)
+        unchanged,_=local_anchor_correction(source,g,mask,True,strength=0)
+        np.testing.assert_array_equal(unchanged,g)
+
     def test_weak_path_connects_separated_shadow_without_adding_unrelated_one(self):
         source=np.full((128,128,3),80,dtype='uint8');g=source.copy()
         mask=np.zeros((128,128),bool);mask[30:50,50:70]=True

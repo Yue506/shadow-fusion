@@ -24,6 +24,7 @@ class ResearchConfig:
     ownership: str = 'none'
     ownership_model_dir: str = 'data/models/yolox'
     ownership_margin: float = .9
+    local_strength: float = .5
 
     def __post_init__(self):
         if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel'):
@@ -34,7 +35,7 @@ class ResearchConfig:
             raise ValueError('Unknown association strategy')
         if type(self.link_radius) not in (int,float) or not np.isfinite(self.link_radius) or not 0 <= self.link_radius <= 1:
             raise ValueError('link_radius must be a finite fraction in [0,1]')
-        if self.calibration not in ('linear','srgb_affine','srgb_plane'):
+        if self.calibration not in ('linear','srgb_affine','srgb_plane','srgb_local','srgb_material'):
             raise ValueError('Unknown calibration strategy')
         if self.confidence not in ('none','positive'):
             raise ValueError('Unknown confidence strategy')
@@ -50,6 +51,49 @@ class ResearchConfig:
             raise ValueError('ownership_model_dir must be a directory path string')
         if type(self.ownership_margin) not in (int,float) or not np.isfinite(self.ownership_margin) or not 0<self.ownership_margin<=2:
             raise ValueError('ownership_margin must be finite in (0,2]')
+        if type(self.local_strength) not in (int,float) or not np.isfinite(self.local_strength) or not 0<=self.local_strength<=1:
+            raise ValueError('local_strength must be finite in [0,1]')
+
+
+def local_anchor_correction(source,generated,mask,material=False,strength=.5):
+    """Small, regularized local offset from robust same-colour background proxies."""
+    if strength==0:return generated.copy(),{'status':'disabled','strength':0}
+    h,w=mask.shape;yy,xx=np.indices(mask.shape)
+    residual=source.astype(float)-generated
+    hi_s=source.astype(float)-ndi.gaussian_filter(source.astype(float),(2,2,0))
+    hi_g=generated.astype(float)-ndi.gaussian_filter(generated.astype(float),(2,2,0))
+    anchors=~tracefusion.dilate(mask,max(2,min(h,w)*.04))
+    anchors &= (np.abs(residual).mean(-1)<8)&(np.abs(hi_s-hi_g).mean(-1)<12)
+    anchors &= ((xx+3*yy)%5!=0)&(xx%2==0)&(yy%2==0)
+    if anchors.sum()<128:return generated.copy(),{'status':'insufficient_anchors','fit_pixels':int(anchors.sum())}
+    coords=[yy/max(1,h-1)*7,xx/max(1,w-1)*7]
+    if material:coords += [generated[...,c].astype(float)/255*3 for c in range(3)]
+    shape=(8,8)+((4,4,4) if material else ())
+    indices=[np.rint(c[anchors]).astype(int).clip(0,n-1) for c,n in zip(coords,shape)]
+    flat=np.ravel_multi_index(indices,shape)
+    means=np.zeros((int(np.prod(shape)),3));weights=np.zeros(int(np.prod(shape)))
+    samples=residual[anchors]
+    for index in np.unique(flat):
+        values=samples[flat==index]
+        if len(values)>=16:
+            means[index]=np.clip(np.median(values,axis=0),-6,6);weights[index]=min(128,len(values))
+    weights=weights.reshape(shape);means=means.reshape(shape+(3,))
+    sigma=(.5,.5)+((.6,.6,.6) if material else ())
+    denominator=ndi.gaussian_filter(weights,sigma)
+    query=np.array(coords)
+    den=ndi.map_coordinates(denominator,query,order=1,mode='nearest')
+    field=np.zeros_like(residual)
+    for c in range(3):
+        numerator=ndi.gaussian_filter(means[...,c]*weights,sigma)
+        values=ndi.map_coordinates(numerator,query,order=1,mode='nearest')
+        field[...,c]=np.divide(values,den,out=np.zeros_like(values),where=den>.25)
+    field=np.clip(field,-6,6)*strength
+    corrected=np.rint(generated.astype(float)+field).clip(0,255).astype('uint8')
+    return corrected,{'status':'fit','material_colour_proxy':material,'strength':strength,
+                      'fit_pixels':int(anchors.sum()),'active_nodes':int((weights>0).sum()),
+                      'node_shape':list(shape),'offset_limit_255':6*strength,
+                      'mean_abs_offset_255':float(np.abs(field).mean()),
+                      'anchor_scope':'Post-residual selected anchors; not independent background accuracy.'}
 
 
 def calibrate_srgb(source, generated, mask, spatial=False):
@@ -162,7 +206,10 @@ def compose_research(source, generated, mask, settings=None):
     custom_color=config.color and config.calibration!='linear'
     calibration=None
     if custom_color:
-        generated,calibration=calibrate_srgb(source,generated,mask,config.calibration=='srgb_plane')
+        generated,calibration=calibrate_srgb(source,generated,mask,config.calibration!='srgb_affine')
+        if config.calibration in ('srgb_local','srgb_material'):
+            generated,local=local_anchor_correction(source,generated,mask,config.calibration=='srgb_material',config.local_strength)
+            calibration={'status':calibration['status'],'global':calibration,'local':local}
     result=compose(source,generated,mask,make_config('shadow',color=config.color and not custom_color,
                    extra=config.extra,gamma=config.gamma,
                    feather=config.feather if config.feather in ('none','single','multilevel','paper') else 'none'))

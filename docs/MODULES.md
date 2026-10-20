@@ -32,7 +32,8 @@ CLI 输入要求：8-bit RGB 图像和同尺寸二值 mask（0/1 或 0/255，L �
 
 | 字段 | 取值及意义 | 依赖 |
 |---|---|---|
-| `calibration` | `linear` 沿用基线；`srgb_affine` 拟合增益偏置；`srgb_plane` 再加入空间平面 | `color=true` |
+| `calibration` | `linear` 沿用基线；`srgb_affine` 拟合增益偏置；`srgb_plane` 加空间平面；`srgb_local/srgb_material` 再加局部／局部同色偏移 | `color=true` |
+| `local_strength` | 局部偏移强度 0–1，默认 0.5；可 `--ablate local` 设为 0 | 局部校色 |
 | `association` | `none`；`connected` 保留距物体小于连接半径的残差分量；`weak_connected` 允许弱亮度证据路径连接 | `extra=true` |
 | `link_radius` | 距离阈值／图像短边，默认 0.025 | 连通约束 |
 | `weak_low` | 连接路径的平滑亮度残差阈值，默认 1；只决定保留分量，不直接回贴整条路径 | 弱路径连通约束 |
