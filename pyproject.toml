@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shadow-fusion"
+version = "0.1.0"
+description = "Shadow-aware image compositing with explicit modes and module ablations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["numpy>=1.24,<3", "scipy>=1.10,<2", "Pillow>=10,<13"]
+
+[project.optional-dependencies]
+evaluation = ["scikit-image>=0.21", "matplotlib>=3.7"]
+
+[project.scripts]
+shadow-fusion = "shadow_fusion.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

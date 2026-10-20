@@ -1,0 +1,108 @@
+# Shadow Fusion
+
+可选择模式、可独立消融模块的图片回贴工具。输入**原图、已生成的消除候选、原物体 mask**，自动估计额外编辑区域，并输出无损 PNG、alpha、编辑范围与运行配置。
+
+这是研究原型。**只保证预测编辑范围之外的像素不变；误检进范围的真实背景仍可能被修改。** 当前不能作为“自动识别全部影子且背景绝对不变”的成熟方案。
+
+## 安装与快速运行
+
+```bash
+python -m pip install -e .
+shadow-fusion compose \
+  --source examples/source.png --generated examples/generated.png \
+  --mask examples/mask.png --output outputs/demo.png \
+  --mode shadow --artifacts-dir outputs/demo_maps
+```
+
+也可以用 `python -m shadow_fusion`。无需 GPU、模型权重或 API 密钥；工具本身不生成消除候选。示例是**已知背景＋合成投影＋人为注入色偏的机制夹具**，不是消除模型输出。
+
+![可控机制示例](docs/assets/example.png)
+
+## 模式与模块消融
+
+| 模式 | 用途 | 默认校色 | 默认额外区域检测 | 默认 gamma | 默认羽化 |
+|---|---|---|---|---|---|
+| `mask` | 原 mask 直接回贴 | 关 | 关 | 关 | `none` |
+| `tracefusion` | LensErase 论文 TraceFusion 的本地复现 | 关 | 开 | 开 | `paper` |
+| `shadow` | 校色＋影子感应原型 | 开 | 开 | 关 | `single` |
+
+```bash
+# 原论文式回贴；不是官方实现
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/tf.png --mode tracefusion
+
+# 单独启用 gamma 暗部补充；最终回贴仍使用正常颜色图
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/gamma.png --mode shadow --gamma on
+
+# 多级羽化
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/multilevel.png --mode shadow --feather multilevel
+
+# 多模块消融
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/ablated.png --mode shadow --ablate color,gamma,extra,feather
+
+# 等价的独立开关
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/custom.png --mode shadow --color off --extra on --gamma off --feather none
+```
+
+`--color`、`--extra`、`--gamma` 接受 `on/off`；`--feather` 接受 `none/single/multilevel/paper`。
+
+配置优先级：**模式预设 → 配置 JSON → 显式参数 → `--ablate`**。禁用 `extra` 会同时禁用其 gamma 补充分支。禁用 `color` 只移除额外的 RGB 仿射校色，不移除原 TraceFusion 检测器内部的背景中位残差补偿。
+
+```bash
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png \
+  --output outputs/configured.png --config configs/shadow_gamma.json --ablate color
+```
+
+输出旁的 JSON 记录**最终生效配置**、输入哈希、CPU 耗时、编辑范围比例及范围外像素检查；`maps.npz` 保存全精度 alpha。多级羽化的单张 alpha 图表示低频分支，并不代表所有频带。
+
+## 批量评估
+
+JSONL 每行一个样本，路径相对于清单文件。影子标注与参考图只用于评估，**不传入回贴推理**：
+
+```json
+{"id":"case01","scene_id":"scene01","split":"dev","source":"images/source.png","generated":"images/edited.png","mask":"masks/object.png","shadow_mask":"labels/shadow.png","reference":"references/shadow_free.png"}
+```
+
+`shadow_mask`、`reference` 可省略。影子标注必须与物体 mask 不相交。
+
+```bash
+shadow-fusion batch --manifest examples/manifest.jsonl --output-dir outputs/baseline --mode shadow
+shadow-fusion batch --manifest examples/manifest.jsonl --output-dir outputs/gamma --mode shadow --gamma on
+python scripts/compact_runs.py --manifest examples/manifest.jsonl \
+  --runs outputs/baseline outputs/gamma --output-dir outputs/compare
+```
+
+每个运行目录包含逐图输出、有效配置、全精度图、逐图／宏平均指标和每页最多十图的 compact。检测指标包括 precision、recall、F1、IoU；另外统计真实标注背景改动率、范围外最大差值及影子参考 RGB 误差。**范围外像素不变不能替代真实背景保护指标。** 比较多轮策略时必须固定清单、候选、分割与评价口径。
+
+## 已有实验与限制
+
+冻结的 10 图实验包括 5 张可控夹具与 5 张真实照片，测试了原 mask、原 TraceFusion、校色有限羽化、校色多级羽化，以及后两者的 gamma 开关。
+
+| 真实五图、有限羽化 | gamma 关 | gamma 开 |
+|---|---:|---:|
+| 影子 RGB 误差 ↓ | 17.42448 | 17.42408 |
+| 影子 alpha 覆盖漏检率 ↓ | 0% | 0% |
+| 远处背景改动率 ↓ | 51.17% | 52.20% |
+| CPU 回贴耗时（ms）↓ | 95.6 | 118.1 |
+
+这组数据不支持默认打开 gamma；原主检测已经覆盖标注影子，新增暗部支持主要落在无关背景。真实背景误检与非目标对象变色尚未解决。可控条件下的优秀校色结果不能外推成真实场景准确率。完整数字与范围定义见 [实验记录](docs/EXPERIMENTS.md)。
+
+原始研究素材、生成候选和完整本地对照图不随代码仓库重发；仓库保留数值记录与冻结结果校验，输入由调用者提供。这里只发布图片回贴流程，不包含视频时序融合或消除模型。
+
+## 测试与后续研究
+
+```bash
+python -m unittest discover -s tests -v
+# 有本地冻结数据时，再核验六种配置 × 十图
+python scripts/verify_frozen_baseline.py --legacy-root /path/to/image_shadow_tracefusion
+```
+
+当前打包版本已与既有 60 张输出逐像素校验。测试环境与原始回归记录见 `requirements-tested.txt` 和 `docs/results/packaged_regression.json`。跨依赖版本的浮点拟合可能导致舍入差异；严格复现应使用相同依赖。
+
+后续 100 图探索在独立分支进行，保留 `main` 和基线标签。参见 [研究协议](docs/RESEARCH_PLAN.md)、[模块说明](docs/MODULES.md) 与 [来源说明](THIRD_PARTY_NOTICES.md)。
+
+本项目为独立实现，不是 LensErase 官方代码，也未复现其完整消除模型。
