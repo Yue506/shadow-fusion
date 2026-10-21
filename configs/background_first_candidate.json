@@ -1,0 +1,17 @@
+{
+  "color": true,
+  "extra": true,
+  "gamma": false,
+  "feather": "compact",
+  "association": "connected",
+  "link_radius": 0.025,
+  "calibration": "srgb_plane",
+  "confidence": "relative",
+  "gate_low": 6,
+  "gate_high": 12,
+  "weak_low": 1.0,
+  "ownership": "none",
+  "ownership_model_dir": "data/models/yolox",
+  "ownership_margin": 0.9,
+  "local_strength": 0.5
+}

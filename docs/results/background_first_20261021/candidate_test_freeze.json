@@ -1,0 +1,103 @@
+{
+  "frozen_before_test": true,
+  "selected_id": "conservative",
+  "selected_config": {
+    "color": true,
+    "extra": true,
+    "gamma": false,
+    "feather": "single",
+    "association": "connected",
+    "link_radius": 0.025,
+    "calibration": "srgb_plane",
+    "confidence": "positive",
+    "gate_low": 2,
+    "gate_high": 5,
+    "weak_low": 1.0,
+    "ownership": "none",
+    "ownership_model_dir": "data/models/yolox",
+    "ownership_margin": 0.9,
+    "local_strength": 0.5
+  },
+  "rankings": [
+    {
+      "id": "conservative",
+      "rejection_reasons": [],
+      "background": 0.009831964559981227,
+      "shadow_rgb": 12.25360160273867,
+      "boundary_gradient": 20.302963353199818,
+      "cpu_seconds": 0.3088745040506183
+    },
+    {
+      "id": "relative_compact",
+      "rejection_reasons": [
+        "target_proxy: recall"
+      ],
+      "background": 0.008442055166671547,
+      "shadow_rgb": 14.007119902671349,
+      "boundary_gradient": 20.131620437682585,
+      "cpu_seconds": 0.2426482749491697
+    },
+    {
+      "id": "relative_gate612",
+      "rejection_reasons": [
+        "target_proxy: recall",
+        "all_shadow_proxy: recall"
+      ],
+      "background": 0.008152669141986377,
+      "shadow_rgb": 14.043041104030944,
+      "boundary_gradient": 20.135069670986063,
+      "cpu_seconds": 0.28112435825096327
+    },
+    {
+      "id": "relative_material",
+      "rejection_reasons": [
+        "target_proxy: recall"
+      ],
+      "background": 0.008442055166671547,
+      "shadow_rgb": 14.006879116840565,
+      "boundary_gradient": 20.131691402808293,
+      "cpu_seconds": 0.5730428208007652
+    },
+    {
+      "id": "relative_material_none",
+      "rejection_reasons": [
+        "target_proxy: recall"
+      ],
+      "background": 0.008219102148862475,
+      "shadow_rgb": 15.317273345109072,
+      "boundary_gradient": 21.18258870054732,
+      "cpu_seconds": 0.42764760420323
+    }
+  ],
+  "background_band": 0.0005,
+  "plan_sha256": "937d5d228fedcb64b2ed9ff6f7834aa986c920d541e5f750b43ef3ba38bc2a16",
+  "rules_sha256": "df26f1ec1b7eca441067983143e1323f51fdc87277c05f77efc6de7fbce2453b",
+  "validation_metrics_sha256": {
+    "target_proxy": "59e0178e4afe49ea4c6e80767e0671a8fe2429697d486d827a46277c67da933e",
+    "all_shadow_proxy": "0d4ec7e167c2e01aadb8226f572a9370ff8d3446e3690333399526e0f7f2ceca"
+  },
+  "holdout_manifest_sha256": {
+    "target_proxy": "00670d14c4923edc70c2fabbffc4b4eafb69d5a4943cc32ceb28c769ec1745d5",
+    "all_shadow_proxy": "428a016068f2d9decc5a10d7ba7083bcdb51b1409a4dfbcd66e77108ba43f98f"
+  },
+  "candidate_id": "relative_gate612",
+  "candidate_config": {
+    "color": true,
+    "extra": true,
+    "gamma": false,
+    "feather": "compact",
+    "association": "connected",
+    "link_radius": 0.025,
+    "calibration": "srgb_plane",
+    "confidence": "relative",
+    "gate_low": 6,
+    "gate_high": 12,
+    "weak_low": 1.0,
+    "ownership": "none",
+    "ownership_model_dir": "data/models/yolox",
+    "ownership_margin": 0.9,
+    "local_strength": 0.5
+  },
+  "candidate_status": "Failed predeclared validation recall floor; tested as a frozen background-priority tradeoff, not endorsed winner",
+  "candidate_selection_scope": "Lowest background error among known5 R0-R4 variants retaining recall>=0.9 and shadow RGB<=20; known development cases only"
+}
