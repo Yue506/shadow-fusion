@@ -191,6 +191,16 @@ def build(campaign,data,report,selection_file):
         for method,v in lm['methods'].items():
             s=v['summary'];local_transfer+=f'| {method} | {s["shadow_f1"]:.5f} | {percent(s["background_changed_fraction"])} |\n'
         local_transfer+='\n局部同色锚点在已知真实案例上有小幅收益，但仍弱于保守单级配置；这不是独立测试，不修改冻结选型，也不排除其对其他生成器有用。\n'
+    stress=''
+    stress_path=campaign/'stress_validation'/'metrics.json'
+    if stress_path.exists():
+        diagnostic=json.loads(stress_path.read_text());shutil.copyfile(stress_path,exp/'stress_validation.json')
+        shutil.copyfile(stress_path.parent/'progress.jsonl',exp/'stress_validation_progress.jsonl')
+        stress='这是选型后固定参数的验证集诊断，不重新排名；每条件二十张，未再次打开锁定测试。候选分别施加 JPEG quality90、sRGB 指数 0.95、sigma=2 噪声、向右一像素位移；标签仍对齐原图。\n\n| 条件 | 扰动 | 与原预测 IoU | F1 | 背景误改 |\n|---|---|---:|---:|---:|\n'
+        for co,label in [('target_proxy','目标代理'),('all_shadow_proxy','全图代理')]:
+            for name,s in diagnostic['summary'][co]['selected'].items():
+                stress+=f'| {label} | {name} | {s["region_iou_to_nominal"]:.5f} | {s["shadow_f1"]:.5f} | {percent(s["background_changed_fraction"])} |\n'
+        stress+='\n小色偏稳定性不能外推到纹理与配准变化。选定配置遇到 JPEG 及一像素错位会大幅改变区域；全图代理位移条件的背景误改约 16.05%。这些是敏感性诊断，不模拟具体消除模型，也未据此修改算法。冻结 shadow 的同条件原始结果同时保留在证据文件中。\n'
     cfg=selection['selected_config'];summary=final['all_shadow_proxy']['methods']['selected']['summary']
     actual_lead=(f'已知真实五图上，代理选定组合仍误改 {percent(actual_summary["background_changed_fraction"])} 背景；保守单级约 7.86%。二者都未达零改动。' if actual_summary else '真实候选证据有限。')
     boards='\n'.join(f'![{NAMES[m]}代表与失败案例](assets/board_{m}.png)\n\n{NAMES[m]}：'+{'mask':'范围外保护完全，但不识别投影。','tracefusion':'目标覆盖高，候选色偏和其他投影容易被一并回贴。','shadow':'校色和有限羽化缩小改动范围，仍有背景误检。','selected':'置信度抑制无证据拷贝；分离弱影和邻近其他投影仍是失败来源。'}[m] for m in METHODS)
@@ -198,12 +208,14 @@ def build(campaign,data,report,selection_file):
 
 **阶段报告｜真实非编辑背景逐像素不变尚未达成。**
 
+## 结论
+
 - 100 张原生场景已按 seed=42 冻结为 60 探索、20 验证、20 锁定测试；完成 R0–R8 九轮探索及匹配消融。每张有两种冻结代理候选，不是 200 张独立照片。
 - 验证规则选中 `{selection['selected_validation_id']}`。锁定测试的全图去影条件中，F1={summary['shadow_f1']:.5f}，召回={summary['shadow_recall']:.5f}，背景误改={percent(summary['background_changed_fraction'])}。范围外数字像素保护通过，语义背景保护仍会失败。
 - 百图是作者参考构造的代理，只评价回贴机制；物体仍保留于参考中。{actual_lead} 不能把代理成绩当成消除模型泛化。
 - 最轻的原 mask 回贴没有额外区域开销，但不能去除投影。对象检测和局部同色拟合未带来足够综合收益，保留为显式探索模块。
 
-## 数据与推理
+## 实验设置与推理
 
 数据来自 [DESOBA 官方入口](https://github.com/bcmi/Object-Shadow-Generation-Dataset-DESOBA) 的原生档案。图像级去重包括文件名变体、感知哈希、几何匹配和源图复核；每张仅选一个物体投影关联。最长边不超过 384，保留纵横比，原生图仍保留在下载档案。原档案分组为 83 Training、16 Testing、1 Remaining；这是自定义困难场景集，不是官方榜单分割。
 
@@ -257,14 +269,22 @@ RGB 误差为 0–255 标尺的逐像素、逐通道绝对误差，再按场景�
 
 选定配置相对冻结 shadow 的配对 F1 增量与场景重采样 95% 区间：目标代理 {intervals['target_proxy']['paired_f1_gain']:.5f}，{intervals['target_proxy']['bootstrap95']}；全图代理 {intervals['all_shadow_proxy']['paired_f1_gain']:.5f}，{intervals['all_shadow_proxy']['bootstrap95']}。这是固定二十场景的描述性不确定性，不能替代真实生成候选验证。
 
-## 同帧 compact 与失败案例
+## 同帧 compact 对比与失败案例
 
 前两列为原图和指定物体 mask，第三列是冻结去影代理，随后是四组回贴；第二行给出投影标注及 TP/FP/FN 诊断。mask 可能指定背景小物体，画面中央其他物体的投影应受保护。八例由最好、最差、中位与不稳定场景共同选出，未据此修改配置。
 
 ![同帧对照一](assets/overview/compact_001.png)
 ![同帧对照二](assets/overview/compact_002.png)
 
+## 逐模型可视化
+
 {boards}
+
+## 视觉核验
+
+成功案例 d024 中，选定配置主要覆盖儿童目标投影，保留上方其他人的长影；这只说明该例输出与标注更一致。失败案例 d068 的 mask 指定交通锥，候选同时消除了滑板人的长影，选定配置仍误接入该投影（F1 仅 0.090）。d051 中，路灯对应的小投影与道路、邻近车影混淆，扩大支持域并不能解决归属。
+
+四种方法的案例板与同图 compact 均显示原输出和区域诊断；青色是命中目标、橙色是误判背景、紫色是漏检，颜色仅用于诊断，不参与生成。每页保持图像纵横比，细小目标需查看本地全尺寸图；代理里物体未移除是构造协议，不能按该图评价物体消除质量。
 
 ## 匹配模块消融（验证集，每条件 20 张）
 
@@ -287,6 +307,10 @@ RGB 误差为 0–255 标尺的逐像素、逐通道绝对误差，再按场景�
 {attribution}
 
 {local_transfer}
+
+## 超出小色偏的稳定性诊断
+
+{stress}
 
 ![真实候选同帧回归一](assets/actual_regression/compact_001.png)
 ![真实候选同帧回归二](assets/actual_regression/compact_002.png)
@@ -329,6 +353,11 @@ CPU 耗时是本机墙钟，探索轮次可能存在同机并行竞争；如提�
     metadata.update(status='stage report',profile='model-benchmark',quality_target_met=False,
                     new_scenes=100,split={'explore':60,'validation':20,'final_test':20},
                     exploratory_rounds=9,proxy_conditions=2,selected_validation_id=selection['selected_validation_id'])
+    state_path=campaign/'campaign_state.json'
+    if state_path.exists():
+        state=json.loads(state_path.read_text())
+        for key in ['status','stop_reason','stopped_utc','latest_usage']:
+            if key in state:metadata['campaign_'+key]=state[key]
     metadata_path.write_text(json.dumps(metadata,indent=2,ensure_ascii=False)+'\n')
     archive=campaign/'shadow_campaign_compact_report.zip'
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:

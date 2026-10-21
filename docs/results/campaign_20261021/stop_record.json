@@ -1,0 +1,13 @@
+{
+  "status": "stopped_window_boundary",
+  "stop_reason": "Original primary resetsAt=1792550869 ended; on resume current resetsAt=1792569552. No research continued in new window.",
+  "stopped_utc": "2026-10-21T04:09:34Z",
+  "quality_target_met": false,
+  "latest_usage": {
+    "usedPercent": 8,
+    "resetsAt": 1792569552,
+    "ordinaryUsageAllowed": true,
+    "original_window_resetsAt": 1792550869,
+    "last_original_window_observed_usedPercent": 97
+  }
+}
