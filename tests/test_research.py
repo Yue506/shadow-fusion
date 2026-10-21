@@ -6,11 +6,44 @@ from PIL import Image
 import numpy as np
 from scipy import ndimage as ndi
 from shadow_fusion import compose, make_config
-from shadow_fusion.research import compose_research,calibrate_srgb,local_anchor_correction
+from shadow_fusion.research import compose_research,calibrate_srgb,local_anchor_correction,photometric_guard,luminance_transfer,luma_offset_transfer,ResearchConfig
 from shadow_fusion.cli import main
 
 
 class ResearchTests(unittest.TestCase):
+    def test_guard_rejects_recolour_but_accepts_scalar_illumination(self):
+        source=np.full((96,96,3),80,dtype='uint8');g=source.copy()
+        g[35:80,35:60]=130;g[35:80,60:80]=[190,30,60]
+        gate=photometric_guard(source,g,'photometric')
+        self.assertGreater(gate[55,45],.99);self.assertEqual(gate[55,70],0)
+        mask=np.zeros((96,96),bool);mask[20:40,35:60]=True
+        result=compose_research(source,g,mask,{'color':False,'guard':'photometric','confidence':'positive','feather':'compact'})
+        np.testing.assert_array_equal(result['output'][50:70,65:75],source[50:70,65:75])
+        np.testing.assert_array_equal(result['output'][mask],g[mask])
+        self.assertGreater(result['alpha'][55,45],.99)
+        self.assertEqual(result['metadata']['outside_envelope_max_channel_difference'],0)
+
+    def test_luminance_transfer_preserves_source_detail_and_mask_edit(self):
+        source=np.full((64,64,3),80,dtype='uint8');source[::2,::2]=85
+        candidate=np.full_like(source,130);mask=np.zeros((64,64),bool);mask[20:30,20:30]=True
+        output=luminance_transfer(source,candidate,mask)
+        np.testing.assert_array_equal(output[mask],candidate[mask])
+        self.assertGreater(int(output[10,10,0]),int(output[11,10,0]))
+        np.testing.assert_array_equal(output[...,0],output[...,1])
+        offset=luma_offset_transfer(source,candidate,mask)
+        np.testing.assert_array_equal(offset[mask],candidate[mask])
+        self.assertGreater(int(offset[10,10,0]),int(offset[11,10,0]))
+        for kwargs in [{'guard':'invalid'},{'transfer':'invalid'}]:
+            with self.assertRaises(ValueError):ResearchConfig(**kwargs)
+
+    def test_relative_gate_suppresses_small_bright_background_drift(self):
+        s=np.full((96,96,3),180,dtype='uint8');g=s.copy();g[45:75,30:55]+=6
+        m=np.zeros((96,96),bool);m[25:45,30:55]=True
+        s[75:90,30:55]=50;g[75:90,30:55]=100
+        result=compose_research(s,g,m,{'color':False,'confidence':'relative','feather':'compact'})
+        np.testing.assert_array_equal(result['output'][55,40],s[55,40])
+        np.testing.assert_array_equal(result['output'][80,40],g[80,40])
+
     def test_local_anchor_fit_reduces_nonplanar_bias_without_learning_shadow(self):
         yy,xx=np.indices((128,128));source=np.zeros((128,128,3),dtype='uint8')
         source[:]=[100,120,140]
@@ -42,15 +75,16 @@ class ResearchTests(unittest.TestCase):
             p=Path(tmp);source=np.full((64,64,3),90,dtype='uint8');g=source.copy()
             g[20:35,20:35]=140;mask=np.zeros((64,64),'uint8');mask[20:35,20:35]=255
             for name,a in [('s.png',source),('g.png',g),('m.png',mask)]:Image.fromarray(a).save(p/name)
-            (p/'research.json').write_text(json.dumps({'calibration':'srgb_plane','confidence':'positive','association':'connected'}))
+            (p/'research.json').write_text(json.dumps({'calibration':'srgb_plane','confidence':'positive','association':'connected','guard':'photometric','transfer':'luminance'}))
             args=['compose','--source',str(p/'s.png'),'--generated',str(p/'g.png'),'--mask',str(p/'m.png'),
                   '--output',str(p/'out.png'),'--research-config',str(p/'research.json'),'--mode','shadow',
-                  '--gamma','on','--ablate','color,extra,confidence,feather']
+                  '--gamma','on','--ablate','color,extra,confidence,feather,guard,transfer']
             self.assertEqual(main(args),0)
             meta=json.loads((p/'out.json').read_text());config=meta['config']
             self.assertEqual(config['engine'],'research');self.assertFalse(config['color'])
             self.assertFalse(config['extra']);self.assertFalse(config['gamma'])
             self.assertEqual(config['confidence'],'none');self.assertEqual(config['feather'],'none')
+            self.assertEqual(config['guard'],'none');self.assertEqual(config['transfer'],'rgb')
             result=np.array(Image.open(p/'out.png'))
             np.testing.assert_array_equal(result[mask>0],g[mask>0])
 

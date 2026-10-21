@@ -25,9 +25,11 @@ class ResearchConfig:
     ownership_model_dir: str = 'data/models/yolox'
     ownership_margin: float = .9
     local_strength: float = .5
+    guard: str = 'none'
+    transfer: str = 'rgb'
 
     def __post_init__(self):
-        if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel'):
+        if self.feather not in ('none','single','multilevel','paper','adaptive','inward','inward_multilevel','compact'):
             raise ValueError('Unknown feather strategy')
         make_config('shadow',color=self.color,extra=self.extra,gamma=self.gamma,
                     feather=self.feather if self.feather in ('none','single','multilevel','paper') else 'none')
@@ -37,7 +39,7 @@ class ResearchConfig:
             raise ValueError('link_radius must be a finite fraction in [0,1]')
         if self.calibration not in ('linear','srgb_affine','srgb_plane','srgb_local','srgb_material'):
             raise ValueError('Unknown calibration strategy')
-        if self.confidence not in ('none','positive'):
+        if self.confidence not in ('none','positive','relative'):
             raise ValueError('Unknown confidence strategy')
         if self.gamma and not self.extra:
             raise ValueError('Gamma requires extra-region detection')
@@ -53,6 +55,42 @@ class ResearchConfig:
             raise ValueError('ownership_margin must be finite in (0,2]')
         if type(self.local_strength) not in (int,float) or not np.isfinite(self.local_strength) or not 0<=self.local_strength<=1:
             raise ValueError('local_strength must be finite in [0,1]')
+        if self.guard not in ('none','photometric','chroma','texture'):
+            raise ValueError('Unknown background guard')
+        if self.transfer not in ('rgb','luminance','luma_offset'):
+            raise ValueError('Unknown shadow transfer')
+
+
+def photometric_guard(source, corrected, mode):
+    """Reject edits inconsistent with a positive illumination change; no labels."""
+    s,g=core.linear(source),core.linear(corrected)
+    gain=np.clip((s*g).sum(-1)/np.maximum((s*s).sum(-1),1e-5),1,4)
+    luminance=g@core.LUMA
+    chroma=np.sqrt(np.mean((g-s*gain[...,None])**2,-1))/np.maximum(.03,luminance)
+    hs=s-ndi.gaussian_filter(s,(2,2,0));hg=g-ndi.gaussian_filter(g,(2,2,0))
+    texture=np.sqrt(ndi.gaussian_filter(np.mean((hg-hs*gain[...,None])**2,-1),1))/np.maximum(.03,ndi.gaussian_filter(luminance,1))
+    def weight(error,low,high):
+        t=np.clip((high-error)/(high-low),0,1)
+        return (t*t*(3-2*t)).astype(np.float32)
+    c=weight(chroma,.04,.16);t=weight(texture,.03,.15)
+    return c if mode=='chroma' else t if mode=='texture' else np.minimum(c,t)
+
+
+def luminance_transfer(source,corrected,mask):
+    """Preserve source chroma/detail outside the user mask; transfer local light."""
+    s,g=core.linear(source),core.linear(corrected)
+    ratio=(g@core.LUMA+.003)/(s@core.LUMA+.003)
+    gain=ndi.median_filter(np.clip(ratio,1,4),size=3)
+    transferred=core.encode(s*gain[...,None]);transferred[mask]=corrected[mask]
+    return transferred
+
+
+def luma_offset_transfer(source,corrected,mask):
+    delta=np.maximum(0,(corrected.astype(float)-source)@core.LUMA)
+    delta=ndi.median_filter(delta,size=3)
+    transferred=np.rint(source.astype(float)+delta[...,None]).clip(0,255).astype('uint8')
+    transferred[mask]=corrected[mask]
+    return transferred
 
 
 def local_anchor_correction(source,generated,mask,material=False,strength=.5):
@@ -172,6 +210,9 @@ def render(source, corrected, support, feather, mask=None, confidence=None):
         scale=np.sqrt(mask.sum())
         envelope=tracefusion.dilate(support,max(1,min(short*.04,.12*scale)))
         alpha=core.feather(support,max(1,min(short*.025,.08*scale)),envelope)
+    elif feather=='compact':
+        envelope=tracefusion.dilate(support,2)
+        alpha=core.feather(support,2,envelope)
     else:
         envelope=tracefusion.dilate(support,max(2,short*.04))
         alpha=core.feather(support,short*(.04 if feather=='multilevel' else .025),envelope)
@@ -217,12 +258,18 @@ def compose_research(source, generated, mask, settings=None):
     result['metadata']['base_config']=result['metadata']['config']
     result['metadata']['config']={'mode':'shadow','engine':'research',**asdict(config)}
     if custom_color:result['metadata']['calibration']=calibration
-    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper') and config.confidence=='none' and (config.ownership=='none' or not config.extra):
+    if (config.association=='none' or not config.extra) and config.feather in ('none','single','multilevel','paper') and config.confidence=='none' and (config.ownership=='none' or not config.extra) and config.guard=='none' and config.transfer=='rgb':
         result['metadata']['elapsed_cpu_seconds']=time.perf_counter()-started
         return result
     short=min(mask.shape)
     center=tracefusion.dilate(mask,max(1,.008*short))
     support=result['support']
+    protection=None
+    if config.guard!='none' and config.extra:
+        protection=photometric_guard(source,result['corrected'],config.guard);protection[mask]=1
+        support=(support&(protection>=.5))|mask
+        result['metadata']['guard']={'kind':config.guard,'accepted_fraction':float((protection>=.5).mean()),
+                                    'scope':'Photometric compatibility, not semantic background proof'}
     unrestricted_support=support
     if config.association in ('connected','weak_connected') and config.extra:
         extra=support & ~center
@@ -252,12 +299,27 @@ def compose_research(source, generated, mask, settings=None):
         if owned is not None:support=owned
         result['metadata']['ownership']=info
     gate=None
-    if config.confidence=='positive':
+    if config.confidence in ('positive','relative'):
         brightness=(result['corrected'].astype(float)-source)@core.LUMA
         t=np.clip((brightness-config.gate_low)/(config.gate_high-config.gate_low),0,1)
         gate=(t*t*(3-2*t)).astype(np.float32);gate[mask]=1
-        result['metadata']['confidence']={'kind':'positive','low_255':config.gate_low,'high_255':config.gate_high,
+        if config.confidence=='relative':
+            relative=brightness/np.maximum(20,source@core.LUMA)
+            r=np.clip((relative-.04)/.16,0,1)
+            gate*=r*r*(3-2*r);gate[mask]=1
+        result['metadata']['confidence']={'kind':config.confidence,'low_255':config.gate_low,'high_255':config.gate_high,
                                           'nonzero_fraction':float((gate>0).mean())}
+        if config.confidence=='relative':result['metadata']['confidence'].update(relative_low=.04,relative_high=.20,source_luma_floor_255=20)
+    if protection is not None:
+        gate=protection if gate is None else gate*protection
+        gate[mask]=1
+    if config.transfer=='luminance' and config.extra:
+        result['corrected']=luminance_transfer(source,result['corrected'],mask)
+        result['metadata']['transfer']={'kind':'luminance','gain_range':[1,4],'median_size':3,
+                                       'scope':'Only outside original mask; original source chroma and detail'}
+    elif config.transfer=='luma_offset' and config.extra:
+        result['corrected']=luma_offset_transfer(source,result['corrected'],mask)
+        result['metadata']['transfer']={'kind':'luma_offset','median_size':3,'scope':'Positive sRGB luma offset outside mask; no candidate texture copied'}
     output,alpha,envelope=render(source,result['corrected'],support,config.feather,mask,gate)
     if gate is not None:
         support=(support&(gate>=.5))|mask

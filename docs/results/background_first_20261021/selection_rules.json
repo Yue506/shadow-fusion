@@ -1,0 +1,13 @@
+{
+  "frozen_before_validation": true,
+  "eligible": {
+    "min_each_cohort_macro_recall": 0.8,
+    "min_each_cohort_mean_stability": 0.95,
+    "max_shadow_rgb_vs_conservative": "1.2 * conservative + 1 (0-255 scale)"
+  },
+  "primary": "minimize worst-cohort background_changed_fraction",
+  "background_equivalence_band": "max(0.0005, 0.05*best worst-cohort background fraction); engineering tolerance, not statistical equivalence",
+  "secondary": "within band minimize worst-cohort shadow_reference_rgb_l1_255, then boundary gradient, then CPU",
+  "no_feasible_candidate": "report failure; do not select by shrinking to original mask",
+  "old_validation_status": "Reused development validation; independent outcome assessed only on new20 holdout"
+}

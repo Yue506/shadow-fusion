@@ -19,10 +19,12 @@ def config_from_args(args):
             if getattr(args,key) is not None:values[key]=getattr(args,key)=='on'
         if args.feather is not None:values['feather']=args.feather
         ablations=tuple(x.strip() for x in args.ablate.split(',') if x.strip())
-        allowed=set(MODULES)|{'association','confidence','ownership','local'}
+        allowed=set(MODULES)|{'association','confidence','ownership','local','guard','transfer'}
         if set(ablations)-allowed:raise ValueError(f'Unknown research ablation: {sorted(set(ablations)-allowed)}')
         for module in ablations:
             if module=='local':values['local_strength']=0
+            elif module=='transfer':values['transfer']='rgb'
+            elif module=='guard':values['guard']='none'
             else:values[module]='none' if module in ('feather','association','confidence','ownership') else False
         if not values.get('extra',True):values['gamma']=False
         return ResearchConfig(**values),ablations
@@ -60,8 +62,8 @@ def parser():
         command.add_argument('--mode', choices=tuple(PRESETS))
         for key in ('color', 'extra', 'gamma'):
             command.add_argument('--'+key, choices=('on', 'off'))
-        command.add_argument('--feather', choices=('none', 'single', 'multilevel', 'paper','adaptive','inward','inward_multilevel'))
-        command.add_argument('--ablate', default='', help='Comma-separated: color,extra,gamma,feather; research also association,confidence,ownership,local. Ablations take precedence.')
+        command.add_argument('--feather', choices=('none', 'single', 'multilevel', 'paper','adaptive','inward','inward_multilevel','compact'))
+        command.add_argument('--ablate', default='', help='Comma-separated: color,extra,gamma,feather; research also association,confidence,ownership,local,guard,transfer. Ablations take precedence.')
     return p
 
 

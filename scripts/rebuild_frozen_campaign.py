@@ -14,7 +14,7 @@ def rebuild(archive,selection,metadata,output):
     output=Path(output)
     if output.exists():raise FileExistsError(output)
     records=[json.loads(line) for line in Path(selection).read_text().splitlines()]
-    assert len(records)==100 and len({r['scene_id'] for r in records})==100
+    assert len(records)==expected['selected_count'] and len({r['scene_id'] for r in records})==len(records)
     output.mkdir(parents=True)
     with ZipFile(archive) as z:
         for row in records:
@@ -41,7 +41,7 @@ def rebuild(archive,selection,metadata,output):
             rows=[{**r,'generated':f'{r["id"]}/{cohort}.png','cohort':cohort} for r in records if split=='all' or r['split']==split]
             (output/f'{cohort}_{split}.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
     (output/'dataset.json').write_text(Path(metadata).read_text())
-    print(json.dumps({'status':'verified','scenes':100,'pngs_checked':800,'output':str(output)}))
+    print(json.dumps({'status':'verified','scenes':len(records),'pngs_checked':8*len(records),'output':str(output)}))
 
 
 if __name__=='__main__':

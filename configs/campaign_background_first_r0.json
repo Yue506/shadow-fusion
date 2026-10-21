@@ -1,0 +1,154 @@
+[
+  {
+    "id": "prior_selected",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "multilevel",
+      "association": "weak_connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 2,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "conservative",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "single",
+      "association": "connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 1.0,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "compact",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "compact",
+      "association": "connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 1.0,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5
+    }
+  },
+  {
+    "id": "guard",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "single",
+      "association": "connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 1.0,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5,
+      "guard": "photometric"
+    }
+  },
+  {
+    "id": "light",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "single",
+      "association": "connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 1.0,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5,
+      "transfer": "luminance"
+    }
+  },
+  {
+    "id": "guard_compact",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "compact",
+      "association": "connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 1.0,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5,
+      "guard": "photometric"
+    }
+  },
+  {
+    "id": "guard_light_compact",
+    "engine": "research",
+    "config": {
+      "color": true,
+      "extra": true,
+      "gamma": false,
+      "feather": "compact",
+      "association": "connected",
+      "link_radius": 0.025,
+      "calibration": "srgb_plane",
+      "confidence": "positive",
+      "gate_low": 2,
+      "gate_high": 5,
+      "weak_low": 1.0,
+      "ownership": "none",
+      "ownership_model_dir": "data/models/yolox",
+      "ownership_margin": 0.9,
+      "local_strength": 0.5,
+      "guard": "photometric",
+      "transfer": "luminance"
+    }
+  }
+]

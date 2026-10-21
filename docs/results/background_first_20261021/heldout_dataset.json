@@ -1,0 +1,59 @@
+{
+  "source_url": "https://www.dropbox.com/scl/fi/h9uoif9upyxzf5nf5tz8r/DESOBA_DATASET.zip?rlkey=6qpmtbdjwnexj28vlzdaagtvm&dl=1",
+  "archive_sha256": "6abb5d985c0bcce025ad56af505f0d268662e5e8e91aedbf4152f02af845c755",
+  "native_count_common": 1012,
+  "usable_independent_pool": 2,
+  "selected_count": 20,
+  "split": {
+    "final_test": 20
+  },
+  "seed": 20261022,
+  "max_side": 384,
+  "group_counts": {
+    "dark": 14,
+    "long": 13,
+    "textured": 15,
+    "strong_or_hard": 12,
+    "neighbor_shadow": 17,
+    "multi_object": 20,
+    "weak_or_soft": 7
+  },
+  "group_thresholds": {
+    "shadow_luma": [
+      45.353463479290795,
+      71.00263719954368
+    ],
+    "shadow_extent": [
+      0.11717929978482604,
+      0.23301158007822653
+    ],
+    "texture": [
+      10.742328383514456,
+      19.365918147143937
+    ],
+    "weak_shadow_fraction": [
+      0.016362361937128294,
+      0.04581905281196448
+    ],
+    "nearby_other_shadow_ratio": [
+      0.0,
+      0.0
+    ]
+  },
+  "excluded": {
+    "near_duplicate_or_legacy": 114,
+    "no_usable_target_pair": 3,
+    "same_scene_name_variant": 23
+  },
+  "groups_are_quantitative_proxies": "Softness and cross-material semantics need visual review; not human labels.",
+  "dedup": "Scene suffix groups, 63-bit DCT pHash <=6, manual source-only related clusters; optional SIFT ratio .75 / unique training points / homography 4 px / >=8 inliers and >=.35 inlier ratio / convex hull >2% of both images.",
+  "geometric_dedup": true,
+  "related_rejections": [
+    {
+      "rejected": "web-shadow0457.png",
+      "related_to": "legacy_photo"
+    }
+  ],
+  "candidate_limitation": "Reference-derived proxy; target construction uses labels; no removal model or object removal evaluated.",
+  "purpose": "New source-only deduplicated 20-scene frozen proxy holdout. Previous 100 and known5 excluded before selection."
+}
