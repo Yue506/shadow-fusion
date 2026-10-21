@@ -124,7 +124,7 @@ flowchart LR
 
 前轮代理选定方案容易误接其他投影和背景残差；保守单级减少部分错误，但外扩范围较大。背景优先候选降低低相对亮度改动和边界外扩，同时会漏掉低对比、分离投影。案例板保留相对成功及背景误改最大的失败例，青/橙/紫为命中/误判/漏检。原mask内仍保留校色候选，无法从本数据证明物体消除后的语义内容正确。
 
-## 同帧compact对比
+## 同帧对比与 compact
 
 ![新增场景对比一](assets/all_shadow_proxy/compact_001.png)
 ![新增场景对比二](assets/all_shadow_proxy/compact_002.png)
@@ -152,9 +152,22 @@ shadow-fusion compose --source input.png --generated edited.png --mask mask.png 
 
 </details>
 '''
+    report_text=report_text.replace('新增20场景','新增20张图片').replace('新增二十场景','新增二十张图片').replace('新二十张来自 DESOBA 原生档案，排除旧100与已知5','新二十张来自 DESOBA 原生档案，自动筛除旧100及已知5的照片近重复')
+    report_text=report_text.replace('梯度误差比较Sobel/8与严格参考回贴，排除原物体周围一像素。','梯度诊断在RGB三维数组上沿空间轴计算Sobel/8，含通道平滑，只作本实现内对照；与严格参考回贴比较，排除原物体周围一像素。')
+    c=actual_data['summary']['conservative'];r=actual_data['summary']['candidate']
+    boundary_note=f'真实五图中，候选的外边界RGB误差 {c["protected_outer_boundary_rgb_l1_255"]:.3f}→{r["protected_outer_boundary_rgb_l1_255"]:.3f}，但边界梯度诊断 {c["target_boundary_gradient_l1_255"]:.3f}→{r["target_boundary_gradient_l1_255"]:.3f}，投影RGB误差 {c["shadow_reference_rgb_l1_255"]:.3f}→{r["shadow_reference_rgb_l1_255"]:.3f}；不能宣称校色和接缝全面改善。\n\n'
+    report_text=report_text.replace('## 逐模型可视化',boundary_note+'## 逐模型可视化')
+    event_path=root/'event_sensitivity19.json'
+    if event_path.exists():
+        event=json.loads(event_path.read_text());shutil.copyfile(event_path,exp/'event_sensitivity19.json')
+        note='## 数据复核与19图敏感性\n\n视觉复核发现d009与旧r01来自同一赛事的不同照片，pHash距离24，自动去重未排除事件关联。保留冻结20图主结果，不能称20个独立新场景。排除d009仅作事后敏感性分析，不替换样本或修改参数；其他事件身份也无完整元数据。\n\n| 19图条件 | 方法 | 背景误改 | 召回 | 投影RGB误差 |\n|---|---|---:|---:|---:|\n'
+        for co,label in [('target_proxy','目标代理'),('all_shadow_proxy','全图代理')]:
+            for m,s in event['summary'][co].items():note+=f'| {label} | {NAMES[m]} | {100*s["background_changed_fraction"]:.5f}% | {s["shadow_recall"]:.5f} | {s["shadow_reference_rgb_l1_255"]:.5f} |\n'
+        report_text=report_text.replace('## 取舍与限制',note+'\n## 取舍与限制')
     (report/'report.md').write_text(report_text)
     shutil.copyfile(selection_path,exp/'selection.json')
-    meta=json.loads((report/'report_metadata.json').read_text());meta.update(status='stage report',profile='model-benchmark',quality_target_met=False,new_holdout_scenes=20,selected_id=selection['selected_id'])
+    meta=json.loads((report/'report_metadata.json').read_text());meta.pop('new_holdout_scenes',None)
+    meta.update(status='stage report',profile='model-benchmark',quality_target_met=False,new_test_photos=20,known_event_related_photos=1,posthoc_sensitivity_photos=19,event_independence_guaranteed=False,selected_id=selection['selected_id'])
     (report/'report_metadata.json').write_text(json.dumps(meta,indent=2)+'\n')
     with zipfile.ZipFile(root/'background_first_compact_report.zip','w',zipfile.ZIP_DEFLATED) as z:
         for p in report.rglob('*'):

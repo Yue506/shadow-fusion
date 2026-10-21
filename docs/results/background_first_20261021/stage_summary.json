@@ -1,0 +1,26 @@
+{
+  "status": "stage_complete",
+  "quality_target_met": false,
+  "exploration_rounds": [
+    "r0",
+    "r1",
+    "r2",
+    "r3",
+    "r4"
+  ],
+  "new_holdout_count": 20,
+  "validation_fallback": "conservative",
+  "exploration_candidate": "relative_gate612",
+  "candidate_failed_validation_recall_floor": true,
+  "visual_review": {
+    "all_test_compact_pages": 10,
+    "actual_compact_pages": 2,
+    "method_boards": 3,
+    "metric_charts": 1,
+    "known_event_neighbor": "d009",
+    "sensitivity_photos": 19
+  },
+  "report_validation_passed": true,
+  "rebuild_verified_pngs": 160,
+  "new_paid_compute": false
+}

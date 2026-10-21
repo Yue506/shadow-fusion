@@ -134,3 +134,20 @@ python scripts/verify_frozen_baseline.py --legacy-root /path/to/image_shadow_tra
 后续 100 图探索在独立分支进行，保留 `main` 和基线标签。参见 [研究协议](docs/RESEARCH_PLAN.md)、[模块说明](docs/MODULES.md) 与 [来源说明](THIRD_PARTY_NOTICES.md)。
 
 本项目为独立实现，不是 LensErase 官方代码，也未复现其完整消除模型。
+
+
+## 背景保护优先的后续探索
+
+见 [本轮记录](docs/BACKGROUND_FIRST_20261021.md)。`configs/background_first_candidate.json` 采用相对亮度置信、6→12绝对门控和两像素窄羽化，倾向少改背景；它会增加漏影，未通过预定验证召回线。`configs/background_first_selected.json` 保留保守回退。
+
+已知真实五图的背景误改由保守7.86%降至候选3.25%，投影召回99.23%→96.68%，RGB误差16.505→17.021。新增20图片片全图代理背景误改1.301%→1.178%，召回86.51%→83.64%；仅目标代理候选召回76.47%。因此不替换冻结预设，不宣称背景完全不变。
+
+```bash
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png --output outputs/background_first.png --research-config configs/background_first_candidate.json
+shadow-fusion compose --source input.png --generated edited.png --mask mask.png --output outputs/no_relative_gate.png --research-config configs/background_first_candidate.json --ablate confidence
+```
+
+新增 `guard`、`transfer` 均可消融；严格光度守卫与纯亮度迁移在本轮失败，保留为复现入口，默认关闭。
+
+
+源图复核发现新测试d009与已知跑步例来自同一赛事的不同照片，自动去重未排除事件关联；冻结20图主结果保留，另提供去掉d009的19图事后敏感性统计。其他事件身份缺少元数据，不能宣称20个独立新场景。详见 `docs/results/background_first_20261021/event_sensitivity19.json`。未替换样本或按此继续调参。

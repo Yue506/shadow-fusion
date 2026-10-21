@@ -2,7 +2,7 @@
   "source_url": "https://www.dropbox.com/scl/fi/h9uoif9upyxzf5nf5tz8r/DESOBA_DATASET.zip?rlkey=6qpmtbdjwnexj28vlzdaagtvm&dl=1",
   "archive_sha256": "6abb5d985c0bcce025ad56af505f0d268662e5e8e91aedbf4152f02af845c755",
   "native_count_common": 1012,
-  "usable_independent_pool": 2,
+  "usable_independent_pool": 872,
   "selected_count": 20,
   "split": {
     "final_test": 20
@@ -55,5 +55,6 @@
     }
   ],
   "candidate_limitation": "Reference-derived proxy; target construction uses labels; no removal model or object removal evaluated.",
-  "purpose": "New source-only deduplicated 20-scene frozen proxy holdout. Previous 100 and known5 excluded before selection."
+  "purpose": "New source-only deduplicated 20-scene frozen proxy holdout. Previous 100 and known5 excluded before selection.",
+  "metadata_note": "Pool-count variable shadowing corrected from full index minus recorded exclusions; selected images and inference inputs unchanged."
 }

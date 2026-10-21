@@ -114,7 +114,8 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
             if len(candidates) % 100 == 0:
                 print(f'Indexed {len(candidates)} independent usable scenes', flush=True)
         # Assign descriptive, overlapping difficulty proxies before method evaluation.
-        if len(candidates) < count:
+        pool_count=len(candidates)
+        if pool_count < count:
             raise ValueError(f'Only {len(candidates)} independent usable scenes; requested {count}, exclusions {excluded}')
         feature_names = ['shadow_luma', 'shadow_extent', 'texture', 'weak_shadow_fraction', 'nearby_other_shadow_ratio']
         thresholds = {k: np.quantile([c['features'][k] for c in candidates], [.35, .65]).tolist() for k in feature_names}
@@ -226,7 +227,7 @@ def prepare(archive, output, legacy=None, count=100, seed=42, max_side=384, geom
                            for row in rows if split == 'all' or row['split'] == split]
                 (output/f'{cohort}_{split}.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in records))
         metadata = {'source_url':URL, 'archive_sha256':digest(archive), 'native_count_common':len(names),
-                    'usable_independent_pool':len(candidates), 'selected_count':len(rows),
+                    'usable_independent_pool':pool_count, 'selected_count':len(rows),
                     'split':dict(Counter(r['split'] for r in rows)), 'seed':seed, 'max_side':max_side,
                     'group_counts':dict(coverage), 'group_thresholds':thresholds, 'excluded':dict(excluded),
                     'groups_are_quantitative_proxies':'Softness and cross-material semantics need visual review; not human labels.',
