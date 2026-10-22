@@ -1,5 +1,5 @@
 import argparse
-from dataclasses import fields
+from dataclasses import asdict, fields
 import json
 import sys
 from pathlib import Path
@@ -55,6 +55,12 @@ def parser():
     batch = commands.add_parser('batch', help='Run one configuration over a JSONL dataset')
     batch.add_argument('--manifest', required=True)
     batch.add_argument('--output-dir', required=True)
+    mask_only = commands.add_parser('predict-mask', help='Predict only target shadow, excluding the object; no compositing')
+    for key in ('source','generated','mask','output'):
+        mask_only.add_argument('--'+key,required=True)
+    mask_only.add_argument('--mask-config',help='ShadowMaskConfig JSON; use the published selected config for measured settings')
+    mask_only.add_argument('--ablate',default='',help='Comma-separated: calibration,relative,association,smoothing,hysteresis,texture')
+    mask_only.add_argument('--overwrite',action='store_true')
     for command in (single, batch):
         config_group=command.add_mutually_exclusive_group()
         config_group.add_argument('--config', help='Baseline JSON configuration; explicit flags override JSON')
@@ -71,6 +77,34 @@ def main(argv=None):
     p = parser()
     args = p.parse_args(argv)
     try:
+        if args.command=='predict-mask':
+            from .shadow_mask import ShadowMaskConfig,predict_shadow
+            from PIL import Image
+            values=json.loads(Path(args.mask_config).read_text()) if args.mask_config else {}
+            if not isinstance(values,dict) or set(values)-{f.name for f in fields(ShadowMaskConfig)}:
+                raise ValueError('Mask JSON must contain only ShadowMaskConfig fields')
+            switches={'calibration':('calibration','none'),'relative':('relative',0),
+                      'association':('link_radius',1),'smoothing':('sigma',0),
+                      'hysteresis':('weak_ratio',1),'texture':('texture',False)}
+            ablations=tuple(x.strip() for x in args.ablate.split(',') if x.strip())
+            for name in ablations:
+                if name not in switches:raise ValueError(f'Unknown mask ablation: {name}')
+                key,value=switches[name];values[key]=value
+            config=ShadowMaskConfig(**values)
+            dest=Path(args.output).resolve();meta=dest.with_suffix('.json')
+            if dest.suffix.lower()!='.png':raise ValueError('Shadow mask output must be a lossless PNG')
+            protected=[Path(getattr(args,k)).resolve() for k in ('source','generated','mask')]
+            if args.mask_config:protected.append(Path(args.mask_config).resolve())
+            if dest in protected or meta in protected:
+                raise ValueError('Output must not overwrite an input image')
+            if not args.overwrite and (dest.exists() or meta.exists()):raise FileExistsError('Mask output already exists')
+            result=predict_shadow(read_rgb(args.source)[0],read_rgb(args.generated)[0],read_mask(args.mask),config)
+            result['metadata'].update(ablations=list(ablations),input_sha256={k:sha256(getattr(args,k)) for k in ('source','generated','mask')})
+            dest.parent.mkdir(parents=True,exist_ok=True)
+            Image.fromarray(result['prediction'].astype('uint8')*255).save(dest)
+            meta.write_text(json.dumps(result['metadata'],indent=2)+'\n')
+            print(json.dumps({'output':str(dest),'metadata':str(meta),'config':asdict(config)},indent=2))
+            return 0
         config, ablations = config_from_args(args)
         composer=compose
         if args.research_config:

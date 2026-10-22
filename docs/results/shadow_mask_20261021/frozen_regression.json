@@ -1,0 +1,307 @@
+{
+  "status": "passed",
+  "cases": 10,
+  "outputs_verified": 60,
+  "checks": [
+    {
+      "case": "c01_hard",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "c01_hard",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "c01_hard",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "c01_hard",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "c01_hard",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c01_hard",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c02_soft",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "c02_soft",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "c02_soft",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "c02_soft",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "c02_soft",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c02_soft",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c03_texture",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "c03_texture",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "c03_texture",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "c03_texture",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "c03_texture",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c03_texture",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c04_long",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "c04_long",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "c04_long",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "c04_long",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "c04_long",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c04_long",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c05_material",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "c05_material",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "c05_material",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "c05_material",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "c05_material",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "c05_material",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r01_running",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "r01_running",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "r01_running",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "r01_running",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "r01_running",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r01_running",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r02_penguin",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "r02_penguin",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "r02_penguin",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "r02_penguin",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "r02_penguin",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r02_penguin",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r03_aircraft",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "r03_aircraft",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "r03_aircraft",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "r03_aircraft",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "r03_aircraft",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r03_aircraft",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r04_field",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "r04_field",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "r04_field",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "r04_field",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "r04_field",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r04_field",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r05_hardware",
+      "variant": "mask",
+      "pixels_exact": true
+    },
+    {
+      "case": "r05_hardware",
+      "variant": "tracefusion",
+      "pixels_exact": true
+    },
+    {
+      "case": "r05_hardware",
+      "variant": "shadow_single",
+      "pixels_exact": true
+    },
+    {
+      "case": "r05_hardware",
+      "variant": "shadow_multilevel",
+      "pixels_exact": true
+    },
+    {
+      "case": "r05_hardware",
+      "variant": "shadow_single_gamma",
+      "pixels_exact": true
+    },
+    {
+      "case": "r05_hardware",
+      "variant": "shadow_multilevel_gamma",
+      "pixels_exact": true
+    }
+  ]
+}

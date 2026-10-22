@@ -1,0 +1,80 @@
+{
+  "source_url": "https://www.dropbox.com/scl/fi/h9uoif9upyxzf5nf5tz8r/DESOBA_DATASET.zip?rlkey=6qpmtbdjwnexj28vlzdaagtvm&dl=1",
+  "archive_sha256": "6abb5d985c0bcce025ad56af505f0d268662e5e8e91aedbf4152f02af845c755",
+  "native_count_common": 1012,
+  "usable_independent_pool": 852,
+  "selected_count": 20,
+  "seed": 20261023,
+  "max_side": 384,
+  "group_counts": {
+    "dark": 14,
+    "textured": 17,
+    "strong_or_hard": 11,
+    "neighbor_shadow": 19,
+    "multi_object": 20,
+    "long": 9,
+    "weak_or_soft": 9
+  },
+  "group_thresholds": {
+    "shadow_luma": [
+      45.320231649649514,
+      70.54353067393582
+    ],
+    "shadow_extent": [
+      0.11561450718169587,
+      0.22834999235253947
+    ],
+    "texture": [
+      10.67084065512512,
+      19.595176831324146
+    ],
+    "weak_shadow_fraction": [
+      0.016739329625359966,
+      0.04881126954066031
+    ],
+    "nearby_other_shadow_ratio": [
+      0.0,
+      0.0
+    ]
+  },
+  "excluded": {
+    "no_usable_target_pair": 3,
+    "near_duplicate_or_legacy": 133,
+    "same_scene_name_variant": 24
+  },
+  "groups_are_quantitative_proxies": "Softness and cross-material semantics need visual review; not human labels.",
+  "dedup": "Scene suffix groups, 63-bit DCT pHash <=6, manual source-only related clusters; optional SIFT ratio .75 / unique training points / homography 4 px / >=8 inliers and >=.35 inlier ratio / convex hull >2% of both images.",
+  "geometric_dedup": true,
+  "related_rejections": [
+    {
+      "rejected": "web-shadow0448.png",
+      "related_to": "legacy_photo"
+    },
+    {
+      "rejected": "web-shadow0458.png",
+      "related_to": "web-shadow0459.png"
+    },
+    {
+      "rejected": "web-shadow0457.png",
+      "related_to": "legacy_photo"
+    },
+    {
+      "rejected": "web-shadow0441.png",
+      "related_to": "web-shadow0440.png"
+    }
+  ],
+  "candidate_limitation": "Reference-derived proxy; target construction uses labels; no removal model or object removal evaluated.",
+  "preparation_split_unused": {
+    "validation": 4,
+    "explore": 12,
+    "final_test": 4
+  },
+  "split": {
+    "mask_final_test": 20
+  },
+  "evaluation_manifests": [
+    "target_proxy_heldout.jsonl",
+    "all_shadow_proxy_heldout.jsonl"
+  ],
+  "independence_scope": "Photograph-level automated de-duplication; unknown shared events or photographers may remain."
+}

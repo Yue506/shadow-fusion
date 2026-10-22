@@ -1,0 +1,9 @@
+{
+  "calibration": "srgb_plane",
+  "absolute": 24,
+  "relative": 0.24,
+  "weak_ratio": 1.0,
+  "link_radius": 0.02,
+  "sigma": 0,
+  "texture": false
+}

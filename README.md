@@ -151,3 +151,7 @@ shadow-fusion compose --source input.png --generated edited.png --mask mask.png 
 
 
 源图复核发现新测试d009与已知跑步例来自同一赛事的不同照片，自动去重未排除事件关联；冻结20图主结果保留，另提供去掉d009的19图事后敏感性统计。其他事件身份缺少元数据，不能宣称20个独立新场景。详见 `docs/results/background_first_20261021/event_sensitivity19.json`。未替换样本或按此继续调参。
+
+## 只预测目标影子 mask
+
+新增独立 `predict-mask` 命令，输入仍为原图、消除候选和物体 mask；输出二值影子 mask，不包含物体、保护圈或羽化。用法、数据局限和模块消融见 [纯 mask 探索](docs/SHADOW_MASK_20261021.md)。原回贴预设不变。

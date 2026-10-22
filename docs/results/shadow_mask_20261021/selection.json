@@ -1,0 +1,18 @@
+{
+  "winner": "mask_raw",
+  "validation_scores": {
+    "mask_raw": 0.7081142081620104,
+    "mask_smooth": 0.6617455391518428
+  },
+  "config": {
+    "calibration": "srgb_plane",
+    "absolute": 24,
+    "relative": 0.24,
+    "weak_ratio": 1.0,
+    "link_radius": 0.02,
+    "sigma": 0,
+    "texture": false
+  },
+  "frozen_before_new20_evaluation": true,
+  "new20_photo_level_only": true
+}

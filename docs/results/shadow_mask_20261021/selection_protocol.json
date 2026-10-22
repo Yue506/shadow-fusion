@@ -1,0 +1,4 @@
+{
+  "selection": "Among mask_raw and mask_smooth, maximize mean of target_proxy and all_shadow_proxy macro IoU on old validation20; tie precision. Actual5 remains development, not independent validation.",
+  "final_test": "New20 photograph-level deduplicated proxies evaluated only after config/code commit; all20 primary and predeclared18 sensitivity. Do not tune based on results."
+}

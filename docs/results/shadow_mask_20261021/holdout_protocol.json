@@ -1,0 +1,11 @@
+{
+  "seed": 20261023,
+  "count": 20,
+  "primary": "All 20 photograph-level deduplicated samples; not 20 guaranteed independent events.",
+  "source_family_sensitivity_exclude": [
+    "d017",
+    "d020"
+  ],
+  "reason": "Source-only visual review found field-sports and running-track families plausibly related to prior regressions; conservatively exclude both in a predeclared 18-photo sensitivity.",
+  "selection": "Freeze algorithm/config using existing development data before reading these evaluation labels."
+}

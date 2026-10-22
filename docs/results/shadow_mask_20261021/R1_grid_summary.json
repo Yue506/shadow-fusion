@@ -1,0 +1,3650 @@
+[
+  {
+    "id": "g056",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7540581860179915,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6312057549072269,
+        "precision": 0.7131263451017681,
+        "recall": 0.8470778293963173,
+        "background_fpr": 0.017589057925140535,
+        "min_iou": 0.0,
+        "micro_iou": 0.5250986188980924,
+        "micro_precision": 0.567201266032076,
+        "micro_recall": 0.876146554680716,
+        "tp": 120068,
+        "fp": 91617,
+        "fn": 16973
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.8130072540854743,
+        "precision": 0.8267762081398502,
+        "recall": 0.9796611851170278,
+        "background_fpr": 0.003325937564358098,
+        "min_iou": 0.6459459459459459,
+        "micro_iou": 0.8319916517590936,
+        "micro_precision": 0.85206106870229,
+        "micro_recall": 0.9724690712667712,
+        "tp": 5581,
+        "fp": 969,
+        "fn": 158
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.817961549061273,
+        "precision": 0.9420091064365737,
+        "recall": 0.8385670221775912,
+        "background_fpr": 0.0003473337911667868,
+        "min_iou": 0.0,
+        "micro_iou": 0.8637205247725194,
+        "micro_precision": 0.985515705020181,
+        "micro_recall": 0.8748257820652213,
+        "tp": 119887,
+        "fp": 1762,
+        "fn": 17154
+      }
+    }
+  },
+  {
+    "id": "g060",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7508156867191186,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6242728747011089,
+        "precision": 0.7309281931235947,
+        "recall": 0.820671807445369,
+        "background_fpr": 0.017125888859577602,
+        "min_iou": 0.0,
+        "micro_iou": 0.5252335456944918,
+        "micro_precision": 0.5713042265577286,
+        "micro_recall": 0.8669011463722536,
+        "tp": 118801,
+        "fp": 89146,
+        "fn": 18240
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.8242482687366934,
+        "precision": 0.8481098453906659,
+        "recall": 0.9671292839577909,
+        "background_fpr": 0.0026707458919853558,
+        "min_iou": 0.6771879483500718,
+        "micro_iou": 0.8442534908700322,
+        "micro_precision": 0.8761146496815286,
+        "micro_recall": 0.9587036069001568,
+        "tp": 5502,
+        "fp": 778,
+        "fn": 237
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.803925916719553,
+        "precision": 0.9511374127207792,
+        "recall": 0.8162626095806149,
+        "background_fpr": 0.0002193330895871995,
+        "min_iou": 0.0,
+        "micro_iou": 0.8583816493308144,
+        "micro_precision": 0.9907101086048454,
+        "micro_recall": 0.8653468669960085,
+        "tp": 118588,
+        "fp": 1112,
+        "fn": 18453
+      }
+    }
+  },
+  {
+    "id": "g040",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7446263773807668,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6346288551691609,
+        "precision": 0.7083285751921177,
+        "recall": 0.8578968855585379,
+        "background_fpr": 0.01839972435906876,
+        "min_iou": 0.0,
+        "micro_iou": 0.5230391188170703,
+        "micro_precision": 0.5598076224544689,
+        "micro_recall": 0.8884348479652074,
+        "tp": 121752,
+        "fp": 95737,
+        "fn": 15289
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7763917511586302,
+        "precision": 0.7893096222136482,
+        "recall": 0.9801637769781852,
+        "background_fpr": 0.0043371389380982995,
+        "min_iou": 0.6199740596627756,
+        "micro_iou": 0.7969753174489942,
+        "micro_precision": 0.8147607934655776,
+        "micro_recall": 0.9733403031887088,
+        "tp": 5586,
+        "fp": 1270,
+        "fn": 153
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8228585258145089,
+        "precision": 0.93367417722943,
+        "recall": 0.8503863273961151,
+        "background_fpr": 0.0004642564931306761,
+        "min_iou": 0.0,
+        "micro_iou": 0.8725072451292646,
+        "micro_precision": 0.9809426262561092,
+        "micro_recall": 0.8875519005261199,
+        "tp": 121631,
+        "fp": 2363,
+        "fn": 15410
+      }
+    }
+  },
+  {
+    "id": "g044",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7429830173697246,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6269663238377283,
+        "precision": 0.7286215631709361,
+        "recall": 0.8277639028611818,
+        "background_fpr": 0.01772772881926352,
+        "min_iou": 0.0,
+        "micro_iou": 0.5236287894303381,
+        "micro_precision": 0.5651891708840517,
+        "micro_recall": 0.8768616691355142,
+        "tp": 120166,
+        "fp": 92446,
+        "fn": 16875
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7922471099152516,
+        "precision": 0.8154520471353841,
+        "recall": 0.9672289848550992,
+        "background_fpr": 0.0034515294323632143,
+        "min_iou": 0.6564673157162726,
+        "micro_iou": 0.8148970827780245,
+        "micro_precision": 0.8444069357066135,
+        "micro_recall": 0.9588778532845443,
+        "tp": 5503,
+        "fp": 1014,
+        "fn": 236
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8097356183561943,
+        "precision": 0.9482292412545609,
+        "recall": 0.8245124094049834,
+        "background_fpr": 0.0002762392437554742,
+        "min_iou": 0.0,
+        "micro_iou": 0.8668862595530129,
+        "micro_precision": 0.9884932499773489,
+        "micro_recall": 0.8757233236768558,
+        "tp": 120010,
+        "fp": 1397,
+        "fn": 17031
+      }
+    }
+  },
+  {
+    "id": "g052",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7425450524124106,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6219602394239303,
+        "precision": 0.693080807419572,
+        "recall": 0.8575624076337729,
+        "background_fpr": 0.018190165127135356,
+        "min_iou": 0.0,
+        "micro_iou": 0.5213358791816423,
+        "micro_precision": 0.5609770836238553,
+        "micro_recall": 0.8806342627388883,
+        "tp": 120683,
+        "fp": 94447,
+        "fn": 16358
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.792833474463517,
+        "precision": 0.8035076048814332,
+        "recall": 0.9836453609342547,
+        "background_fpr": 0.0038182622184581285,
+        "min_iou": 0.600997506234414,
+        "micro_iou": 0.8179431072210066,
+        "micro_precision": 0.8340026773761714,
+        "micro_recall": 0.9769994772608468,
+        "tp": 5607,
+        "fp": 1116,
+        "fn": 132
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8128414433497845,
+        "precision": 0.926308395415293,
+        "recall": 0.8475503816415155,
+        "background_fpr": 0.0005975866060610949,
+        "min_iou": 0.0,
+        "micro_iou": 0.8605777472998457,
+        "micro_precision": 0.9760907433664169,
+        "micro_recall": 0.8791091717077371,
+        "tp": 120474,
+        "fp": 2951,
+        "fn": 16567
+      }
+    }
+  },
+  {
+    "id": "g024",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7404196969933171,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6348532722759768,
+        "precision": 0.706841879109972,
+        "recall": 0.8600714399563244,
+        "background_fpr": 0.018777626299470537,
+        "min_iou": 0.0,
+        "micro_iou": 0.5208759111656107,
+        "micro_precision": 0.5556691103661916,
+        "micro_recall": 0.8926890492626295,
+        "tp": 122335,
+        "fp": 97823,
+        "fn": 14706
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7631376705173596,
+        "precision": 0.7758667845636634,
+        "recall": 0.9801637769781852,
+        "background_fpr": 0.004729891022507436,
+        "min_iou": 0.6035353535353535,
+        "micro_iou": 0.7837799915813105,
+        "micro_precision": 0.8009750501864067,
+        "micro_recall": 0.9733403031887088,
+        "tp": 5586,
+        "fp": 1388,
+        "fn": 153
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8232681481866152,
+        "precision": 0.9315833517505291,
+        "recall": 0.8525588839116853,
+        "background_fpr": 0.0005072446641384615,
+        "min_iou": 0.0,
+        "micro_iou": 0.8755390323920861,
+        "micro_precision": 0.9794771933198705,
+        "micro_recall": 0.8919009639450968,
+        "tp": 122227,
+        "fp": 2561,
+        "fn": 14814
+      }
+    }
+  },
+  {
+    "id": "g028",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7393353862895093,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6270805607247216,
+        "precision": 0.7276480454799509,
+        "recall": 0.8290442226054648,
+        "background_fpr": 0.01807349687578556,
+        "min_iou": 0.0,
+        "micro_iou": 0.5211809291693135,
+        "micro_precision": 0.5610228070909912,
+        "micro_recall": 0.8800796841821061,
+        "tp": 120607,
+        "fp": 94370,
+        "fn": 16434
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7808689622833194,
+        "precision": 0.8038400058512642,
+        "recall": 0.9672289848550992,
+        "background_fpr": 0.003774314254586819,
+        "min_iou": 0.6421768707482993,
+        "micro_iou": 0.8033576642335767,
+        "micro_precision": 0.8320229815542788,
+        "micro_recall": 0.9588778532845443,
+        "tp": 5503,
+        "fp": 1111,
+        "fn": 236
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8100566358604873,
+        "precision": 0.9470276332897408,
+        "recall": 0.825861737531811,
+        "background_fpr": 0.0002955090058625752,
+        "min_iou": 0.0,
+        "micro_iou": 0.869550779981087,
+        "micro_precision": 0.9877978777491677,
+        "micro_recall": 0.8789924183273619,
+        "tp": 120458,
+        "fp": 1488,
+        "fn": 16583
+      }
+    }
+  },
+  {
+    "id": "g048",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7386203355700404,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6186269358382367,
+        "precision": 0.6881697532920873,
+        "recall": 0.8592851618462252,
+        "background_fpr": 0.018345497228939123,
+        "min_iou": 0.0,
+        "micro_iou": 0.5200487334469873,
+        "micro_precision": 0.5591459068144157,
+        "micro_recall": 0.8814807247466087,
+        "tp": 120799,
+        "fp": 95243,
+        "fn": 16242
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7895429733276572,
+        "precision": 0.800004281818271,
+        "recall": 0.9838173299798264,
+        "background_fpr": 0.0038984684691683634,
+        "min_iou": 0.5878048780487805,
+        "micro_iou": 0.8152347724960023,
+        "micro_precision": 0.8310610551274452,
+        "micro_recall": 0.9771737236452344,
+        "tp": 5608,
+        "fp": 1140,
+        "fn": 131
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8076910975442272,
+        "precision": 0.9187131124835883,
+        "recall": 0.8485933532262154,
+        "background_fpr": 0.0006944234549102055,
+        "min_iou": 0.0,
+        "micro_iou": 0.858348106537944,
+        "micro_precision": 0.9724465021737903,
+        "micro_recall": 0.8797440182135273,
+        "tp": 120561,
+        "fp": 3416,
+        "fn": 16480
+      }
+    }
+  },
+  {
+    "id": "g012",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7377323494471163,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6266213222424372,
+        "precision": 0.7268053685273065,
+        "recall": 0.8294306729573787,
+        "background_fpr": 0.01828608640301862,
+        "min_iou": 0.0,
+        "micro_iou": 0.5186223382072855,
+        "micro_precision": 0.5579917293441758,
+        "micro_recall": 0.8802475171663955,
+        "tp": 120630,
+        "fp": 95556,
+        "fn": 16411
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7763662528238863,
+        "precision": 0.7992447047209978,
+        "recall": 0.9672289848550992,
+        "background_fpr": 0.003906877385294974,
+        "min_iou": 0.6361185983827493,
+        "micro_iou": 0.7986937590711176,
+        "micro_precision": 0.8270213405470394,
+        "micro_recall": 0.9588778532845443,
+        "tp": 5503,
+        "fp": 1151,
+        "fn": 236
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8102094732750256,
+        "precision": 0.9467428707386989,
+        "recall": 0.8262575614502673,
+        "background_fpr": 0.00029826329980898954,
+        "min_iou": 0.0,
+        "micro_iou": 0.8696712910164427,
+        "micro_precision": 0.9876954101666571,
+        "micro_recall": 0.8791967367430185,
+        "tp": 120486,
+        "fp": 1501,
+        "fn": 16555
+      }
+    }
+  },
+  {
+    "id": "g008",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7370858474961302,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6340955598127552,
+        "precision": 0.7056446446831082,
+        "recall": 0.8605518424416357,
+        "background_fpr": 0.019028511578815847,
+        "min_iou": 0.0,
+        "micro_iou": 0.5181114026919496,
+        "micro_precision": 0.5523173967188262,
+        "micro_recall": 0.8932290336468648,
+        "tp": 122409,
+        "fp": 99219,
+        "fn": 14632
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7540078583171665,
+        "precision": 0.7666291099621816,
+        "recall": 0.9801637769781852,
+        "background_fpr": 0.005027895083730377,
+        "min_iou": 0.5952677459526775,
+        "micro_iou": 0.7740058195926285,
+        "micro_precision": 0.7907701019252548,
+        "micro_recall": 0.9733403031887088,
+        "tp": 5586,
+        "fp": 1478,
+        "fn": 153
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8231541243584687,
+        "precision": 0.9309169190488684,
+        "recall": 0.8530505351287307,
+        "background_fpr": 0.0005177967555938322,
+        "min_iou": 0.0,
+        "micro_iou": 0.8758127345115,
+        "micro_precision": 0.979098623118796,
+        "micro_recall": 0.8924993250195197,
+        "tp": 122309,
+        "fp": 2611,
+        "fn": 14732
+      }
+    }
+  },
+  {
+    "id": "g061",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7297955202920202,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.551608227346016,
+        "precision": 0.6378010295026565,
+        "recall": 0.8309559786528553,
+        "background_fpr": 0.02285080695645041,
+        "min_iou": 0.0,
+        "micro_iou": 0.46829274048900216,
+        "micro_precision": 0.5039450403393073,
+        "micro_recall": 0.8687546062857101,
+        "tp": 119055,
+        "fp": 117191,
+        "fn": 17986
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.8237902808708327,
+        "precision": 0.8476428895571013,
+        "recall": 0.9671292839577909,
+        "background_fpr": 0.0026923282376266214,
+        "min_iou": 0.6771879483500718,
+        "micro_iou": 0.8434769277939599,
+        "micro_precision": 0.8752783964365256,
+        "micro_recall": 0.9587036069001568,
+        "tp": 5502,
+        "fp": 784,
+        "fn": 237
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8139880526592118,
+        "precision": 0.9512031745868145,
+        "recall": 0.8265142366192055,
+        "background_fpr": 0.00021948913282990288,
+        "min_iou": 0.0,
+        "micro_iou": 0.8602067258276995,
+        "micro_precision": 0.990721443219901,
+        "micro_recall": 0.8671930298231916,
+        "tp": 118841,
+        "fp": 1113,
+        "fn": 18200
+      }
+    }
+  },
+  {
+    "id": "g057",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7277261400375622,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5503214668759581,
+        "precision": 0.6174234718698375,
+        "recall": 0.8502948778484284,
+        "background_fpr": 0.023448359352773885,
+        "min_iou": 0.0,
+        "micro_iou": 0.4666314444103445,
+        "micro_precision": 0.4994698302209249,
+        "micro_recall": 0.8765041119081151,
+        "tp": 120117,
+        "fp": 120372,
+        "fn": 16924
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.812568982228278,
+        "precision": 0.8263330172245598,
+        "recall": 0.9796611851170278,
+        "background_fpr": 0.0033475199099993634,
+        "min_iou": 0.6459459459459459,
+        "micro_iou": 0.8312481382186476,
+        "micro_precision": 0.8512812690665039,
+        "micro_recall": 0.9724690712667712,
+        "tp": 5581,
+        "fp": 975,
+        "fn": 158
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8202879710084504,
+        "precision": 0.9420322275424926,
+        "recall": 0.8411115514396775,
+        "background_fpr": 0.0003474898344094902,
+        "min_iou": 0.0,
+        "micro_iou": 0.8638583902481196,
+        "micro_precision": 0.9855099860277801,
+        "micro_recall": 0.8749717237906903,
+        "tp": 119907,
+        "fp": 1763,
+        "fn": 17134
+      }
+    }
+  },
+  {
+    "id": "g036",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7250307169742829,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6307012493721501,
+        "precision": 0.691016656076604,
+        "recall": 0.8863849401366072,
+        "background_fpr": 0.019310517343697008,
+        "min_iou": 0.0,
+        "micro_iou": 0.5185416385477123,
+        "micro_precision": 0.5513325888953168,
+        "micro_recall": 0.8971037864580673,
+        "tp": 122940,
+        "fp": 100047,
+        "fn": 14101
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7304193484767999,
+        "precision": 0.7365074018685673,
+        "recall": 0.9893804963770837,
+        "background_fpr": 0.006179747399244026,
+        "min_iou": 0.5466816647919011,
+        "micro_iou": 0.7489728296885354,
+        "micro_precision": 0.7578114523266729,
+        "micro_recall": 0.9846663181738979,
+        "tp": 5651,
+        "fp": 1806,
+        "fn": 88
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8139715530738986,
+        "precision": 0.8981707700079977,
+        "recall": 0.8730643001391062,
+        "background_fpr": 0.000924165916602662,
+        "min_iou": 0.0,
+        "micro_iou": 0.8656179458239278,
+        "micro_precision": 0.9629676133376233,
+        "micro_recall": 0.8954254566151736,
+        "tp": 122710,
+        "fp": 4719,
+        "fn": 14331
+      }
+    }
+  },
+  {
+    "id": "g062",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7219009034094069,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6293631329657202,
+        "precision": 0.6873454526637446,
+        "recall": 0.8891508781369214,
+        "background_fpr": 0.019701162032449742,
+        "min_iou": 0.0,
+        "micro_iou": 0.5166817216172362,
+        "micro_precision": 0.5475726176019572,
+        "micro_recall": 0.9015623061711459,
+        "tp": 123551,
+        "fp": 102083,
+        "fn": 13490
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7232416726119425,
+        "precision": 0.7293687632388034,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.006440468271984891,
+        "min_iou": 0.5382059800664452,
+        "micro_iou": 0.7417322834645669,
+        "micro_precision": 0.7502986857825568,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 1881,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8130979046505582,
+        "precision": 0.8935401114932774,
+        "recall": 0.8761674117103875,
+        "background_fpr": 0.0010245794467712368,
+        "min_iou": 0.0,
+        "micro_iou": 0.8674514105701348,
+        "micro_precision": 0.9597690865380875,
+        "micro_recall": 0.9001831568654636,
+        "tp": 123362,
+        "fp": 5171,
+        "fn": 13679
+      }
+    }
+  },
+  {
+    "id": "g053",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7212650439235301,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5451667834314049,
+        "precision": 0.6039658195613241,
+        "recall": 0.8716539164453834,
+        "background_fpr": 0.024017260026594146,
+        "min_iou": 0.0,
+        "micro_iou": 0.46400337870265496,
+        "micro_precision": 0.49475571712804894,
+        "micro_recall": 0.8818674703191016,
+        "tp": 120852,
+        "fp": 123414,
+        "fn": 16189
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7923963261416285,
+        "precision": 0.8030655564575755,
+        "recall": 0.9836453609342547,
+        "background_fpr": 0.003839844564099394,
+        "min_iou": 0.600997506234414,
+        "micro_iou": 0.8172278093572366,
+        "micro_precision": 0.833259028087383,
+        "micro_recall": 0.9769994772608468,
+        "tp": 5607,
+        "fp": 1122,
+        "fn": 132
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8262320221975569,
+        "precision": 0.9425441964337027,
+        "recall": 0.8617190509469534,
+        "background_fpr": 0.0005985228655173154,
+        "min_iou": 0.0,
+        "micro_iou": 0.8617551679309704,
+        "micro_precision": 0.9760762453378209,
+        "micro_recall": 0.8803496763742238,
+        "tp": 120644,
+        "fp": 2957,
+        "fn": 16397
+      }
+    }
+  },
+  {
+    "id": "g045",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7207685037981335,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5520323555182105,
+        "precision": 0.6333733207057104,
+        "recall": 0.838048074068668,
+        "background_fpr": 0.02386369302302437,
+        "min_iou": 0.0,
+        "micro_iou": 0.46489721069394846,
+        "micro_precision": 0.49677398062738237,
+        "micro_recall": 0.8787151290489708,
+        "tp": 120420,
+        "fp": 121984,
+        "fn": 16621
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7905844862250151,
+        "precision": 0.8137585318987883,
+        "recall": 0.9672289848550992,
+        "background_fpr": 0.003530664699714521,
+        "min_iou": 0.6564673157162726,
+        "micro_iou": 0.812250922509225,
+        "micro_precision": 0.8415659886832849,
+        "micro_recall": 0.9588778532845443,
+        "tp": 5503,
+        "fp": 1036,
+        "fn": 236
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8196886696511752,
+        "precision": 0.9481703266717655,
+        "recall": 0.834764036443574,
+        "background_fpr": 0.00027655133024088107,
+        "min_iou": 0.0,
+        "micro_iou": 0.8687012424154869,
+        "micro_precision": 0.9885009288027486,
+        "micro_recall": 0.877569486504039,
+        "tp": 120263,
+        "fp": 1399,
+        "fn": 16778
+      }
+    }
+  },
+  {
+    "id": "g020",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7185243125086069,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6292458006415682,
+        "precision": 0.6865575920084888,
+        "recall": 0.8900707642509255,
+        "background_fpr": 0.019834063622854017,
+        "min_iou": 0.0,
+        "micro_iou": 0.5159208315439684,
+        "micro_precision": 0.5462121814056554,
+        "micro_recall": 0.9029414554768281,
+        "tp": 123740,
+        "fp": 102802,
+        "fn": 13301
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7134702487818382,
+        "precision": 0.7193715536376599,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.006822986395390994,
+        "min_iou": 0.5282608695652173,
+        "micro_iou": 0.730799069045772,
+        "micro_precision": 0.7391133777952138,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 1995,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8128568881024144,
+        "precision": 0.8922321253675829,
+        "recall": 0.8771275438002439,
+        "background_fpr": 0.0010557522041893094,
+        "min_iou": 0.0,
+        "micro_iou": 0.8677877523496439,
+        "micro_precision": 0.9587074444556538,
+        "micro_recall": 0.9014820382221379,
+        "tp": 123540,
+        "fp": 5321,
+        "fn": 13501
+      }
+    }
+  },
+  {
+    "id": "g046",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7181130393892386,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6287009645039856,
+        "precision": 0.6854826389414836,
+        "recall": 0.8906826469444437,
+        "background_fpr": 0.019985907438754162,
+        "min_iou": 0.0,
+        "micro_iou": 0.5146070777118972,
+        "micro_precision": 0.5444454701711352,
+        "micro_recall": 0.9037514320531812,
+        "tp": 123851,
+        "fp": 103630,
+        "fn": 13190
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7131418074733192,
+        "precision": 0.71918736585311,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.006775305456455288,
+        "min_iou": 0.525974025974026,
+        "micro_iou": 0.7320295298536459,
+        "micro_precision": 0.7403720199109248,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 1982,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.812496346190411,
+        "precision": 0.8912136082650969,
+        "recall": 0.8777290888669012,
+        "background_fpr": 0.0010745899629829607,
+        "min_iou": 0.0,
+        "micro_iou": 0.8680416134331083,
+        "micro_precision": 0.9580611920755565,
+        "micro_recall": 0.9023285002298582,
+        "tp": 123656,
+        "fp": 5413,
+        "fn": 13385
+      }
+    }
+  },
+  {
+    "id": "g049",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7173583962942353,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5425025683716362,
+        "precision": 0.6000369536528688,
+        "recall": 0.8733766706578356,
+        "background_fpr": 0.024190751789634382,
+        "min_iou": 0.0,
+        "micro_iou": 0.4628529230580862,
+        "micro_precision": 0.4931833007175473,
+        "micro_recall": 0.8827139323268219,
+        "tp": 120968,
+        "fp": 124312,
+        "fn": 16073
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7886709108320329,
+        "precision": 0.7991224567397571,
+        "recall": 0.9838173299798264,
+        "background_fpr": 0.003941633160450894,
+        "min_iou": 0.5878048780487805,
+        "micro_iou": 0.8138151211725438,
+        "micro_precision": 0.829585798816568,
+        "micro_recall": 0.9771737236452344,
+        "tp": 5608,
+        "fp": 1152,
+        "fn": 131
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8209017096790366,
+        "precision": 0.9351375204981601,
+        "recall": 0.8627620225316532,
+        "background_fpr": 0.0006955157576091295,
+        "min_iou": 0.0,
+        "micro_iou": 0.8595156054220299,
+        "micro_precision": 0.9724294021940493,
+        "micro_recall": 0.880984522880014,
+        "tp": 120731,
+        "fp": 3423,
+        "fn": 16310
+      }
+    }
+  },
+  {
+    "id": "g041",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7169001710063405,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5513869236966749,
+        "precision": 0.6111171936925183,
+        "recall": 0.8606398275190371,
+        "background_fpr": 0.024710871896140428,
+        "min_iou": 0.0,
+        "micro_iou": 0.4627414623767041,
+        "micro_precision": 0.491209389557747,
+        "micro_recall": 0.8886975430710518,
+        "tp": 121788,
+        "fp": 126147,
+        "fn": 15253
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7742483692359259,
+        "precision": 0.7871500970461643,
+        "recall": 0.9801637769781852,
+        "background_fpr": 0.0044486477239115045,
+        "min_iou": 0.6199740596627756,
+        "micro_iou": 0.7934659090909091,
+        "micro_precision": 0.8110933643095688,
+        "micro_recall": 0.9733403031887088,
+        "tp": 5586,
+        "fp": 1301,
+        "fn": 153
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8250652200864207,
+        "precision": 0.9336005779891643,
+        "recall": 0.8529308566582015,
+        "background_fpr": 0.00046456857961608294,
+        "min_iou": 0.0,
+        "micro_iou": 0.8726381934780425,
+        "micro_precision": 0.9809298800154819,
+        "micro_recall": 0.887697842251589,
+        "tp": 121651,
+        "fp": 2365,
+        "fn": 15390
+      }
+    }
+  },
+  {
+    "id": "g029",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7162232385759371,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.551608469738589,
+        "precision": 0.6319969129393059,
+        "recall": 0.8393283938129509,
+        "background_fpr": 0.024344227065333887,
+        "min_iou": 0.0,
+        "micro_iou": 0.46230377306527126,
+        "micro_precision": 0.4928033206660904,
+        "micro_recall": 0.8819331440955627,
+        "tp": 120861,
+        "fp": 124391,
+        "fn": 16180
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7771582269109075,
+        "precision": 0.8000609530741747,
+        "recall": 0.9672289848550992,
+        "background_fpr": 0.003954167134930698,
+        "min_iou": 0.6421768707482993,
+        "micro_iou": 0.797536231884058,
+        "micro_precision": 0.8257803121248499,
+        "micro_recall": 0.9588778532845443,
+        "tp": 5503,
+        "fp": 1161,
+        "fn": 236
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8199030190783143,
+        "precision": 0.9468446619484153,
+        "recall": 0.8361133645704016,
+        "background_fpr": 0.0002959771355906854,
+        "min_iou": 0.0,
+        "micro_iou": 0.8713582421390004,
+        "micro_precision": 0.9877988903618599,
+        "micro_recall": 0.8808385811545449,
+        "tp": 120711,
+        "fp": 1491,
+        "fn": 16330
+      }
+    }
+  },
+  {
+    "id": "g013",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.32,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7145677410455922,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5513231397257844,
+        "precision": 0.6314088813189742,
+        "recall": 0.8397148441648647,
+        "background_fpr": 0.024564295695264977,
+        "min_iou": 0.0,
+        "micro_iou": 0.46021593799016247,
+        "micro_precision": 0.49037973964650666,
+        "micro_recall": 0.882100977079852,
+        "tp": 120884,
+        "fp": 125627,
+        "fn": 16157
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.772441306761349,
+        "precision": 0.7952475755263964,
+        "recall": 0.9672289848550992,
+        "background_fpr": 0.004097521438459486,
+        "min_iou": 0.6361185983827493,
+        "micro_iou": 0.7925968601469106,
+        "micro_precision": 0.8204860593409871,
+        "micro_recall": 0.9588778532845443,
+        "tp": 5503,
+        "fp": 1204,
+        "fn": 236
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8199387766496432,
+        "precision": 0.9464687544639524,
+        "recall": 0.8365091884888579,
+        "background_fpr": 0.00029888747277980317,
+        "min_iou": 0.0,
+        "micro_iou": 0.8714722907915061,
+        "micro_precision": 0.9876885573116063,
+        "micro_recall": 0.8810428995702017,
+        "tp": 120739,
+        "fp": 1505,
+        "fn": 16302
+      }
+    }
+  },
+  {
+    "id": "g030",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7131398185698948,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6275246442635057,
+        "precision": 0.6840360670098714,
+        "recall": 0.8910583239081656,
+        "background_fpr": 0.020214302911313785,
+        "min_iou": 0.0,
+        "micro_iou": 0.5121109411813335,
+        "micro_precision": 0.5415369955940975,
+        "micro_recall": 0.904072503849213,
+        "tp": 123895,
+        "fp": 104889,
+        "fn": 13146
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6997117442746376,
+        "precision": 0.7056692119554412,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.007284144941868324,
+        "min_iou": 0.5148305084745762,
+        "micro_iou": 0.7178054356108712,
+        "micro_precision": 0.7258250931038911,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2135,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8121830671715412,
+        "precision": 0.8905096735380315,
+        "recall": 0.8780755625070291,
+        "background_fpr": 0.001088598731051864,
+        "min_iou": 0.0,
+        "micro_iou": 0.8679974740387314,
+        "micro_precision": 0.9575882835601381,
+        "micro_recall": 0.9027006516298042,
+        "tp": 123707,
+        "fp": 5479,
+        "fn": 13334
+      }
+    }
+  },
+  {
+    "id": "g004",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7131266243757612,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6277523029178791,
+        "precision": 0.6843456924859036,
+        "recall": 0.8909264022057755,
+        "background_fpr": 0.020144768746397024,
+        "min_iou": 0.0,
+        "micro_iou": 0.512900447955221,
+        "micro_precision": 0.5424409338494142,
+        "micro_recall": 0.9040141271590254,
+        "tp": 123887,
+        "fp": 104501,
+        "fn": 13154
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6993393503958603,
+        "precision": 0.7051392880475225,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.007336172319954671,
+        "min_iou": 0.5170212765957447,
+        "micro_iou": 0.7164406135124858,
+        "micro_precision": 0.7244296334273264,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2150,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8122882198135444,
+        "precision": 0.8906972652266131,
+        "recall": 0.8779814226158368,
+        "background_fpr": 0.0010843956634546958,
+        "min_iou": 0.0,
+        "micro_iou": 0.8680491228070175,
+        "micro_precision": 0.9577332837808542,
+        "micro_recall": 0.9026276807670697,
+        "tp": 123697,
+        "fp": 5459,
+        "fn": 13344
+      }
+    }
+  },
+  {
+    "id": "g014",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7113333392003364,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6237589440279712,
+        "precision": 0.6801320373316426,
+        "recall": 0.8912273574497281,
+        "background_fpr": 0.0203763479369957,
+        "min_iou": 0.0,
+        "micro_iou": 0.5102205531122861,
+        "micro_precision": 0.5394001924190381,
+        "micro_recall": 0.904138177625674,
+        "tp": 123904,
+        "fp": 105803,
+        "fn": 13137
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6979615892016632,
+        "precision": 0.7039075233220415,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.007347231010789006,
+        "min_iou": 0.5105042016806722,
+        "micro_iou": 0.7160775370581528,
+        "micro_precision": 0.7240584166026134,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2154,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8122794843713746,
+        "precision": 0.8904416670860998,
+        "recall": 0.8782720320510006,
+        "background_fpr": 0.0010922840593672817,
+        "min_iou": 0.0,
+        "micro_iou": 0.8679570918428198,
+        "micro_precision": 0.9574652509054886,
+        "micro_recall": 0.9027663254062652,
+        "tp": 123716,
+        "fp": 5496,
+        "fn": 13325
+      }
+    }
+  },
+  {
+    "id": "g025",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.710733388450954,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5510402069558817,
+        "precision": 0.6092000386451023,
+        "recall": 0.8628143819168236,
+        "background_fpr": 0.025230573636995653,
+        "min_iou": 0.0,
+        "micro_iou": 0.4604065631008055,
+        "micro_precision": 0.48730283252163314,
+        "micro_recall": 0.8929517443684737,
+        "tp": 122371,
+        "fp": 128748,
+        "fn": 14670
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7557872773704021,
+        "precision": 0.7684371085393533,
+        "recall": 0.9801637769781852,
+        "background_fpr": 0.005091483106880378,
+        "min_iou": 0.5982478097622027,
+        "micro_iou": 0.7728278915329275,
+        "micro_precision": 0.7895406360424029,
+        "micro_recall": 0.9733403031887088,
+        "tp": 5586,
+        "fp": 1489,
+        "fn": 153
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8253726810265782,
+        "precision": 0.9313913340330661,
+        "recall": 0.8551034131737719,
+        "background_fpr": 0.0005077127938665718,
+        "min_iou": 0.0,
+        "micro_iou": 0.8756634791017514,
+        "micro_precision": 0.9794569388916041,
+        "micro_recall": 0.8920469056705658,
+        "tp": 122247,
+        "fp": 2564,
+        "fn": 14794
+      }
+    }
+  },
+  {
+    "id": "g009",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7072090115031502,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5505238918385124,
+        "precision": 0.6083118908886449,
+        "recall": 0.8632947844021349,
+        "background_fpr": 0.025491248690500887,
+        "min_iou": 0.0,
+        "micro_iou": 0.45816822513835415,
+        "micro_precision": 0.4846370318183437,
+        "micro_recall": 0.893491728752709,
+        "tp": 122445,
+        "fp": 130208,
+        "fn": 14596
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7459567659605049,
+        "precision": 0.7584881233611643,
+        "recall": 0.9801637769781852,
+        "background_fpr": 0.0054213719054447326,
+        "min_iou": 0.5886699507389163,
+        "micro_iou": 0.762385696738092,
+        "micro_precision": 0.7786451073320323,
+        "micro_recall": 0.9733403031887088,
+        "tp": 5586,
+        "fp": 1588,
+        "fn": 153
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8251463767104333,
+        "precision": 0.9306364012405861,
+        "recall": 0.8555950643908173,
+        "background_fpr": 0.000518420928564646,
+        "min_iou": 0.0,
+        "micro_iou": 0.8759308586813312,
+        "micro_precision": 0.9790706236393905,
+        "micro_recall": 0.8926452667449887,
+        "tp": 122329,
+        "fp": 2615,
+        "fn": 14712
+      }
+    }
+  },
+  {
+    "id": "g037",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6989574032613174,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5411798188491969,
+        "precision": 0.5873085823345429,
+        "recall": 0.8890566958617979,
+        "background_fpr": 0.02564589157022264,
+        "min_iou": 0.0,
+        "micro_iou": 0.45879429422146273,
+        "micro_precision": 0.4842337818839124,
+        "micro_recall": 0.8972570252698098,
+        "tp": 122961,
+        "fp": 130968,
+        "fn": 14080
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7277889057084601,
+        "precision": 0.7338749265465315,
+        "recall": 0.9893804963770837,
+        "background_fpr": 0.006338017933946639,
+        "min_iou": 0.5466816647919011,
+        "micro_iou": 0.7446303860851232,
+        "micro_precision": 0.7533662178376217,
+        "micro_recall": 0.9846663181738979,
+        "tp": 5651,
+        "fp": 1850,
+        "fn": 88
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8279034852262954,
+        "precision": 0.9141835642921363,
+        "recall": 0.8880045743828154,
+        "background_fpr": 0.000925662985832251,
+        "min_iou": 0.0,
+        "micro_iou": 0.8668326644047711,
+        "micro_precision": 0.9629519346800608,
+        "micro_recall": 0.8967389321443947,
+        "tp": 122890,
+        "fp": 4728,
+        "fn": 14151
+      }
+    }
+  },
+  {
+    "id": "g063",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6950386699322709,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5395264473067592,
+        "precision": 0.5835128977024294,
+        "recall": 0.891822633862112,
+        "background_fpr": 0.026187681025069496,
+        "min_iou": 0.0,
+        "micro_iou": 0.4566626508695556,
+        "micro_precision": 0.4805836758980901,
+        "micro_recall": 0.9017155449828883,
+        "tp": 123572,
+        "fp": 133557,
+        "fn": 13469
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7186483163691016,
+        "precision": 0.7247719499437795,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.0067318299381419755,
+        "min_iou": 0.5382059800664452,
+        "micro_iou": 0.7339306583560576,
+        "micro_precision": 0.7423167848699763,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 1962,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.826941246120952,
+        "precision": 0.9094527711702391,
+        "recall": 0.8911076859540968,
+        "background_fpr": 0.0010262325592435293,
+        "min_iou": 0.0,
+        "micro_iou": 0.86865604477507,
+        "micro_precision": 0.9597507826884084,
+        "micro_recall": 0.9014966323946848,
+        "tp": 123542,
+        "fp": 5181,
+        "fn": 13499
+      }
+    }
+  },
+  {
+    "id": "g058",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.690893067901178,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6145934150111132,
+        "precision": 0.6632430848613597,
+        "recall": 0.8995485676564443,
+        "background_fpr": 0.02041413868315536,
+        "min_iou": 0.0,
+        "micro_iou": 0.5146167528574722,
+        "micro_precision": 0.5414939107604726,
+        "micro_recall": 0.912033624973548,
+        "tp": 124986,
+        "fp": 105831,
+        "fn": 12055
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6669633006345494,
+        "precision": 0.6705886469552773,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.00838456588596567,
+        "min_iou": 0.48412698412698413,
+        "micro_iou": 0.6942067954045466,
+        "micro_precision": 0.6992490459189954,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 2443,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7911224880578714,
+        "precision": 0.8605933382730601,
+        "recall": 0.8824510162741385,
+        "background_fpr": 0.0014725719426884297,
+        "min_iou": 0.0,
+        "micro_iou": 0.8565063991698374,
+        "micro_precision": 0.9428177615997929,
+        "micro_recall": 0.9034376573434227,
+        "tp": 123808,
+        "fp": 7509,
+        "fn": 13233
+      }
+    }
+  },
+  {
+    "id": "g021",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.69045349527615,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5392909004005053,
+        "precision": 0.5826256675174346,
+        "recall": 0.8927425199761163,
+        "background_fpr": 0.02634836920682959,
+        "min_iou": 0.0,
+        "micro_iou": 0.45595917916221496,
+        "micro_precision": 0.47941506875847373,
+        "micro_recall": 0.9030946942885706,
+        "tp": 123761,
+        "fp": 134389,
+        "fn": 13280
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7053693558551368,
+        "precision": 0.7112582742625471,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.007321266668825284,
+        "min_iou": 0.5242718446601942,
+        "micro_iou": 0.7178966086625175,
+        "micro_precision": 0.725918314924223,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2134,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8267002295728079,
+        "precision": 0.9081447850445445,
+        "recall": 0.8920678180439534,
+        "background_fpr": 0.0010574053166616019,
+        "min_iou": 0.0,
+        "micro_iou": 0.8689910937543899,
+        "micro_precision": 0.958690750168538,
+        "micro_recall": 0.9027955137513591,
+        "tp": 123720,
+        "fp": 5331,
+        "fn": 13321
+      }
+    }
+  },
+  {
+    "id": "g032",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6901834002550088,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6095559690042219,
+        "precision": 0.6587833567448624,
+        "recall": 0.8962657127638053,
+        "background_fpr": 0.020185692990021688,
+        "min_iou": 0.0,
+        "micro_iou": 0.514560174746919,
+        "micro_precision": 0.5430018335807212,
+        "micro_recall": 0.9076115906918367,
+        "tp": 124380,
+        "fp": 104680,
+        "fn": 12661
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6749195706937832,
+        "precision": 0.6791374872690461,
+        "recall": 0.9923733423952157,
+        "background_fpr": 0.007048549802608499,
+        "min_iou": 0.49643947100712105,
+        "micro_iou": 0.7265274753426412,
+        "micro_precision": 0.7328165374677003,
+        "micro_recall": 0.9883254922460359,
+        "tp": 5672,
+        "fp": 2068,
+        "fn": 67
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7860746610670213,
+        "precision": 0.8559287815109766,
+        "recall": 0.8830213380666808,
+        "background_fpr": 0.00154131943727559,
+        "min_iou": 0.0,
+        "micro_iou": 0.856466920487778,
+        "micro_precision": 0.9398790466026326,
+        "micro_recall": 0.9061083909195058,
+        "tp": 124174,
+        "fp": 7943,
+        "fn": 12867
+      }
+    }
+  },
+  {
+    "id": "g047",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6895398734272615,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5390584452311457,
+        "precision": 0.5818267481506233,
+        "recall": 0.8934816291327389,
+        "background_fpr": 0.026500522731657764,
+        "min_iou": 0.0,
+        "micro_iou": 0.4549721778414412,
+        "micro_precision": 0.4780950763613627,
+        "micro_recall": 0.9039119679511971,
+        "tp": 123873,
+        "fp": 135224,
+        "fn": 13168
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.703119368149317,
+        "precision": 0.7091503338319605,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.00739923835557005,
+        "min_iou": 0.5214592274678111,
+        "micro_iou": 0.7158961367954402,
+        "micro_precision": 0.7238729508196722,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2156,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8264418069013221,
+        "precision": 0.9071734854693518,
+        "recall": 0.8927965895737148,
+        "background_fpr": 0.001076243075455253,
+        "min_iou": 0.0,
+        "micro_iou": 0.8692511792452831,
+        "micro_precision": 0.9580457991644747,
+        "micro_recall": 0.9036492728453529,
+        "tp": 123837,
+        "fp": 5423,
+        "fn": 13204
+      }
+    }
+  },
+  {
+    "id": "g042",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6844733862614785,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6131847935967917,
+        "precision": 0.6599790143755654,
+        "recall": 0.901888373486094,
+        "background_fpr": 0.020801548031544582,
+        "min_iou": 0.0,
+        "micro_iou": 0.5119980071383651,
+        "micro_precision": 0.5376102020513877,
+        "micro_recall": 0.9148721915339205,
+        "tp": 125375,
+        "fp": 107833,
+        "fn": 11666
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6511507781276512,
+        "precision": 0.6547064663261142,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.009187231946191036,
+        "min_iou": 0.47517039922103216,
+        "micro_iou": 0.6750653672450677,
+        "micro_precision": 0.6798324356672651,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 2675,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7890845870599927,
+        "precision": 0.85589112034254,
+        "recall": 0.8847672928413856,
+        "background_fpr": 0.0015867900914398097,
+        "min_iou": 0.0,
+        "micro_iou": 0.8560576817028785,
+        "micro_precision": 0.9392607830828689,
+        "micro_recall": 0.9062251442998811,
+        "tp": 124190,
+        "fp": 8031,
+        "fn": 12851
+      }
+    }
+  },
+  {
+    "id": "g031",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6835623004611114,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5378907355192648,
+        "precision": 0.5803902133770923,
+        "recall": 0.8938573060964609,
+        "background_fpr": 0.02674592992326216,
+        "min_iou": 0.0,
+        "micro_iou": 0.45287163088168114,
+        "micro_precision": 0.47568723344632075,
+        "micro_recall": 0.9042330397472289,
+        "tp": 123917,
+        "fp": 136584,
+        "fn": 13124
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6867673569142834,
+        "precision": 0.6927042140684028,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.008096187140033387,
+        "min_iou": 0.5089005235602094,
+        "micro_iou": 0.6976916430070361,
+        "micro_precision": 0.7052657848764662,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2362,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8260288089497864,
+        "precision": 0.9064331878311109,
+        "recall": 0.893143063213843,
+        "background_fpr": 0.00109040788676686,
+        "min_iou": 0.0,
+        "micro_iou": 0.8692003844777627,
+        "micro_precision": 0.9575662013634466,
+        "micro_recall": 0.9040214242452989,
+        "tp": 123888,
+        "fp": 5490,
+        "fn": 13153
+      }
+    }
+  },
+  {
+    "id": "g005",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.16,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6832029608238507,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5381236958980904,
+        "precision": 0.5807048984246321,
+        "recall": 0.8937253843940707,
+        "background_fpr": 0.026673064747939217,
+        "min_iou": 0.0,
+        "micro_iou": 0.45352029163738583,
+        "micro_precision": 0.4764191568877747,
+        "micro_recall": 0.9041746630570413,
+        "tp": 123909,
+        "fp": 136175,
+        "fn": 13132
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6853512249816723,
+        "precision": 0.6911214099219343,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.008178144130979212,
+        "min_iou": 0.5057232049947971,
+        "micro_iou": 0.6956307692307693,
+        "micro_precision": 0.7031599900472755,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2386,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8261339615917894,
+        "precision": 0.9066207795196924,
+        "recall": 0.8930489233226504,
+        "background_fpr": 0.0010862048191696916,
+        "min_iou": 0.0,
+        "micro_iou": 0.869252198075938,
+        "micro_precision": 0.9577109812289328,
+        "micro_recall": 0.9039484533825644,
+        "tp": 123878,
+        "fp": 5470,
+        "fn": 13163
+      }
+    }
+  },
+  {
+    "id": "g015",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.32,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6798525996858599,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5372001361507138,
+        "precision": 0.5795700090741157,
+        "recall": 0.8940263396380234,
+        "background_fpr": 0.026918964671875358,
+        "min_iou": 0.0,
+        "micro_iou": 0.4513177972737238,
+        "micro_precision": 0.47395514624892915,
+        "micro_recall": 0.90429871352369,
+        "tp": 123926,
+        "fp": 137546,
+        "fn": 13115
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6762324367572459,
+        "precision": 0.6821402282336443,
+        "recall": 0.989484284649009,
+        "background_fpr": 0.00876351008611275,
+        "min_iou": 0.49693251533742333,
+        "micro_iou": 0.6818675352877307,
+        "micro_precision": 0.6891002194586686,
+        "micro_recall": 0.9848405645582854,
+        "tp": 5652,
+        "fp": 2550,
+        "fn": 87
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8261252261496196,
+        "precision": 0.9063651813791793,
+        "recall": 0.8933395327578142,
+        "background_fpr": 0.001094093215082278,
+        "min_iou": 0.0,
+        "micro_iou": 0.8691598619412408,
+        "micro_precision": 0.9574433556922506,
+        "micro_recall": 0.9040870980217599,
+        "tp": 123897,
+        "fp": 5507,
+        "fn": 13144
+      }
+    }
+  },
+  {
+    "id": "g026",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6767816372175438,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6116697378241702,
+        "precision": 0.6580649804669612,
+        "recall": 0.9023620661642282,
+        "background_fpr": 0.02105880668887004,
+        "min_iou": 0.0,
+        "micro_iou": 0.5093814077186999,
+        "micro_precision": 0.5345317579687853,
+        "micro_recall": 0.9154413642632497,
+        "tp": 125453,
+        "fp": 109244,
+        "fn": 11588
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6305704658423148,
+        "precision": 0.6340663196187327,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.010123407341300785,
+        "min_iou": 0.4556489262371615,
+        "micro_iou": 0.6535496490622483,
+        "micro_precision": 0.6580166821130676,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 2952,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7881047079861466,
+        "precision": 0.8544202849025971,
+        "recall": 0.8852159053249923,
+        "background_fpr": 0.0016173031317394796,
+        "min_iou": 0.0,
+        "micro_iou": 0.855791213331497,
+        "micro_precision": 0.9382516590289679,
+        "micro_recall": 0.9068672878919447,
+        "tp": 124278,
+        "fp": 8179,
+        "fn": 12763
+      }
+    }
+  },
+  {
+    "id": "g010",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6711277423954459,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6077945948872385,
+        "precision": 0.653983501481475,
+        "recall": 0.9025954721171396,
+        "background_fpr": 0.021243772246437996,
+        "min_iou": 0.0,
+        "micro_iou": 0.5073325165876202,
+        "micro_precision": 0.5322217367883032,
+        "micro_recall": 0.9156019001612656,
+        "tp": 125475,
+        "fp": 110282,
+        "fn": 11566
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.617374279900162,
+        "precision": 0.6208590501772873,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.011160760760350292,
+        "min_iou": 0.4522706209453197,
+        "micro_iou": 0.6323054658799956,
+        "micro_precision": 0.6364858807709547,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 3244,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7882143523989373,
+        "precision": 0.8543253686109703,
+        "recall": 0.8854644738418729,
+        "background_fpr": 0.001624525540253471,
+        "min_iou": 0.0,
+        "micro_iou": 0.8557138234666409,
+        "micro_precision": 0.9380259156120054,
+        "micro_recall": 0.9069913383585935,
+        "tp": 124295,
+        "fp": 8212,
+        "fn": 12746
+      }
+    }
+  },
+  {
+    "id": "g059",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6657546927276848,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5260638284102169,
+        "precision": 0.563001800094462,
+        "recall": 0.9022203233816352,
+        "background_fpr": 0.027004375319014846,
+        "min_iou": 0.0,
+        "micro_iou": 0.45470484033478953,
+        "micro_precision": 0.4755197139433593,
+        "micro_recall": 0.9121868637852906,
+        "tp": 125007,
+        "fp": 137878,
+        "fn": 12034
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6662875254566062,
+        "precision": 0.669912871777334,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.008434924692461956,
+        "min_iou": 0.48412698412698413,
+        "micro_iou": 0.6930209858467545,
+        "micro_precision": 0.6980459628855844,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 2457,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8049127243162314,
+        "precision": 0.8761730897345327,
+        "recall": 0.8978542534808107,
+        "background_fpr": 0.001475549057972792,
+        "min_iou": 0.0,
+        "micro_iou": 0.8576922810876618,
+        "micro_precision": 0.9427767639902677,
+        "micro_recall": 0.9047949153902847,
+        "tp": 123994,
+        "fp": 7526,
+        "fn": 13047
+      }
+    }
+  },
+  {
+    "id": "g054",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.665569492234722,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6023735825007622,
+        "precision": 0.6438629338593811,
+        "recall": 0.9056905790724327,
+        "background_fpr": 0.020981841070722745,
+        "min_iou": 0.0,
+        "micro_iou": 0.5096899618908949,
+        "micro_precision": 0.5352059141323334,
+        "micro_recall": 0.9144635547026072,
+        "tp": 125319,
+        "fp": 108832,
+        "fn": 11722
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6216430671360856,
+        "precision": 0.6240375822493859,
+        "recall": 0.9950607602682606,
+        "background_fpr": 0.00939364843687417,
+        "min_iou": 0.4604519774011299,
+        "micro_iou": 0.671184443134944,
+        "micro_precision": 0.6746830944200924,
+        "micro_recall": 0.992333159086949,
+        "tp": 5695,
+        "fp": 2746,
+        "fn": 44
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7726918270673179,
+        "precision": 0.830809696760231,
+        "recall": 0.8903634449848797,
+        "background_fpr": 0.0019307860920160067,
+        "min_iou": 0.0,
+        "micro_iou": 0.8510783046465746,
+        "micro_precision": 0.9263304430243837,
+        "micro_recall": 0.9128654928087214,
+        "tp": 125100,
+        "fp": 9949,
+        "fn": 11941
+      }
+    }
+  },
+  {
+    "id": "g033",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6644015109758273,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5226139382206952,
+        "precision": 0.5603259117612797,
+        "recall": 0.8989374684889962,
+        "background_fpr": 0.02664858884966748,
+        "min_iou": 0.0,
+        "micro_iou": 0.45508953558559384,
+        "micro_precision": 0.4771532132788677,
+        "micro_recall": 0.9077648295035792,
+        "tp": 124401,
+        "fp": 136314,
+        "fn": 12640
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.670989936465962,
+        "precision": 0.6751844837762205,
+        "recall": 0.9923733423952157,
+        "background_fpr": 0.007268764332418044,
+        "min_iou": 0.49342770475227504,
+        "micro_iou": 0.720803151607574,
+        "micro_precision": 0.7269930786977699,
+        "micro_recall": 0.9883254922460359,
+        "tp": 5672,
+        "fp": 2130,
+        "fn": 67
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7996006582408246,
+        "precision": 0.8720019638046198,
+        "recall": 0.8981159332980444,
+        "background_fpr": 0.0015437991059840288,
+        "min_iou": 0.0,
+        "micro_iou": 0.857633500920696,
+        "micro_precision": 0.9398551929501036,
+        "micro_recall": 0.9074364606212739,
+        "tp": 124356,
+        "fp": 7958,
+        "fn": 12685
+      }
+    }
+  },
+  {
+    "id": "g050",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6614960431958165,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5975900828789454,
+        "precision": 0.6375524785181615,
+        "recall": 0.9069023796575251,
+        "background_fpr": 0.021195774780770435,
+        "min_iou": 0.0,
+        "micro_iou": 0.5075551452725683,
+        "micro_precision": 0.532755916889431,
+        "micro_recall": 0.9147481410672719,
+        "tp": 125358,
+        "fp": 109943,
+        "fn": 11683
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6190008484537536,
+        "precision": 0.6213794863307809,
+        "recall": 0.9950607602682606,
+        "background_fpr": 0.009490054960633761,
+        "min_iou": 0.45829428303655106,
+        "micro_iou": 0.668898285177355,
+        "micro_precision": 0.6723730814639906,
+        "micro_recall": 0.992333159086949,
+        "tp": 5695,
+        "fp": 2775,
+        "fn": 44
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7678971982547502,
+        "precision": 0.8243793829197326,
+        "recall": 0.8915361584166034,
+        "background_fpr": 0.002043792650267973,
+        "min_iou": 0.0,
+        "micro_iou": 0.8479019439118092,
+        "micro_precision": 0.9222634111829257,
+        "micro_recall": 0.913164673345933,
+        "tp": 125141,
+        "fp": 10548,
+        "fn": 11900
+      }
+    }
+  },
+  {
+    "id": "g043",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6592632821796429,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.525060391412108,
+        "precision": 0.5600964990758011,
+        "recall": 0.9048145821374936,
+        "background_fpr": 0.027441808746693972,
+        "min_iou": 0.0,
+        "micro_iou": 0.45249290036697976,
+        "micro_precision": 0.47233731599644424,
+        "micro_recall": 0.9150400245182099,
+        "tp": 125398,
+        "fp": 140086,
+        "fn": 11643
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6496596483659879,
+        "precision": 0.6532124783024186,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.009275203261881039,
+        "min_iou": 0.4714975845410628,
+        "micro_iou": 0.6730655290911245,
+        "micro_precision": 0.6778042959427207,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 2700,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8030698067608328,
+        "precision": 0.871541565926377,
+        "recall": 0.9004249829742665,
+        "background_fpr": 0.001589767206724172,
+        "min_iou": 0.0,
+        "micro_iou": 0.8572531342830952,
+        "micro_precision": 0.9392264358962742,
+        "micro_recall": 0.9075969965192898,
+        "tp": 124378,
+        "fp": 8048,
+        "fn": 12663
+      }
+    }
+  },
+  {
+    "id": "g027",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6513253124871623,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5235456404533158,
+        "precision": 0.5582126911389355,
+        "recall": 0.9052882748156278,
+        "background_fpr": 0.027719327911665696,
+        "min_iou": 0.0,
+        "micro_iou": 0.45028673140552217,
+        "micro_precision": 0.4697839329372166,
+        "micro_recall": 0.9156091972475391,
+        "tp": 125476,
+        "fp": 141617,
+        "fn": 11565
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6284238898083399,
+        "precision": 0.6319152533455542,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.010244814478945357,
+        "min_iou": 0.4510166358595194,
+        "micro_iou": 0.6509282603713041,
+        "micro_precision": 0.6553594092534902,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 2987,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8020064071998312,
+        "precision": 0.8700384979937023,
+        "recall": 0.9008735954578733,
+        "background_fpr": 0.0016204362902665452,
+        "min_iou": 0.0,
+        "micro_iou": 0.8569795783472645,
+        "micro_precision": 0.9382118601267875,
+        "micro_recall": 0.9082391401113535,
+        "tp": 124466,
+        "fp": 8197,
+        "fn": 12575
+      }
+    }
+  },
+  {
+    "id": "g016",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6489778452423147,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5995208074204458,
+        "precision": 0.6387545617465297,
+        "recall": 0.908115772891563,
+        "background_fpr": 0.02130063552199808,
+        "min_iou": 0.0,
+        "micro_iou": 0.5075278810408922,
+        "micro_precision": 0.5321214021233509,
+        "micro_recall": 0.9165359272042674,
+        "tp": 125603,
+        "fp": 110439,
+        "fn": 11438
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5799023317612475,
+        "precision": 0.5817201260937321,
+        "recall": 0.9957872781717374,
+        "background_fpr": 0.011312647857188792,
+        "min_iou": 0.4214876033057851,
+        "micro_iou": 0.6306126963061269,
+        "micro_precision": 0.6332037756801777,
+        "micro_recall": 0.9935528837776616,
+        "tp": 5702,
+        "fp": 3303,
+        "fn": 37
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7675103965452509,
+        "precision": 0.8216386289287682,
+        "recall": 0.8929261361734961,
+        "background_fpr": 0.0020818866932810817,
+        "min_iou": 0.0,
+        "micro_iou": 0.8487449568113509,
+        "micro_precision": 0.9214849003770312,
+        "micro_recall": 0.9149086769652878,
+        "tp": 125380,
+        "fp": 10683,
+        "fn": 11661
+      }
+    }
+  },
+  {
+    "id": "g011",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.24,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6460443397834424,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5224674840058334,
+        "precision": 0.556953942179833,
+        "recall": 0.9055216807685391,
+        "background_fpr": 0.027929136051505786,
+        "min_iou": 0.0,
+        "micro_iou": 0.44847783126244056,
+        "micro_precision": 0.4677734375,
+        "micro_recall": 0.915769733145555,
+        "tp": 125498,
+        "fp": 142790,
+        "fn": 11543
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.613549483731872,
+        "precision": 0.617020915577403,
+        "recall": 0.9931313804223543,
+        "background_fpr": 0.011321353539516767,
+        "min_iou": 0.43532560214094557,
+        "micro_iou": 0.6289447458753183,
+        "micro_precision": 0.6330806954971021,
+        "micro_recall": 0.9897194633211361,
+        "tp": 5680,
+        "fp": 3292,
+        "fn": 59
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.8021160516126219,
+        "precision": 0.8699435817020753,
+        "recall": 0.9011221639747536,
+        "background_fpr": 0.0016276586987805366,
+        "min_iou": 0.0,
+        "micro_iou": 0.8569019281205471,
+        "micro_precision": 0.9379864821080075,
+        "micro_recall": 0.9083631905780022,
+        "tp": 124483,
+        "fp": 8230,
+        "fn": 12558
+      }
+    }
+  },
+  {
+    "id": "g038",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6449242348185347,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5974745102205564,
+        "precision": 0.6352840274431321,
+        "recall": 0.9099998021774418,
+        "background_fpr": 0.021595633200978813,
+        "min_iou": 0.0,
+        "micro_iou": 0.5054124073664973,
+        "micro_precision": 0.5292445132363703,
+        "micro_recall": 0.9181923657883407,
+        "tp": 125830,
+        "fp": 111924,
+        "fn": 11211
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5725270125455426,
+        "precision": 0.5742000130400049,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.012263261409233795,
+        "min_iou": 0.43738819320214667,
+        "micro_iou": 0.6127403587925664,
+        "micro_precision": 0.6150528358852706,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 3570,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7647711816895051,
+        "precision": 0.8165701673767115,
+        "recall": 0.8952166625455882,
+        "background_fpr": 0.002193992727569236,
+        "min_iou": 0.0,
+        "micro_iou": 0.8474974194984719,
+        "micro_precision": 0.9182357756856324,
+        "micro_recall": 0.9166745718434629,
+        "tp": 125622,
+        "fp": 11186,
+        "fn": 11419
+      }
+    }
+  },
+  {
+    "id": "g055",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6407923216520767,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5154286556270422,
+        "precision": 0.5476529101848898,
+        "recall": 0.9083623347976235,
+        "background_fpr": 0.027673187251905335,
+        "min_iou": 0.0,
+        "micro_iou": 0.45006840436495255,
+        "micro_precision": 0.4698077139323063,
+        "micro_recall": 0.9146167935143498,
+        "tp": 125340,
+        "fp": 141450,
+        "fn": 11701
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6208771406510442,
+        "precision": 0.6232716557643444,
+        "recall": 0.9950607602682606,
+        "background_fpr": 0.009451201358584212,
+        "min_iou": 0.4604519774011299,
+        "micro_iou": 0.6699211857428538,
+        "micro_precision": 0.6734066453825234,
+        "micro_recall": 0.992333159086949,
+        "tp": 5695,
+        "fp": 2762,
+        "fn": 44
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7860711686781435,
+        "precision": 0.844976143483189,
+        "recall": 0.9067615014155379,
+        "background_fpr": 0.0019406818718423072,
+        "min_iou": 0.0,
+        "micro_iou": 0.8522153082389745,
+        "micro_precision": 0.9260704414785912,
+        "micro_recall": 0.91442706927124,
+        "tp": 125314,
+        "fp": 10004,
+        "fn": 11727
+      }
+    }
+  },
+  {
+    "id": "g051",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6369482548500428,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5114089567693626,
+        "precision": 0.5422478237113044,
+        "recall": 0.9095741353827158,
+        "background_fpr": 0.027914305124284573,
+        "min_iou": 0.0,
+        "micro_iou": 0.44817910148989104,
+        "micro_precision": 0.4676750345033384,
+        "micro_recall": 0.9149013798790143,
+        "tp": 125379,
+        "fp": 142711,
+        "fn": 11662
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.6182349219687121,
+        "precision": 0.6206135598457394,
+        "recall": 0.9950607602682606,
+        "background_fpr": 0.009547607882343802,
+        "min_iou": 0.45829428303655106,
+        "micro_iou": 0.6676436107854631,
+        "micro_precision": 0.6711053499882159,
+        "micro_recall": 0.992333159086949,
+        "tp": 5695,
+        "fp": 2791,
+        "fn": 44
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7812008858120537,
+        "precision": 0.8385140436759961,
+        "recall": 0.9079342148472616,
+        "background_fpr": 0.0020541892177090254,
+        "min_iou": 0.0,
+        "micro_iou": 0.8490182665411421,
+        "micro_precision": 0.9219923360375402,
+        "micro_recall": 0.9147262498084515,
+        "tp": 125355,
+        "fp": 10606,
+        "fn": 11686
+      }
+    }
+  },
+  {
+    "id": "g022",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6311634759573644,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5949268949722483,
+        "precision": 0.6318428139484108,
+        "recall": 0.9111713142114539,
+        "background_fpr": 0.021954397836001244,
+        "min_iou": 0.0,
+        "micro_iou": 0.5022024851207679,
+        "micro_precision": 0.525370009716795,
+        "micro_recall": 0.9192796316430849,
+        "tp": 125979,
+        "fp": 113812,
+        "fn": 11062
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5364449589371907,
+        "precision": 0.5380684864307351,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.014305805277214945,
+        "min_iou": 0.4092050209205021,
+        "micro_iou": 0.5756964069438837,
+        "micro_precision": 0.5777372632431885,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 4169,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7621185739626543,
+        "precision": 0.8124963006744782,
+        "recall": 0.8965757831035549,
+        "background_fpr": 0.0022967286418657277,
+        "min_iou": 0.0,
+        "micro_iou": 0.8458853672806504,
+        "micro_precision": 0.9151654492011292,
+        "micro_recall": 0.9178566998197619,
+        "tp": 125784,
+        "fp": 11660,
+        "fn": 11257
+      }
+    }
+  },
+  {
+    "id": "g000",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6307268316158671,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5953777137952306,
+        "precision": 0.6324337814565781,
+        "recall": 0.9108822086839337,
+        "background_fpr": 0.021859267838263606,
+        "min_iou": 0.0,
+        "micro_iou": 0.5030878992697697,
+        "micro_precision": 0.5264348116874974,
+        "micro_recall": 0.9189877481921469,
+        "tp": 125939,
+        "fp": 113291,
+        "fn": 11102
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5339354394936505,
+        "precision": 0.5355484336745425,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.014245354105480005,
+        "min_iou": 0.4092050209205021,
+        "micro_iou": 0.5767441860465117,
+        "micro_precision": 0.5787924911212582,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 4151,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.76286734155872,
+        "precision": 0.8134737266471312,
+        "recall": 0.8963243524235868,
+        "background_fpr": 0.0022740340383240643,
+        "min_iou": 0.0,
+        "micro_iou": 0.8462672203191354,
+        "micro_precision": 0.9158885311812607,
+        "micro_recall": 0.9175794105413708,
+        "tp": 125746,
+        "fp": 11548,
+        "fn": 11295
+      }
+    }
+  },
+  {
+    "id": "g006",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6228554511171905,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.588762304249199,
+        "precision": 0.6241587988527566,
+        "recall": 0.913794626526463,
+        "background_fpr": 0.022195031573295936,
+        "min_iou": 0.0,
+        "micro_iou": 0.49979578322091495,
+        "micro_precision": 0.5225928966506621,
+        "micro_recall": 0.9197247539057655,
+        "tp": 126040,
+        "fp": 115142,
+        "fn": 11001
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5177770593754358,
+        "precision": 0.5193890123365318,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.016256887406795907,
+        "min_iou": 0.4041322314049587,
+        "micro_iou": 0.545419774335437,
+        "micro_precision": 0.5472512712270939,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 4719,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7620269897269369,
+        "precision": 0.8121622429530132,
+        "recall": 0.896866564420262,
+        "background_fpr": 0.0023161006089494154,
+        "min_iou": 0.0,
+        "micro_iou": 0.8456146246387526,
+        "micro_precision": 0.9145949639451035,
+        "micro_recall": 0.9181120978393328,
+        "tp": 125819,
+        "fp": 11749,
+        "fn": 11222
+      }
+    }
+  },
+  {
+    "id": "g017",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6221226980455098,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5114806823758566,
+        "precision": 0.5415354926879234,
+        "recall": 0.9107875286167538,
+        "background_fpr": 0.02806532284405057,
+        "min_iou": 0.0,
+        "micro_iou": 0.4479468271740526,
+        "micro_precision": 0.4669568481973928,
+        "micro_recall": 0.9166891660160098,
+        "tp": 125624,
+        "fp": 143403,
+        "fn": 11417
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5745833996235366,
+        "precision": 0.5763955426727144,
+        "recall": 0.9957872781717374,
+        "background_fpr": 0.011643859535751758,
+        "min_iou": 0.42010309278350516,
+        "micro_iou": 0.6240560358979972,
+        "micro_precision": 0.6265934065934066,
+        "micro_recall": 0.9935528837776616,
+        "tp": 5702,
+        "fp": 3398,
+        "fn": 37
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.780304012137136,
+        "precision": 0.8348845199773206,
+        "recall": 0.9094013530979815,
+        "background_fpr": 0.0020947581999287536,
+        "min_iou": 0.0,
+        "micro_iou": 0.8497976913812468,
+        "micro_precision": 0.9211356235515006,
+        "micro_recall": 0.9164775505140798,
+        "tp": 125595,
+        "fp": 10753,
+        "fn": 11446
+      }
+    }
+  },
+  {
+    "id": "g034",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6209503791339771,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5776609409938074,
+        "precision": 0.6104962818964604,
+        "recall": 0.9144672099147378,
+        "background_fpr": 0.022501899099665275,
+        "min_iou": 0.0,
+        "micro_iou": 0.4964002709642863,
+        "micro_precision": 0.5188817119309036,
+        "micro_recall": 0.9197247539057655,
+        "tp": 126040,
+        "fp": 116867,
+        "fn": 11001
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5355665459502965,
+        "precision": 0.5367008061616992,
+        "recall": 0.9967895533927115,
+        "background_fpr": 0.01373725774451986,
+        "min_iou": 0.3583138173302108,
+        "micro_iou": 0.5856835196390113,
+        "micro_precision": 0.5873701532448833,
+        "micro_recall": 0.9951211012371494,
+        "tp": 5711,
+        "fp": 4012,
+        "fn": 28
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7496236504578272,
+        "precision": 0.7935700470747236,
+        "recall": 0.9003614158874887,
+        "background_fpr": 0.0025811362310707085,
+        "min_iou": 0.0,
+        "micro_iou": 0.8373118837571354,
+        "micro_precision": 0.9046492905303412,
+        "micro_recall": 0.9183601987726301,
+        "tp": 125853,
+        "fp": 13265,
+        "fn": 11188
+      }
+    }
+  },
+  {
+    "id": "g039",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6189149263520378,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5101513703543487,
+        "precision": 0.5388448891077618,
+        "recall": 0.9129260108288413,
+        "background_fpr": 0.028392881515273322,
+        "min_iou": 0.0,
+        "micro_iou": 0.4461717356854431,
+        "micro_precision": 0.4645993687358104,
+        "micro_recall": 0.9183601987726301,
+        "tp": 125853,
+        "fp": 145032,
+        "fn": 11188
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5689419574897947,
+        "precision": 0.5706113065058925,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.012508456896588693,
+        "min_iou": 0.42707423580786025,
+        "micro_iou": 0.6081671820023457,
+        "micro_precision": 0.610445205479452,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 3640,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7776514512119701,
+        "precision": 0.829763464208782,
+        "recall": 0.9119463323962822,
+        "background_fpr": 0.002207269000747573,
+        "min_iou": 0.0,
+        "micro_iou": 0.8485492147620686,
+        "micro_precision": 0.9178829587810091,
+        "micro_recall": 0.9182580395648018,
+        "tp": 125839,
+        "fp": 11258,
+        "fn": 11202
+      }
+    }
+  },
+  {
+    "id": "g023",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6046172644036777,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.507530488250635,
+        "precision": 0.5353674174304233,
+        "recall": 0.9140975228628534,
+        "background_fpr": 0.028800012411018882,
+        "min_iou": 0.0,
+        "micro_iou": 0.4433240330587817,
+        "micro_precision": 0.46123829534888827,
+        "micro_recall": 0.9194474646273743,
+        "tp": 126002,
+        "fp": 147180,
+        "fn": 11039
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.531394351207042,
+        "precision": 0.5330121162795137,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.014651434054278444,
+        "min_iou": 0.39308681672025725,
+        "micro_iou": 0.5699440447641887,
+        "micro_precision": 0.5719442494735787,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 4269,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7749269537533562,
+        "precision": 0.8256570284396715,
+        "recall": 0.9133054529542489,
+        "background_fpr": 0.0023103333304727927,
+        "min_iou": 0.0,
+        "micro_iou": 0.8469232061838347,
+        "micro_precision": 0.91480742004574,
+        "micro_recall": 0.9194401675411008,
+        "tp": 126001,
+        "fp": 11734,
+        "fn": 11040
+      }
+    }
+  },
+  {
+    "id": "g001",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.08,
+      "weak_ratio": 1.0,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.6033392537002196,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5081490562987936,
+        "precision": 0.5361038487939784,
+        "recall": 0.9138084173353331,
+        "background_fpr": 0.02868868936871565,
+        "min_iou": 0.0,
+        "micro_iou": 0.4441600022567314,
+        "micro_precision": 0.4622170360014238,
+        "micro_recall": 0.9191555811764363,
+        "tp": 125962,
+        "fp": 146555,
+        "fn": 11079
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5261842180115455,
+        "precision": 0.5277878987906859,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.014765634760325552,
+        "min_iou": 0.38203125,
+        "micro_iou": 0.5680709092719849,
+        "micro_precision": 0.5700579652208675,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 4302,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7756844867903196,
+        "precision": 0.8266439338998651,
+        "recall": 0.9130540222742808,
+        "background_fpr": 0.0022874663547451045,
+        "min_iou": 0.0,
+        "micro_iou": 0.8473113505805115,
+        "micro_precision": 0.915535236655425,
+        "micro_recall": 0.9191628782627097,
+        "tp": 125963,
+        "fp": 11621,
+        "fn": 11078
+      }
+    }
+  },
+  {
+    "id": "g007",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.16,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.5967823564963961,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5058138122029179,
+        "precision": 0.5330713020021703,
+        "recall": 0.9167208351778624,
+        "background_fpr": 0.029053391211486576,
+        "min_iou": 0.0,
+        "micro_iou": 0.4413785135078358,
+        "micro_precision": 0.4590218254112746,
+        "micro_recall": 0.9198925868900548,
+        "tp": 126063,
+        "fp": 148571,
+        "fn": 10978
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.5096977738683894,
+        "precision": 0.5112981215160719,
+        "recall": 0.995994854715588,
+        "background_fpr": 0.016755203723846444,
+        "min_iou": 0.36877828054298645,
+        "micro_iou": 0.5378595002357378,
+        "micro_precision": 0.5396404919583727,
+        "micro_recall": 0.9939013765464366,
+        "tp": 5704,
+        "fp": 4866,
+        "fn": 35
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7748354834178811,
+        "precision": 0.8253233417669515,
+        "recall": 0.9135962342709562,
+        "background_fpr": 0.0023297052975564804,
+        "min_iou": 0.0,
+        "micro_iou": 0.8466519776440241,
+        "micro_precision": 0.9142384610362762,
+        "micro_recall": 0.9196955655606717,
+        "tp": 126036,
+        "fp": 11823,
+        "fn": 11005
+      }
+    }
+  },
+  {
+    "id": "g035",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 16,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.5894762197063225,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.49207992514907506,
+        "precision": 0.5170564880313798,
+        "recall": 0.9173934185661373,
+        "background_fpr": 0.029472743877850878,
+        "min_iou": 0.0,
+        "micro_iou": 0.43772786933061103,
+        "micro_precision": 0.45507479712363186,
+        "micro_recall": 0.9198925868900548,
+        "tp": 126063,
+        "fp": 150953,
+        "fn": 10978
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.515460254006427,
+        "precision": 0.5165861545264224,
+        "recall": 0.9967895533927115,
+        "background_fpr": 0.014741092579943178,
+        "min_iou": 0.3583138173302108,
+        "micro_iou": 0.5682587064676617,
+        "micro_precision": 0.5698463380562762,
+        "micro_recall": 0.9951211012371494,
+        "tp": 5711,
+        "fp": 4311,
+        "fn": 28
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7608884799634652,
+        "precision": 0.8046418512025901,
+        "recall": 0.9171682462320099,
+        "background_fpr": 0.0026029056013346812,
+        "min_iou": 0.0,
+        "micro_iou": 0.8381154352421853,
+        "micro_precision": 0.9040458365602502,
+        "micro_recall": 0.9199509635802424,
+        "tp": 126071,
+        "fp": 13381,
+        "fn": 10970
+      }
+    }
+  },
+  {
+    "id": "g018",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.5680922044458014,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5644454362689219,
+        "precision": 0.5936811355013869,
+        "recall": 0.9182496744044405,
+        "background_fpr": 0.02338486068002471,
+        "min_iou": 0.0,
+        "micro_iou": 0.4888180397133704,
+        "micro_precision": 0.5099395754539914,
+        "micro_recall": 0.9218846914427069,
+        "tp": 126336,
+        "fp": 121411,
+        "fn": 10705
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.40151420195143467,
+        "precision": 0.40220342755662647,
+        "recall": 0.9973084947523378,
+        "background_fpr": 0.02502454908757934,
+        "min_iou": 0.3090909090909091,
+        "micro_iou": 0.4378734487513406,
+        "micro_precision": 0.4386463049650833,
+        "micro_recall": 0.995992333159087,
+        "tp": 5716,
+        "fp": 7315,
+        "fn": 23
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7383169751170477,
+        "precision": 0.7778157024358369,
+        "recall": 0.903991412215133,
+        "background_fpr": 0.0029160652486944646,
+        "min_iou": 0.0,
+        "micro_iou": 0.8303624323648284,
+        "micro_precision": 0.8945073179033356,
+        "micro_recall": 0.9205055421370247,
+        "tp": 126147,
+        "fp": 14877,
+        "fn": 10894
+      }
+    }
+  },
+  {
+    "id": "g002",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.5504277398391916,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5551748767941034,
+        "precision": 0.5827241695497771,
+        "recall": 0.9214524427609676,
+        "background_fpr": 0.023830658821011864,
+        "min_iou": 0.0,
+        "micro_iou": 0.48501815922592223,
+        "micro_precision": 0.5055161166538756,
+        "micro_recall": 0.9228479068308024,
+        "tp": 126468,
+        "fp": 123708,
+        "fn": 10573
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.36048339498608073,
+        "precision": 0.3610750491807603,
+        "recall": 0.9975160712961884,
+        "background_fpr": 0.03232682445445097,
+        "min_iou": 0.30372670807453417,
+        "micro_iou": 0.37752541925260796,
+        "micro_precision": 0.3780495867768595,
+        "micro_recall": 0.996340825927862,
+        "tp": 5718,
+        "fp": 9407,
+        "fn": 21
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7356249477373905,
+        "precision": 0.7742525453714076,
+        "recall": 0.9048282498576347,
+        "background_fpr": 0.0030260339137114524,
+        "min_iou": 0.0,
+        "micro_iou": 0.8282718940870056,
+        "micro_precision": 0.8913701928168487,
+        "micro_recall": 0.9212644391094635,
+        "tp": 126251,
+        "fp": 15386,
+        "fn": 10790
+      }
+    }
+  },
+  {
+    "id": "g019",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 10,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.5410662782992421,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.48089186053951605,
+        "precision": 0.5031731374987918,
+        "recall": 0.9211758830558399,
+        "background_fpr": 0.03050790543597066,
+        "min_iou": 0.0,
+        "micro_iou": 0.4307316291642663,
+        "micro_precision": 0.4470084230411388,
+        "micro_recall": 0.9220525244269963,
+        "tp": 126359,
+        "fp": 156318,
+        "fn": 10682
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.3935749243539743,
+        "precision": 0.3942423417168659,
+        "recall": 0.9973084947523378,
+        "background_fpr": 0.02596863829412503,
+        "min_iou": 0.3090909090909091,
+        "micro_iou": 0.4288072018004501,
+        "micro_precision": 0.4295483580070639,
+        "micro_recall": 0.995992333159087,
+        "tp": 5716,
+        "fp": 7591,
+        "fn": 23
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.748732050004236,
+        "precision": 0.7877501061726868,
+        "recall": 0.9209525635473085,
+        "background_fpr": 0.0029437997547371673,
+        "min_iou": 0.0,
+        "micro_iou": 0.8310119423400674,
+        "micro_precision": 0.8937477898012589,
+        "micro_recall": 0.9221109011171839,
+        "tp": 126367,
+        "fp": 15023,
+        "fn": 10674
+      }
+    }
+  },
+  {
+    "id": "g003",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 6,
+      "relative": 0.08,
+      "weak_ratio": 0.5,
+      "link_radius": 0.05,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.5221632628960227,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.4761945344752514,
+        "precision": 0.4976650116478368,
+        "recall": 0.9243786514123671,
+        "background_fpr": 0.031004978397559734,
+        "min_iou": 0.0,
+        "micro_iou": 0.42750199402468536,
+        "micro_precision": 0.4433085436716269,
+        "micro_recall": 0.9230157398150919,
+        "tp": 126491,
+        "fp": 158843,
+        "fn": 10550
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.3442547506527684,
+        "precision": 0.34480837408310394,
+        "recall": 0.9975160712961884,
+        "background_fpr": 0.0344381961699474,
+        "min_iou": 0.24622356495468278,
+        "micro_iou": 0.3625871908687381,
+        "micro_precision": 0.36307067115372404,
+        "micro_recall": 0.996340825927862,
+        "tp": 5718,
+        "fp": 10031,
+        "fn": 21
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7460405035600481,
+        "precision": 0.7841880441852306,
+        "recall": 0.9217894011898102,
+        "background_fpr": 0.003053768419754155,
+        "min_iou": 0.0,
+        "micro_iou": 0.828921237702608,
+        "micro_precision": 0.890622029112061,
+        "micro_recall": 0.9228697980896228,
+        "tp": 126471,
+        "fp": 15532,
+        "fn": 10570
+      }
+    }
+  }
+]

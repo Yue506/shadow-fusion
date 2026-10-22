@@ -1,0 +1,230 @@
+[
+  {
+    "id": "g001",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7630945075849174,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6449489997034561,
+        "precision": 0.7396743977234098,
+        "recall": 0.8484355878184554,
+        "background_fpr": 0.017203240809199067,
+        "min_iou": 0.0,
+        "micro_iou": 0.5235304775920205,
+        "micro_precision": 0.5703521821814593,
+        "micro_recall": 0.864449325384374,
+        "tp": 118465,
+        "fp": 89240,
+        "fn": 18576
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.8081282201418079,
+        "precision": 0.8296003784269568,
+        "recall": 0.9676652331315548,
+        "background_fpr": 0.00317154098714299,
+        "min_iou": 0.6337837837837837,
+        "micro_iou": 0.8277569392348088,
+        "micro_precision": 0.8562781313052925,
+        "micro_recall": 0.9613173026659697,
+        "tp": 5517,
+        "fp": 926,
+        "fn": 222
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.836206302909488,
+        "precision": 0.9666666666666667,
+        "recall": 0.836206302909488,
+        "background_fpr": 0.0,
+        "min_iou": 0.0,
+        "micro_iou": 0.8631577411139731,
+        "micro_precision": 1.0,
+        "micro_recall": 0.8631577411139731,
+        "tp": 118288,
+        "fp": 0,
+        "fn": 18753
+      }
+    }
+  },
+  {
+    "id": "g000",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": false
+    },
+    "objective_equal_cohort_macro_iou": 0.7540581860179915,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.6312057549072269,
+        "precision": 0.7131263451017681,
+        "recall": 0.8470778293963173,
+        "background_fpr": 0.017589057925140535,
+        "min_iou": 0.0,
+        "micro_iou": 0.5250986188980924,
+        "micro_precision": 0.567201266032076,
+        "micro_recall": 0.876146554680716,
+        "tp": 120068,
+        "fp": 91617,
+        "fn": 16973
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.8130072540854743,
+        "precision": 0.8267762081398502,
+        "recall": 0.9796611851170278,
+        "background_fpr": 0.003325937564358098,
+        "min_iou": 0.6459459459459459,
+        "micro_iou": 0.8319916517590936,
+        "micro_precision": 0.85206106870229,
+        "micro_recall": 0.9724690712667712,
+        "tp": 5581,
+        "fp": 969,
+        "fn": 158
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.817961549061273,
+        "precision": 0.9420091064365737,
+        "recall": 0.8385670221775912,
+        "background_fpr": 0.0003473337911667868,
+        "min_iou": 0.0,
+        "micro_iou": 0.8637205247725194,
+        "micro_precision": 0.985515705020181,
+        "micro_recall": 0.8748257820652213,
+        "tp": 119887,
+        "fp": 1762,
+        "fn": 17154
+      }
+    }
+  },
+  {
+    "id": "g003",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0,
+      "texture": true
+    },
+    "objective_equal_cohort_macro_iou": 0.7002876047690929,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.5890526709957984,
+        "precision": 0.7495946767741959,
+        "recall": 0.7455138445148284,
+        "background_fpr": 0.0161099235298709,
+        "min_iou": 0.0,
+        "micro_iou": 0.5070672739220085,
+        "micro_precision": 0.572290758812578,
+        "micro_recall": 0.8164855773089805,
+        "tp": 111892,
+        "fp": 83624,
+        "fn": 25149
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.8098824145083292,
+        "precision": 0.8469313117836584,
+        "recall": 0.9440535182367075,
+        "background_fpr": 0.002783562860540199,
+        "min_iou": 0.6577380952380952,
+        "micro_iou": 0.8345038167938932,
+        "micro_precision": 0.8707981519834316,
+        "micro_recall": 0.9524307370622059,
+        "tp": 5466,
+        "fp": 811,
+        "fn": 273
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.7019277288031511,
+        "precision": 0.95,
+        "recall": 0.7019277288031511,
+        "background_fpr": 0.0,
+        "min_iou": 0.0,
+        "micro_iou": 0.80859742704738,
+        "micro_precision": 1.0,
+        "micro_recall": 0.80859742704738,
+        "tp": 110811,
+        "fp": 0,
+        "fn": 26230
+      }
+    }
+  },
+  {
+    "id": "g002",
+    "config": {
+      "calibration": "srgb_plane",
+      "absolute": 24,
+      "relative": 0.24,
+      "weak_ratio": 1.0,
+      "link_radius": 0.02,
+      "sigma": 0.65,
+      "texture": true
+    },
+    "objective_equal_cohort_macro_iou": 0.6461278717333648,
+    "groups": {
+      "all_shadow_proxy": {
+        "count": 60,
+        "iou": 0.543551248722874,
+        "precision": 0.7223059804279705,
+        "recall": 0.6882192065867281,
+        "background_fpr": 0.016149317074448902,
+        "min_iou": 0.0,
+        "micro_iou": 0.5020067404736451,
+        "micro_precision": 0.5696683390220834,
+        "micro_recall": 0.8086703979101145,
+        "tp": 110821,
+        "fp": 83715,
+        "fn": 26220
+      },
+      "existing_actual_model_candidate": {
+        "count": 5,
+        "iou": 0.7760356593529566,
+        "precision": 0.8502826859947845,
+        "recall": 0.8903661111225196,
+        "background_fpr": 0.002682110728528564,
+        "min_iou": 0.6045197740112994,
+        "micro_iou": 0.8345864661654135,
+        "micro_precision": 0.874859256876307,
+        "micro_recall": 0.9477260846837429,
+        "tp": 5439,
+        "fp": 778,
+        "fn": 300
+      },
+      "target_proxy": {
+        "count": 60,
+        "iou": 0.6187967071242639,
+        "precision": 0.9333333333333333,
+        "recall": 0.6187967071242639,
+        "background_fpr": 0.0,
+        "min_iou": 0.0,
+        "micro_iou": 0.7825687203099803,
+        "micro_precision": 1.0,
+        "micro_recall": 0.7825687203099803,
+        "tp": 107244,
+        "fp": 0,
+        "fn": 29797
+      }
+    }
+  }
+]
