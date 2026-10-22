@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "language": "zh",
+  "profile": "model-benchmark",
+  "headings": [
+    "\u76ee\u6807\u5f71\u5b50\u7eaf mask\uff1aiou \u63a2\u7d22",
+    "\u7ed3\u8bba",
+    "\u5b9e\u9a8c\u8bbe\u7f6e\u4e0e\u9009\u62e9",
+    "\u6307\u6807\u4e0e\u5b8c\u6574\u5b9a\u91cf\u6bd4\u8f83",
+    "\u5df2\u77e5\u771f\u5b9e\u4e94\u56fe\u9010\u56fe\u7ed3\u679c",
+    "\u6a21\u5757\u6d88\u878d\u4e0e\u7a33\u5b9a\u6027",
+    "\u5206\u7ec4\u7ed3\u679c",
+    "\u9010\u6a21\u578b\u53ef\u89c6\u5316\uff1a\u6210\u529f\u3001\u5931\u8d25\u3001mask\u8f93\u51fa",
+    "\u89c6\u89c9\u6838\u9a8c",
+    "\u540c\u5e27 compact \u5bf9\u6bd4\u4e0e\u8f93\u51fa",
+    "\u5c40\u9650\u3001\u5efa\u8bae\u4e0e\u5931\u8d25\u8303\u56f4",
+    "\u547d\u4ee4",
+    "\u73af\u5883\u3001\u8f93\u5165\u4e0e\u51bb\u7ed3",
+    "\u4ea7\u7269"
+  ],
+  "image_refs": [
+    "assets/metrics.png",
+    "assets/actual5_preview.png",
+    "assets/board_previous_alpha.png",
+    "assets/board_background_alpha.png",
+    "assets/board_shadow_mask.png"
+  ],
+  "errors": [],
+  "warnings": []
+}

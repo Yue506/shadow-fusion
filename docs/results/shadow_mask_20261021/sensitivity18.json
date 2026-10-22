@@ -1,0 +1,92 @@
+{
+  "previous_alpha": {
+    "target_proxy": {
+      "count": 18,
+      "iou": 0.8672890115165024,
+      "precision": 0.9338061465721039,
+      "recall": 0.8730711174203368,
+      "background_fpr": 2.5921537849065945e-05,
+      "min_iou": 0.0,
+      "micro_iou": 0.94071072319202,
+      "micro_precision": 0.9970265627064887,
+      "micro_recall": 0.9433572991559862,
+      "tp": 15089,
+      "fp": 45,
+      "fn": 906
+    },
+    "all_shadow_proxy": {
+      "count": 18,
+      "iou": 0.36936217293966156,
+      "precision": 0.3791781503334408,
+      "recall": 0.8736438551064766,
+      "background_fpr": 0.016492483355948377,
+      "min_iou": 0.0,
+      "micro_iou": 0.3605695718654434,
+      "micro_precision": 0.36852001074402363,
+      "micro_recall": 0.9435448577680525,
+      "tp": 15092,
+      "fp": 25861,
+      "fn": 903
+    }
+  },
+  "background_alpha": {
+    "target_proxy": {
+      "count": 18,
+      "iou": 0.7776242688500816,
+      "precision": 0.9444444444444444,
+      "recall": 0.7776242688500816,
+      "background_fpr": 0.0,
+      "min_iou": 0.0,
+      "micro_iou": 0.8578930915911223,
+      "micro_precision": 1.0,
+      "micro_recall": 0.8578930915911223,
+      "tp": 13722,
+      "fp": 0,
+      "fn": 2273
+    },
+    "all_shadow_proxy": {
+      "count": 18,
+      "iou": 0.428806090514078,
+      "precision": 0.4462832994804286,
+      "recall": 0.8483703975946876,
+      "background_fpr": 0.014260853931317688,
+      "min_iou": 0.0,
+      "micro_iou": 0.3874538745387454,
+      "micro_precision": 0.39990816023338105,
+      "micro_recall": 0.925601750547046,
+      "tp": 14805,
+      "fp": 22216,
+      "fn": 1190
+    }
+  },
+  "shadow_mask": {
+    "target_proxy": {
+      "count": 18,
+      "iou": 0.8374149202715707,
+      "precision": 0.9444444444444444,
+      "recall": 0.8374149202715707,
+      "background_fpr": 0.0,
+      "min_iou": 0.0,
+      "micro_iou": 0.919412316348859,
+      "micro_precision": 1.0,
+      "micro_recall": 0.919412316348859,
+      "tp": 14706,
+      "fp": 0,
+      "fn": 1289
+    },
+    "all_shadow_proxy": {
+      "count": 18,
+      "iou": 0.5119739902676579,
+      "precision": 0.5452743525240056,
+      "recall": 0.8376943675835067,
+      "background_fpr": 0.012121285322233081,
+      "min_iou": 0.0,
+      "micro_iou": 0.4249119159013458,
+      "micro_precision": 0.44124880038387715,
+      "micro_recall": 0.919849953110347,
+      "tp": 14713,
+      "fp": 18631,
+      "fn": 1282
+    }
+  }
+}

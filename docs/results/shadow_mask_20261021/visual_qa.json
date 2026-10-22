@@ -1,0 +1,30 @@
+{
+  "inspected_pngs": [
+    "actual_01.png",
+    "actual_02.png",
+    "board_background_alpha.png",
+    "all_shadow_proxy_03.png",
+    "all_shadow_proxy_02.png",
+    "all_shadow_proxy_01.png",
+    "all_shadow_proxy_05.png",
+    "all_shadow_proxy_04.png",
+    "board_previous_alpha.png",
+    "target_proxy_04.png",
+    "target_proxy_05.png",
+    "target_proxy_01.png",
+    "target_proxy_02.png",
+    "metrics.png",
+    "target_proxy_03.png",
+    "actual5_preview.png",
+    "board_shadow_mask.png"
+  ],
+  "full_size_visual_review": true,
+  "findings": [
+    "Masks align with sources; no forced object halo. Original/GT/candidate columns match IDs.",
+    "r01 object-edge fragments remain false positives; r03/r05 fit substantially better.",
+    "d014 and d020 complete misses preserved; d017 target-only empty mask preserved.",
+    "All-shadow proxy picks other shadows: d003/d012/d015/d019 show major target-attribution errors.",
+    "Chinese labels readable, numeric labels match metrics, no missing/blank image placeholders."
+  ],
+  "svg_check": "metrics.svg exported with text elements and finite plotted values; matches PNG data."
+}

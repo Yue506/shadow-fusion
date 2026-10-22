@@ -1,0 +1,140 @@
+{
+  "reason": "IoU(empty,empty)=1; score-only correction after freeze, no prediction/config/GT metrics changed.",
+  "changes": [
+    {
+      "id": "d014",
+      "cohort": "target_proxy",
+      "perturbation": "brightness2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d014",
+      "cohort": "target_proxy",
+      "perturbation": "color2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d014",
+      "cohort": "target_proxy",
+      "perturbation": "noise08",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d017",
+      "cohort": "target_proxy",
+      "perturbation": "brightness2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d017",
+      "cohort": "target_proxy",
+      "perturbation": "color2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d017",
+      "cohort": "target_proxy",
+      "perturbation": "noise08",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "perturbation": "brightness2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "perturbation": "color2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d020",
+      "cohort": "target_proxy",
+      "perturbation": "noise08",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d014",
+      "cohort": "all_shadow_proxy",
+      "perturbation": "brightness2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d014",
+      "cohort": "all_shadow_proxy",
+      "perturbation": "color2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d014",
+      "cohort": "all_shadow_proxy",
+      "perturbation": "noise08",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "perturbation": "brightness2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "perturbation": "color2",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    },
+    {
+      "id": "d020",
+      "cohort": "all_shadow_proxy",
+      "perturbation": "noise08",
+      "nominal_pixels": 0,
+      "perturbed_pixels": 0,
+      "old": 0.0,
+      "corrected": 1.0
+    }
+  ]
+}

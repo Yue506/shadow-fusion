@@ -9,6 +9,13 @@ from shadow_fusion.cli import main
 
 
 class ShadowMaskTests(unittest.TestCase):
+    def test_stability_iou_distinguishes_empty_masks_from_disagreement(self):
+        from scripts.explore_shadow_mask import stability_iou
+        empty=np.zeros((4,4),bool);other=empty.copy();other[1,1]=True
+        self.assertEqual(stability_iou(empty,empty),1.)
+        self.assertEqual(stability_iou(empty,other),0.)
+        self.assertEqual(stability_iou(other,other),1.)
+
     def fixture(self):
         s=np.full((96,96,3),100,'uint8');g=s.copy()
         m=np.zeros((96,96),bool);m[20:40,40:55]=True

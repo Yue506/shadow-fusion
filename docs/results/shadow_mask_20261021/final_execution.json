@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "scripts/explore_shadow_mask.py",
+    "--manifest",
+    "data/shadow_mask_holdout20/target_proxy_heldout.jsonl",
+    "--manifest",
+    "data/shadow_mask_holdout20/all_shadow_proxy_heldout.jsonl",
+    "--output",
+    "outputs/shadow_mask_20261021/final_new20",
+    "--methods",
+    "outputs/shadow_mask_20261021/final_methods.json",
+    "--stability"
+  ],
+  "start_unix": 1792643075.697568,
+  "end_unix": 1792643114.307012,
+  "elapsed_seconds": 38.60944414138794,
+  "device": "Apple M1 CPU",
+  "status": "complete"
+}

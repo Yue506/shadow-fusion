@@ -1,0 +1,92 @@
+{
+  "previous_alpha": {
+    "all_shadow_proxy": {
+      "count": 20,
+      "iou": 0.34136756148511144,
+      "precision": 0.3502019411395128,
+      "recall": 0.8362794695958289,
+      "background_fpr": 0.01514951784319199,
+      "min_iou": 0.0,
+      "micro_iou": 0.3553216374269006,
+      "micro_precision": 0.3655572401511323,
+      "micro_recall": 0.9269542930371636,
+      "tp": 15190,
+      "fp": 26363,
+      "fn": 1197
+    },
+    "target_proxy": {
+      "count": 20,
+      "iou": 0.785151947099546,
+      "precision": 0.8904255319148936,
+      "recall": 0.7903558424129971,
+      "background_fpr": 2.332938406415935e-05,
+      "min_iou": 0.0,
+      "micro_iou": 0.9188169425511198,
+      "micro_precision": 0.9970283299214159,
+      "micro_recall": 0.9213400866540551,
+      "tp": 15098,
+      "fp": 45,
+      "fn": 1289
+    }
+  },
+  "background_alpha": {
+    "all_shadow_proxy": {
+      "count": 20,
+      "iou": 0.3974344328693198,
+      "precision": 0.41340431679087136,
+      "recall": 0.8094517251821577,
+      "background_fpr": 0.013037908530482414,
+      "min_iou": 0.0,
+      "micro_iou": 0.3825410278141613,
+      "micro_precision": 0.3977834156763253,
+      "micro_recall": 0.9089522182217612,
+      "tp": 14895,
+      "fp": 22550,
+      "fn": 1492
+    },
+    "target_proxy": {
+      "count": 20,
+      "iou": 0.7024128623732369,
+      "precision": 0.9,
+      "recall": 0.7024128623732369,
+      "background_fpr": 0.0,
+      "min_iou": 0.0,
+      "micro_iou": 0.8376762067492525,
+      "micro_precision": 1.0,
+      "micro_recall": 0.8376762067492525,
+      "tp": 13727,
+      "fp": 0,
+      "fn": 2660
+    }
+  },
+  "shadow_mask": {
+    "all_shadow_proxy": {
+      "count": 20,
+      "iou": 0.4790934229240603,
+      "precision": 0.5115334341255375,
+      "recall": 0.7916800328659723,
+      "background_fpr": 0.010973689732836068,
+      "min_iou": 0.0,
+      "micro_iou": 0.42101816525254826,
+      "micro_precision": 0.44111329872919275,
+      "micro_recall": 0.9023616281198511,
+      "tp": 14787,
+      "fp": 18735,
+      "fn": 1600
+    },
+    "target_proxy": {
+      "count": 20,
+      "iou": 0.7536734282444136,
+      "precision": 0.85,
+      "recall": 0.7536734282444136,
+      "background_fpr": 0.0,
+      "min_iou": 0.0,
+      "micro_iou": 0.8974186855434185,
+      "micro_precision": 1.0,
+      "micro_recall": 0.8974186855434185,
+      "tp": 14706,
+      "fp": 0,
+      "fn": 1681
+    }
+  }
+}

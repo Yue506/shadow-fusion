@@ -15,6 +15,11 @@ from shadow_fusion.research import compose_research
 from shadow_fusion.shadow_mask import ShadowMaskConfig,mask_features,segment_features,predict_shadow
 
 
+def stability_iou(left,right):
+    union=int((left|right).sum())
+    return float((left&right).sum()/union) if union else 1.
+
+
 def metrics(p,t,m):
     assert not (p&m).any()
     tp=int((p&t).sum());fp=int((p&~t).sum());fn=int((~p&t).sum())
@@ -39,7 +44,7 @@ def load_data(manifests,cache):
         for row in load_manifest(manifest):
             s=read_rgb(row['source'])[0];g=read_rgb(row['generated'])[0];m=read_mask(row['mask'])
             inputs={k:sha256(row[k]) for k in ('source','generated','mask')}
-            key=hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest()
+            key=hashlib.sha256(json.dumps({'inputs':inputs,'feature_code_sha256':sha256(Path(__import__('shadow_fusion.shadow_mask',fromlist=['x']).__file__)),'calibration':'srgb_plane'},sort_keys=True).encode()).hexdigest()
             path=cache/f'{key}.npz'
             if path.exists():
                 with np.load(path) as d:f={k:d[k] for k in d.files}
@@ -60,6 +65,8 @@ def group_metrics(rows):
 def sweep(samples,output,grid=None):
     configs=[ShadowMaskConfig(**c) for c in grid] if grid is not None else [ShadowMaskConfig(absolute=a,relative=r,weak_ratio=w,link_radius=l)
              for a,r,w,l in itertools.product((6,10,16,24),(.08,.16,.24,.32),(1.,.5),(.02,.05))]
+    if any(c.calibration!='srgb_plane' for c in configs):
+        raise ValueError('Development sweep cache uses srgb_plane; use --methods for calibration ablations')
     scores=[]
     for index,c in enumerate(configs):
         rows=[]
@@ -102,7 +109,7 @@ def evaluate(samples,methods,output,stability=False):
                                'noise08':g.astype(float)+rng.normal(0,.8,g.shape)}
                 for key,value in perturbations.items():
                     other=predict_shadow(s,np.rint(value).clip(0,255).astype('uint8'),m,config)['prediction']
-                    stats['stability_'+key]=float((p&other).sum()/max(1,(p|other).sum()))
+                    stats['stability_'+key]=stability_iou(p,other)
             dest=output/name/row.get('cohort','actual')/row['id'];dest.mkdir(parents=True)
             Image.fromarray(p.astype('uint8')*255).save(dest/'prediction.png')
             Image.fromarray(np.rint(score*255).clip(0,255).astype('uint8')).save(dest/'evidence.png')

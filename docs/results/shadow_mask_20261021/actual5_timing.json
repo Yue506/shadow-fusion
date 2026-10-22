@@ -1,0 +1,22 @@
+[
+  {
+    "id": "r01_running",
+    "inference_cpu_seconds": 0.05168820801191032
+  },
+  {
+    "id": "r02_penguin",
+    "inference_cpu_seconds": 0.05253437499050051
+  },
+  {
+    "id": "r03_aircraft",
+    "inference_cpu_seconds": 0.04857912502484396
+  },
+  {
+    "id": "r04_field",
+    "inference_cpu_seconds": 0.059237124980427325
+  },
+  {
+    "id": "r05_hardware",
+    "inference_cpu_seconds": 0.06516479200217873
+  }
+]

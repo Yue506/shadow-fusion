@@ -1,0 +1,17 @@
+{
+  "manifests": [
+    {
+      "manifest_name": "target_proxy_heldout.jsonl",
+      "sha256": "9d540d5e1811010dd4f7ce53c2aff4651122d25f62ab0e78f56311a8d150e441"
+    },
+    {
+      "manifest_name": "all_shadow_proxy_heldout.jsonl",
+      "sha256": "d041222b3c5343ed7dd49127af4762a1abe8c53f50bdb899ff1bd176eea21ef1"
+    }
+  ],
+  "code_commit": "240bc55c5c81a031d330afd6930b6de1e19fee6b",
+  "predictor_sha256": "4468ff7b502634a7227db968f9e99b6984381ba6726b4d3ca5e03455c648350c",
+  "runner_sha256": "5bc6056e9813cadb90df0a8a312fac9de1719f2c0433d60fb64769539c4af8cd",
+  "selection": "Equal-weight cohort mean macro IoU; actual five are development regressions, proxies use label-derived candidates.",
+  "count": 40
+}
